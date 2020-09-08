@@ -1,0 +1,67 @@
+%-------------------------------------------------------------------------------
+%                      PREAMBLE - Document Declaration
+%-------------------------------------------------------------------------------
+\documentclass[a4paper, leqno, 12pt]{article}
+
+\usepackage{setspace}
+\usepackage[asymmetric]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{calc}
+\usepackage{xintexpr}
+% \usepackage{l3regex}
+\usepackage{expl3}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{multicol}
+\pgfplotsset{compat=1.16}
+
+
+\geometry{hmargin=2.3cm,
+vmargin=2.5cm }
+
+\newenvironment{top_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{2em}
+  \setlength{\topsep}{-0pt}
+  \setlength{\partopsep}{-0pt}
+}{\end{enumerate}}
+
+\newlength{\EqL}
+\newlength{\RunL}
+\setlength{\RunL}{0pt}
+\newcommand{\EqContent}{foo}
+\renewcommand{\theequation}{\alph{equation}}
+
+\ExplSyntaxOn
+\tl_new:N \l_mathexp_tl
+\cs_new:Npn \nodollar #1 {
+    \tl_set:Nn \l_mathexp_tl {#1}
+    \regex_replace_all:nnN { \$ } {} \l_mathexp_tl
+    \tl_use:N \l_mathexp_tl
+}
+\ExplSyntaxOff
+
+%-------------------------------------------------------------------------------
+%                               DOCUMENT
+%-------------------------------------------------------------------------------
+\begin{document}
+\singlespacing
+\begin{center}
+\textbf{
+modCode - blurbStr - Week weekNo\\
+\bigskip
+titleStr
+}
+\end{center}
+\bigskip
+
+\begin{top_enumerate}
+
+ExStr_1
+
+\end{top_enumerate}
+%-------------------------------------------------------------------------------
+\end{document}
+%-------------------------------------------------------------------------------

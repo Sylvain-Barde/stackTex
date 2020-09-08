@@ -1,0 +1,38 @@
+{
+    "tex": {
+        "HlistMath": {
+            "header": "\\item blurb \\\\ \n\\setcounter{equation}{0}  % reset counter \n\\setlength{\\RunL}{0pt}\n",
+            "item": "\\renewcommand{\\EqContent}{\\nodollar{InStr\\qquad\\textbf{MrkStr}}}\n\\settowidth{\\EqL}{$\\qquad\\EqContent\\qquad$}\n\\setlength{\\RunL}{\\RunL+\\EqL}\n\\xintifboolexpr { \\RunL > 0.667*\\textwidth }\n\t{\\setlength{\\RunL}{0pt}\n\t\\\\}\n\t{}\n\\begin{minipage}{\\EqL}\n\\begin{equation}\n\\EqContent\n\\end{equation}\n\\end{minipage}\n",
+            "footer": ""
+        },
+        "Vlist": {
+            "header": "\\item blurb \n\\setcounter{equation}{0}  % reset counter \n\\begin{enumerate}\n\t\\setlength{\\topsep}{-0pt}\n\t\\setlength{\\partopsep}{-0pt}\n\t\\setlength{\\itemsep}{10pt}\n\t",
+            "item": "\t\\item InStr \\quad \\textbf{MrkStr}",
+            "footer": "\\end{enumerate}"
+        },
+        "ColList": {
+            "header": "\\item blurb \n\\setcounter{equation}{0}  % reset counter \n\\begin{multicols}{2}\n\\begin{enumerate}\n\t\\setlength{\\topsep}{-0pt}\n\t\\setlength{\\partopsep}{-0pt}\n\t\\setlength{\\itemsep}{10pt}\n\t",
+            "item": "\t\\item InStr \\quad \\textbf{MrkStr}",
+            "footer": "\\end{enumerate}\\end{multicols}"
+        },
+        "Template": {
+            "header": "%-------------------------------------------------------------------------------\n% Template setup -- DO NOT MODIFY\n\\documentclass[preview]{standalone}\n\\usepackage{amsmath}\n\\usepackage{pgfplots}\n\\pgfplotsset{compat=1.16}\n\\newcommand \\fieldname[1]{\\underline{\\texttt{#1}:}}\n\\begin{document}\n%-------------------------------------------------------------------------------\n% Overall exercise setup - main options and header\n\\fieldname{category}  % Classification information\nCatStr\n\n\\fieldname{subCategory} % Classification information\nSubCtStr\n\n\\fieldname{questionFormat}\nQuFrmtStr\n\n\\fieldname{feedbackFormat}\nSolFrmtStr\n\n\\fieldname{exerciseParameters}\nParamStr\n\n\\fieldname{decimalPlaces}\nDecPlaces\n\n\\fieldname{questionBlurb}\nQuBlrb\n\n\\fieldname{feedbackBlurb}\nSolBlrb\n\n%-------------------------------------------------------------------------------\nItemStr\\end{document}\n",
+            "item": "% This section contains the individual question information\n\\fieldname{questionType}\nQuType\n\n\\fieldname{questionText}\nQuTxt\n\n\\fieldname{prompt}\nPrmptStr\n\n\\fieldname{solution}\nSolStr\n\n\\fieldname{mark}\nMarkStr\n\n\\fieldname{feedbackText}\nSolTxt\n\n%-------------------------------------------------------------------------------"
+        }
+    },
+    "xml": {
+        "QBase": "<!-- question: tag  -->\n  <question type=\"stack\">\n    <name>\n      <text>ExTitle</text>\n    </name>\n    <questiontext format=\"html\">\n      <text>QText</text>\n    </questiontext>\n    <generalfeedback format=\"html\">\n      <text></text>\n    </generalfeedback>\n    <defaultgrade>ExMark</defaultgrade>\n    <penalty>0</penalty>\n    <hidden>0</hidden>\n    <idnumber></idnumber>\n    <stackversion>\n      <text>2019052700</text>\n    </stackversion>\n    <questionvariables>\n      <text>QVars</text>\n    </questionvariables>\n    <specificfeedback format=\"html\">\n      <text></text>\n    </specificfeedback>\n    <questionnote>\n      <text>QNote</text>\n    </questionnote>\n    <questionsimplify>1</questionsimplify>\n    <assumepositive>0</assumepositive>\n    <assumereal>0</assumereal>\n    <prtcorrect format=\"html\">\n      <text><![CDATA[<p><span class=\"correct\">Correct answer, well done.</span></p>]]></text>\n    </prtcorrect>\n    <prtpartiallycorrect format=\"html\">\n      <text><![CDATA[<p><span class=\"partially\">Your answer is partially correct.</span></p>]]></text>\n    </prtpartiallycorrect>\n    <prtincorrect format=\"html\">\n      <text><![CDATA[<p><span class=\"incorrect\">Incorrect answer.</span></p>]]></text>\n    </prtincorrect>\n    <multiplicationsign>none</multiplicationsign>\n    <sqrtsign>1</sqrtsign>\n    <complexno>i</complexno>\n    <inversetrig>cos-1</inversetrig>\n    <matrixparens>(</matrixparens>\n    <variantsselectionseed></variantsselectionseed>\nInputXML\nFeedbackXML\n  </question>\n",
+        "Qtext": {
+            "header": "<![CDATA[<p>blurb</p>\n",
+            "item": "<p>QItem</p>\n<p>QPrompt = [[input:ansQnum]] [[validation:ansQnum]]</p>\n<p>[[feedback:ResultQnum]]</p>\n",
+            "footer": "]]>\n"
+        },
+        "InputXML": "    <input>\n      <name>ansQnum</name>\n      <type>algebraic</type>\n      <tans>solQnum</tans>\n      <boxsize>25</boxsize>\n      <strictsyntax>1</strictsyntax>\n      <insertstars>0</insertstars>\n      <syntaxhint></syntaxhint>\n      <syntaxattribute>0</syntaxattribute>\n      <forbidwords>solve</forbidwords>\n      <allowwords></allowwords>\n      <forbidfloat>0</forbidfloat>\n      <requirelowestterms>0</requirelowestterms>\n      <checkanswertype>1</checkanswertype>\n      <mustverify>1</mustverify>\n      <showvalidation>1</showvalidation>\n      <options></options>\n    </input>\n",
+        "FeedbackXML": "    <prt>\n      <name>ResultQnum</name>\n      <value>QMark</value>\n      <autosimplify>1</autosimplify>\n      <feedbackvariables>\n        <text>FeedVars</text>\n      </feedbackvariables>\n      <node>\n        <name>0</name>\n        <answertest>testType</answertest>\n        <sans>ansQnum</sans>\n        <tans>solQnum</tans>\n        <testoptions>testTol</testoptions>\n        <quiet>0</quiet>\n        <truescoremode>=</truescoremode>\n        <truescore>1.0000000</truescore>\n        <truepenalty></truepenalty>\n        <truenextnode>-1</truenextnode>\n        <trueanswernote>qQnum_corr</trueanswernote>\n        <truefeedback format=\"html\">\n          <text>\n            <![CDATA[<p>FeedText</p>]]>\n          </text>\n        </truefeedback>\n        <falsescoremode>=</falsescoremode>\n        <falsescore>0.0000000</falsescore>\n        <falsepenalty></falsepenalty>\n        <falsenextnode>-1</falsenextnode>\n        <falseanswernote>qQnum_incorr</falseanswernote>\n        <falsefeedback format=\"html\">\n          <text>\n            <![CDATA[<p>FeedText</p>]]>\n          </text>\n        </falsefeedback>\n      </node>\n    </prt>\n",
+        "CASfuncs": {
+            "binom_pdf": "binom_pdf(x,n,p):=binomial(n,x)*(p^x)*((1-p)^(n-x))\n",
+            "norm_qnt": "u1(x):= 0.5*log(1-x^2) + 4.330746750799873\nu2(x):= log(1-x^2)/0.147\ninverf(x):= sqrt(-u1(x) + sqrt(u1(x)^2 - u2(x)))\nnorm_qnt(x,m,s):=m+s*(2^0.5)*inverf(2*x-1)\n",
+            "norm_cdf": "norm_cdf(x,m,s):=0.5*(1+erf((x-m)/(s*2^0.5)))\n"
+        }
+    }
+}

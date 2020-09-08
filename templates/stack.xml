@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+        <text>$course$/modCode/blurbStr</text>
+
+    </category>
+  </question>
+
+ExStr
+
+</quiz>
