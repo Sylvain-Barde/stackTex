@@ -1,2 +1,2 @@
-# stacktex
+# stackTex
 Build and manage STACK question banks from Latex templates
