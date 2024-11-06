@@ -2,7 +2,36 @@
 """
 Created on Thu Jun 25 15:24:38 2020
 
-@author: Sylvain
+@author: Sylvain Barde - University of Kent
+
+Dependencies for the main stackTex functions.
+
+All package requirements are handled in the dependencies at import.
+
+Requires the following packages:
+    
+    scipy
+    numpy
+    sympy
+
+Functions:
+
+    decimalCheck
+    genParams
+    getFieldName
+    logCheck
+    parseTex
+    parseTexEnv
+    processParamFuncs
+    paramSub
+    safeEval
+    safeSub
+    sortedNicely
+    symbParse
+    pad
+    trim
+    xmlParse
+
 """
 
 import re
@@ -13,22 +42,32 @@ import numpy as np
 from scipy.stats import norm, binom
 from sympy.parsing.latex import parse_latex
 
+# numpy and scipy imports included for availability when template instructions
+# are evaluated
+
 #------------------------------------------------------------------------------
 def decimalCheck(value,decMax):
     """
-    # Check minimum number of decimal values required
+    Check minimum number of decimal values required for exactr decimal 
+    representation, used for optimising the formatting display of floats by 
+    trimming down any excess 0s.
+    
+    example: if decMax =3 (3 decimal places used in display)
+        - A value of 3/10 will be represented as 0.3 NOT 0.3
+        - A value of 1/3 wqill be represented as 0.333
+
 
     Parameters
     ----------
-    value : TYPE
-        DESCRIPTION.
-    decMax : TYPE
-        DESCRIPTION.
+    value : float
+        The raw float to be checked
+    decMax : int
+        Maximal number of decimal places to examine
 
     Returns
     -------
-    TYPE
-        DESCRIPTION.
+    int
+        The number of decimal places used to represent the float
 
     """
 
@@ -46,13 +85,16 @@ def genParams(paramStr):
 
     Parameters
     ----------
-    paramStr : TYPE
-        DESCRIPTION.
+    paramStr : string
+        Multi-line string containing the parameter definition equations
 
     Returns
     -------
-    paramDict : TYPE
-        DESCRIPTION.
+    paramDict : dict
+        A dictionary of parameter values where:
+        - The key is a string containing the parameter name
+        - The value is a number (float or int) determined by the equation for
+          that parameter
 
     """
 
@@ -98,8 +140,9 @@ def genParams(paramStr):
 
     return paramDict
 #------------------------------------------------------------------------------
-def get_fieldName(line):
-    """ Extracts fieldname from the field instruction line
+def getFieldName(line):
+    """ 
+    Extracts fieldname from the field instruction line
 
     Parameters
     ----------
@@ -108,24 +151,25 @@ def get_fieldName(line):
 
     Returns
     -------
-    substring with the fieldname.
+    string :
+        Substring of the original string containing the fieldname.
 
     """
     return re.findall(r'\{(.*?)\}',line)[0]
 #------------------------------------------------------------------------------
 def logCheck(item):
-    """ Logarithm substitution for STACK translation
+    """ 
+    Logarithm substitution for STACK translation
         Designed to deal with the fact that MAXIMA only has the natural
         logarithm, therefore requiring specific definitions for other logs
 
     Parameters
     ----------
     item : String containing LaTeX maths expression
-        DESCRIPTION.
 
     Returns
     -------
-    list :
+    list : 
         item : input LaTeX string with logarithms substituted.
         CASVars: List of new logarithm definitions
         tokens: tokens for logarithm substitution
@@ -159,6 +203,7 @@ def logCheck(item):
 
     return [item,tokens,CASVars]
 #------------------------------------------------------------------------------
+# CAN I GET RID OF THIS?
 def parseTex(item):
 
     OutStr = []
@@ -171,7 +216,23 @@ def parseTex(item):
 
     return "".join(OutStr)
 #------------------------------------------------------------------------------
-def parseTexEnv(item):      # COMBINE IN FUTURE
+# COMBINE IN FUTURE ?
+def parseTexEnv(item):
+    """
+    Parse latex text, safely escaping the `\` character and centering figure/
+    tabular environments  
+
+    Parameters
+    ----------
+    item : string
+        String containing raw LaTeX multi-line text input
+
+    Returns
+    -------
+    string
+        String with escaeped '\' and centered illustrations.
+
+    """
 
     OutStr = []
 
@@ -200,25 +261,32 @@ def parseTexEnv(item):      # COMBINE IN FUTURE
 
     return "".join(OutStr)
 #------------------------------------------------------------------------------
-def processParamFuncs(exParams,paramDict,funcDict):
+def processParamFuncs(paramStr,paramDict,funcDict):
     """
-    Process the exercise parameters into CAS compatible definitions
+    Process the exercise parameters into Maxima-CAS compatible definitions
 
     Parameters
     ----------
-    exParams : TYPE
-        DESCRIPTION.
+    paramStr : string
+        Multi-line string containing the parameter definition equations
+    paramDict : dict
+        Dictionary of parameter values generated by genParams()
+    funcDict : dict
+        Dictionary of base maxima-CAS functions, provided in snippets.json
 
     Returns
     -------
-    None.
+    outList : list
+        list of functions and parameter definitions, converted into maxima-CAS
+        compatible instructions
 
     """
+    
     funcList = []
     funcIncluded = []
     paramList = ['\n/* Exercise parameters */\n']
 
-    paramLines = exParams.splitlines()
+    paramLines = paramStr.splitlines()
     for line in paramLines:
 
         # Indentify any required supplementary functions
@@ -301,21 +369,24 @@ def processParamFuncs(exParams,paramDict,funcDict):
 #------------------------------------------------------------------------------
 def paramSub(textStr,paramDict,decMax):
     """
-    Substitute latex parameter display instructions for STACK instructions
+    Substitute latex parameter display instructions for STACK instructions. 
+    Used when building STACK XML output, which handles the display formatting 
+    of parameter values differently than LaTex.
 
     Parameters
     ----------
-    textStr : TYPE
-        DESCRIPTION.
-    paramDict : TYPE
-        DESCRIPTION.
-    decMax : TYPE
-        DESCRIPTION.
+    textStr : string
+        Raw text input containing parameters as variables
+    paramDict : dict
+        Dictionary of parameter values generated by genParams()
+    decMax : int
+        Maximum number of decimal places to use when formatting floats
 
     Returns
     -------
-    textStr : TYPE
-        DESCRIPTION.
+    textStr : string
+        The input text with parameter names substituted by parameter values,
+        with STACK-compatible display instructions.
 
     """
 
@@ -362,13 +433,13 @@ def safeEval(line):
 
     Parameters
     ----------
-    line : TYPE
-        DESCRIPTION.
+    line : string
+        instructions for generating the value of a parameter.
 
     Returns
     -------
-    TYPE
-        DESCRIPTION.
+    numerical
+        value of the parameter (int or float).
 
     """
     # Auxiliary function to return location of a match in string
@@ -480,41 +551,70 @@ def safeEval(line):
         print(line)
         return None
 #------------------------------------------------------------------------------
-def safesub(pttrn, repl, InStr):
+def safeSub(pttrn, repl, InStr):
+    """
+    safe regular expression substition of a pattern in a string, escaping the 
+    '\' character
+
+    Parameters
+    ----------
+    pttrn : string
+        Pattern to be replaced in 'InStr'
+    repl : string
+        Replacement pattern for 'pttrn'
+    InStr : string
+        Input string to be processed
+
+    Returns
+    -------
+    OutStr : string
+        Output string, with patterns replaced ans '\' escaped
+
+    """
 
     safeRepl = re.sub('\\\\','¬',repl)
     OutStr = re.sub(pttrn,safeRepl,InStr)
 
     return OutStr
 #------------------------------------------------------------------------------
-def sorted_nicely( l ):
-    """ Sorts the given iterable in the way that is expected.
+def sortedNicely( iterable ):
+    """
+    Sorts the given iterable in the way that is expected.
 
     Parameters
     ----------
-    l -- The iterable to be sorted.
+    iterable : iterable
+        The iterable to be sorted.
 
     Returns
     -------
-    sorted iterable
+    iterable
+        The naturally sorted iterable.
 
     """
+
     convert = lambda text: int(text) if text.isdigit() else text
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
-    return sorted(l, key = alphanum_key)
+    return sorted(iterable, key = alphanum_key)
 #------------------------------------------------------------------------------
 def symbParse(item,paramNames):
-    """ Symbolic parse of LaTeX maths to CAS, with named parameters
+    """
+    Symbolic parse of LaTeX maths to CAS, with named parameters
 
     Parameters
     ----------
-    item : String containing LaTeX maths expression
+    item : string
+        String containing LaTeX maths expression
+    paramNames : list
+        list of string containing parameter names.
 
     Returns
     -------
-    symbStr : string containing STACK-compatible expression
+    symbStr : string
+        String containing STACK-compatible expression
 
     """
+    
     # tokenList = list(string.ascii_uppercase) + list(string.ascii_lowercase)
     # tokenDict = {}
     # item = re.sub('\$','',item)            # remove dollars
@@ -565,6 +665,23 @@ def symbParse(item,paramNames):
     return symbStr
 #------------------------------------------------------------------------------
 def pad(InStr,PadStr):
+    """
+    
+
+    Parameters
+    ----------
+    InStr : string
+        String containign multi-line text.
+    PadStr : string
+        String contain the padding to be added to each line.
+
+    Returns
+    -------
+    padLines : list
+        List of strings with padding added before each line.
+
+    """
+    
 
     lines = InStr.splitlines()
     padLines = []
@@ -574,7 +691,8 @@ def pad(InStr,PadStr):
     return padLines
 #------------------------------------------------------------------------------
 def trim(line):
-    """ Trims line breaks from wokring string
+    """ 
+    Trims line breaks from working string
 
     Parameters
     ----------
@@ -595,11 +713,13 @@ def trim(line):
     return line
 #------------------------------------------------------------------------------
 def xmlParse(item):
-    """ Parse LaTeX text into STACK XML-compatible standard
+    """ 
+    Parse LaTeX text into STACK XML-compatible standard
 
     Parameters
     ----------
-    item : String containing LaTeX markup and environments
+    item : string
+        String containing LaTeX markup and environments
 
     Returns
     -------

@@ -2,7 +2,20 @@
 """
 Created on Thu Jun 25 15:45:56 2020
 
-@author: Sylvain
+@author: Sylvain Barde - University of Kent
+
+Implements the Stacktex toolkit for importing Moodle + Stack questions from a
+LaTex template.
+
+All package requirements are handled in the dependencies at import.
+
+Functions:
+
+    import_ex
+    export_ex
+    build_tex
+    build_xml
+
 """
 
 import json
@@ -12,13 +25,37 @@ import subprocess
 import inspect
 import random
 
-from .dependencies import decimalCheck, genParams, get_fieldName, logCheck
-from .dependencies import parseTex, parseTexEnv, processParamFuncs, paramSub
-from .dependencies import safesub, sorted_nicely, symbParse, pad
-from .dependencies import trim, xmlParse
+from .dependencies import (decimalCheck, genParams, getFieldName, logCheck,
+                           parseTex, parseTexEnv, processParamFuncs, paramSub,
+                           safeSub, sortedNicely, symbParse, pad,
+                           trim, xmlParse)
 
 #------------------------------------------------------------------------------
 def import_ex(TexFolder,BankJSON,mode = 'append'):
+    """
+    Import raw Latex exercises into a question bank.    
+
+    Parameters
+    ----------
+    TexFolder : string
+        Path to a folder containing raw latex exercises
+    BankJSON : string
+        Path to a JSON file containing the question bank. This can be either a 
+        new file or an existing file.
+    mode : string, optional
+        Controls how exercises are added to an existing JSON question bank.
+        Two options are available:
+        - 'append': only additonal exercises are added to the bank, exisiting 
+           exercises already in the bank are unchanged
+        - 'update': all exexercises in the folder are added to the bank, over-
+           writing any existing exercise in the bank.
+        The default is 'append'.
+
+    Returns
+    -------
+    None.
+
+    """
 
     print('\nImporting Latex exercises to JSON question bank\n')
 
@@ -84,7 +121,7 @@ def import_ex(TexFolder,BankJSON,mode = 'append'):
     files = []
     for r, d, f in os.walk(TexFolder):      # r=root, d=directories, f=files
 
-        for file in sorted_nicely(f):
+        for file in sortedNicely(f):
             if '.tex' in file:
                 files.append(os.path.join(r, file))
 
@@ -152,7 +189,7 @@ def import_ex(TexFolder,BankJSON,mode = 'append'):
                         isActive = True
 
                     if r'\fieldname{' in line:
-                        fieldName = get_fieldName(line)
+                        fieldName = getFieldName(line)
                         keys = keyMap[fieldName]
 
                 # Only append lines to working line if parsing is active
@@ -185,6 +222,24 @@ def import_ex(TexFolder,BankJSON,mode = 'append'):
 
 #------------------------------------------------------------------------------
 def export_ex(BankJSON,outFolder):
+    """
+    Export a JSON question bank back to raw latex. Enables a JSON stackTex
+    question back to be converted back to raw Latex, for example if a user 
+    wants to modify exercises in a question bank that was shared with them.
+
+    Parameters
+    ----------
+    BankJSON : string
+         Path to a JSON file containing the question bank. 
+    outFolder : string
+        Path to a folder to save the raw latex exercises
+
+
+    Returns
+    -------
+    None.
+
+    """
 
     with open(BankJSON) as f:                       # Load question bank
         json_str = f.read()
@@ -312,6 +367,22 @@ def export_ex(BankJSON,outFolder):
 
 #------------------------------------------------------------------------------
 def build_tex(BankJSON,build_file):
+    """
+    Build a latex document incorporating exercises taken from a JSON question 
+    bank, using instructions provided in a buildfile.
+
+    Parameters
+    ----------
+    BankJSON : string
+         Path to a JSON file containing the question bank. 
+    build_file : string
+         Path to a JSON file containing the build instructions. 
+
+    Returns
+    -------
+    None.
+
+    """
 
     print('\nBuilding Latex and PDF from build file\n')
 
@@ -422,7 +493,7 @@ def build_tex(BankJSON,build_file):
 
         # Replace fields in template by data remaining in the instruction json
         for key in setup.keys():
-            templateStr = safesub(key,setup[key],templateStr)
+            templateStr = safeSub(key,setup[key],templateStr)
 
         # Add exercises from list to the exercise string array
         sectionCount = 1
@@ -615,7 +686,7 @@ def build_tex(BankJSON,build_file):
                             ExStr[i] = re.sub('\^\{1\}','', ExStr[i])
                             ExStr[i] = re.sub('\^\{¬bf 1\}','', ExStr[i])
 
-            templateStr = safesub('ExStr_' + str(sectionCount),
+            templateStr = safeSub('ExStr_' + str(sectionCount),
                                   "".join(ExStr),
                                   templateStr)
             sectionCount += 1
@@ -655,6 +726,23 @@ def build_tex(BankJSON,build_file):
 
 #------------------------------------------------------------------------------
 def build_xml(BankJSON,build_file):
+    """
+
+    Build a set of STACK Moodle quiz questions using exercises taken from a 
+    JSON question bank, using instructions provided in a buildfile.
+
+    Parameters
+    ----------
+    BankJSON : string
+         Path to a JSON file containing the question bank. 
+    build_file : string
+         Path to a JSON file containing the build instructions. 
+
+    Returns
+    -------
+    None.
+
+    """
 
     print('\nBuilding XML file for moodle STACK from build file\n')
 
@@ -714,7 +802,7 @@ def build_xml(BankJSON,build_file):
 
     # Replace fields in template by data remaining in the instruction json
     for key in setup.keys():
-        templateStr = safesub(key,setup[key],templateStr)
+        templateStr = safeSub(key,setup[key],templateStr)
 
     # Add exercises from list to the exercise string array, with correct format
     ExStr = []
@@ -751,8 +839,9 @@ def build_xml(BankJSON,build_file):
                 exParams =  ex['params']
                 random.seed(0)
                 paramDict = genParams(exParams)
-                paramList = processParamFuncs(exParams, paramDict, funcDict)
-                SolVars = paramList
+                # paramList = processParamFuncs(exParams, paramDict, funcDict)
+                # SolVars = paramList
+                SolVars = processParamFuncs(exParams, paramDict, funcDict)
 
             # Process main question text, substituting parameter values
             xmlBlurb = xmlParse(Q_content['blurb'])
@@ -763,7 +852,8 @@ def build_xml(BankJSON,build_file):
                 QText.append(line + '\n')
 
             marks = list(Q_content['marks'])
-            ExMark = sum(int(mark) for mark in marks)
+            ExMark = sum(float(mark) for mark in marks)
+
             # Display marks in question text if requested
             if markFlag:
 
@@ -925,7 +1015,7 @@ def build_xml(BankJSON,build_file):
             QText.append(QFrmt['footer'])                     # Add list footer
 
             # Replace fields in template
-            QStr = safesub('ExTitle',exLabel,QStr)
+            QStr = safeSub('ExTitle',exLabel,QStr)
             QStr = re.sub('QText',"".join(QText),QStr)
             QStr = re.sub('ExMark',str(ExMark),QStr)
             QStr = re.sub('QVars',"".join(SolVars),QStr)
