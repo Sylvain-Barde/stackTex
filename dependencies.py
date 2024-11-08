@@ -9,7 +9,7 @@ Dependencies for the main stackTex functions.
 All package requirements are handled in the dependencies at import.
 
 Requires the following packages:
-    
+
     scipy
     numpy
     sympy
@@ -47,10 +47,10 @@ from sympy.parsing.latex import parse_latex
 #------------------------------------------------------------------------------
 def decimalCheck(value,decMax):
     """
-    Check minimum number of decimal values required for exactr decimal 
-    representation, used for optimising the formatting display of floats by 
+    Check minimum number of decimal values required for exactr decimal
+    representation, used for optimising the formatting display of floats by
     trimming down any excess 0s.
-    
+
     example: if decMax =3 (3 decimal places used in display)
         - A value of 3/10 will be represented as 0.3 NOT 0.3
         - A value of 1/3 wqill be represented as 0.333
@@ -72,7 +72,6 @@ def decimalCheck(value,decMax):
 
     for dec in range(decMax):
         value *=10
-        # if value.is_integer():
         if value.is_integer() or abs(value - int(value)) < 1e-4:
             return dec+1
 
@@ -110,37 +109,28 @@ def genParams(paramStr):
             for key in paramDict.keys():
                 valuebase = re.sub(key,str(paramDict[key]),valuebase)
 
-            # value = safeEval(valuebase)
-
             if label[0] == '[':             # Multiple assignment
 
                 labelItems = re.split(',', re.sub('[\[\] \s ]','',label))
-                # valueItems= re.split(',', re.sub('[\[\] \s ]','',valuebase))
                 valuebase = valuebase[
                     valuebase.find('[')+1:valuebase.rfind(']')]
-                # valueItems = re.split(',(?!.*\))', valuebase)
                 valueItems = re.split(',(?![^\(]*\))', valuebase)
 
-
-                # if len(labelItems) != len(value):
                 if len(labelItems) != len(valueItems):
                     print("Number of multiple assignments does not match")
                     print(param)
 
                 else:
                     for item in labelItems:
-                        # paramDict[item] = value.pop(0)
                         paramDict[item] = safeEval(valueItems.pop(0))
 
             else:                           # Normal assignment
-
-                # paramDict[label] = value
                 paramDict[label] = safeEval(valuebase)
 
     return paramDict
 #------------------------------------------------------------------------------
 def getFieldName(line):
-    """ 
+    """
     Extracts fieldname from the field instruction line
 
     Parameters
@@ -157,7 +147,7 @@ def getFieldName(line):
     return re.findall(r'\{(.*?)\}',line)[0]
 #------------------------------------------------------------------------------
 def logCheck(item):
-    """ 
+    """
     Logarithm substitution for STACK translation
         Designed to deal with the fact that MAXIMA only has the natural
         logarithm, therefore requiring specific definitions for other logs
@@ -168,7 +158,7 @@ def logCheck(item):
 
     Returns
     -------
-    list : 
+    list :
         item : input LaTeX string with logarithms substituted.
         CASVars: List of new logarithm definitions
         tokens: tokens for logarithm substitution
@@ -219,7 +209,6 @@ def pad(InStr,PadStr):
         List of strings with padding added before each line.
 
     """
-    
 
     lines = InStr.splitlines()
     padLines = []
@@ -231,7 +220,7 @@ def pad(InStr,PadStr):
 def parseTexEnv(item):
     """
     Parse latex text, safely escaping the `\` character and centering figure/
-    tabular environments  
+    tabular environments
 
     Parameters
     ----------
@@ -266,8 +255,6 @@ def parseTexEnv(item):
         if 'end{tabular}' in line:
             safeline = safeline + '\n¬end{center}'
 
-        # if flag:
-            # OutStr.append(safeline + '\n')
         OutStr.append(safeline + '\n')
 
     return "".join(OutStr)
@@ -292,7 +279,7 @@ def processParamFuncs(paramStr,paramDict,funcDict):
         compatible instructions
 
     """
-    
+
     funcList = []
     funcIncluded = []
     paramList = ['\n/* Exercise parameters */\n']
@@ -326,13 +313,10 @@ def processParamFuncs(paramStr,paramDict,funcDict):
             # Find decimal places based on sample value
 
             if label[0] == '[':             # Multiple assignment
-            # elif valuebase.strip()[0] == '[':         # Multiple assignment
 
                 labelItems = re.split(',', re.sub('[\[\] \s ]','',label))
-                # variables =  re.split(',', re.sub('[\[\] \s ]','',valuebase))
                 valueCheck = valuebase[
                     valuebase.find('[')+1:valuebase.rfind(']')]
-                # variables = re.split(',(?!.*\))', valuebase)
                 variables = re.split(',(?![^\(]*\))', valueCheck)
 
                 for item in labelItems:
@@ -341,9 +325,6 @@ def processParamFuncs(paramStr,paramDict,funcDict):
                     if isinstance(value, float) and not value.is_integer():
                         valuebase = valuebase.replace(var,
                                                   "float({:s})".format(var))
-                        # valuebase = re.sub(var,
-                        #                    "float({:s})".format(var),
-                        #                     valuebase)
 
                 line = label + ':' + valuebase
 
@@ -380,8 +361,8 @@ def processParamFuncs(paramStr,paramDict,funcDict):
 #------------------------------------------------------------------------------
 def paramSub(textStr,paramDict,decMax):
     """
-    Substitute latex parameter display instructions for STACK instructions. 
-    Used when building STACK XML output, which handles the display formatting 
+    Substitute latex parameter display instructions for STACK instructions.
+    Used when building STACK XML output, which handles the display formatting
     of parameter values differently than LaTex.
 
     Parameters
@@ -416,20 +397,12 @@ def paramSub(textStr,paramDict,decMax):
                        for item in items):
                     token = '{@' + param + '@}'
                 else:
-                    # decList = 0
-                    # for item in items:
-                    #     if not (isinstance(item, int) or item.is_integer()):
-                    #         decList = max([decimalCheck(item,decMax),decList])
-                    # token = '{@decimalplaces(' + param + ',' + str(decList) + ')@}'
                     token = '{@decimalplaces(' + param + ',' + str(decMax) + ')@}'
             elif isinstance(value, str) :
                 token = '{@' + param + '@}'
             elif isinstance(value, int) or value.is_integer():
                 token = '{@' + param + '@}'
             else:
-                # dec = decimalCheck(value,decMax)
-                # token= '{@decimalplaces(' + param + ',' + str(dec) + ')@}'
-                # dec = decimalCheck(value,decMax)
                 token= '{@decimalplaces(' + param + ',' + str(decMax) + ')@}'
 
             # substitute
@@ -471,14 +444,6 @@ def safeEval(line):
                 'round':'np.round',
                 'median':'np.median'}
 
-    #--------------------------------------------------------------------------
-#    for func in funcDict.keys():
-#        if func in line:
-#            matches = re.findall(func+r'\((.*?)\)',line)
-#            for match in matches:
-#                funcVal = eval(funcDict[func]+'(' + match + ')')
-#                line = re.sub(func+'\(' + match + '\)',str(funcVal),line)
-    #--------------------------------------------------------------------------
     # Evaluate value of any special functions
     if any(func in line for func in funcDict.keys()):
         funcList = []
@@ -495,7 +460,6 @@ def safeEval(line):
             for match in matches:
                 matchPyExp = re.sub('\^','**', match)
                 funcVal = eval(funcDict[func]+'(' + matchPyExp + ')')
-#                line = re.sub(func+'\(' + match + '\)',str(funcVal),line)
                 line = line.replace(func+'(' + match + ')',str(funcVal))
 
     # Pick value from list.
@@ -564,7 +528,7 @@ def safeEval(line):
 #------------------------------------------------------------------------------
 def safeSub(pttrn, repl, InStr):
     """
-    safe regular expression substition of a pattern in a string, escaping the 
+    safe regular expression substition of a pattern in a string, escaping the
     '\' character
 
     Parameters
@@ -590,7 +554,7 @@ def safeSub(pttrn, repl, InStr):
 #------------------------------------------------------------------------------
 def sortedNicely(iterable, ind=None):
     """
-    Sorts the given iterable in a natural way (i.e. 10 after 9 instead of in 
+    Sorts the given iterable in a natural way (i.e. 10 after 9 instead of in
     between 1 and 2).
 
     Parameters
@@ -608,22 +572,22 @@ def sortedNicely(iterable, ind=None):
         The naturally sorted iterable.
 
     """
-    
+
     # Generate natural sorting rule
     convert = lambda text: int(text) if text.isdigit() else text
     alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key[1])]
-        
+
     # Extract iterable items if required
     if ind is None:
         iterable_extract = iterable
     else:
         iterable_extract = [item[ind] for item in iterable]
-    
+
     # Get natrual sorting indices, and sort the iterable back.
-    sortInds = [i[0] for i in sorted(enumerate(iterable_extract), 
+    sortInds = [i[0] for i in sorted(enumerate(iterable_extract),
                                      key = alphanum_key)]
     sorted_iterable = [iterable[ind] for ind in sortInds]
-    
+
     return sorted_iterable
 #------------------------------------------------------------------------------
 def symbParse(item,paramNames):
@@ -643,14 +607,9 @@ def symbParse(item,paramNames):
         String containing STACK-compatible expression
 
     """
-    
-    # tokenList = list(string.ascii_uppercase) + list(string.ascii_lowercase)
-    # tokenDict = {}
-    # item = re.sub('\$','',item)            # remove dollars
 
     item = re.sub('\$','',item)            # remove dollars
     tokenListFull = list(string.ascii_uppercase) + list(string.ascii_lowercase)
-    # tokenList = set(tokenListFull)-set(item)    # Only use tokens not in 'item'
     tokenListBase = set(tokenListFull)-set(item)    # Only use tokens not in 'item'
     tokenList = copy.deepcopy(tokenListBase)
     tokenDict = {}
@@ -674,7 +633,6 @@ def symbParse(item,paramNames):
 
         # After 1st run, remove variables from list of potential tokens
         if run == 0:
-            # for token in tokenList:
             for token in tokenListBase:
                 if token in symbStr:
                     tokenList.remove(token)
@@ -694,7 +652,7 @@ def symbParse(item,paramNames):
     return symbStr
 #------------------------------------------------------------------------------
 def trim(line):
-    """ 
+    """
     Trims line breaks from working string
 
     Parameters
@@ -716,7 +674,7 @@ def trim(line):
     return line
 #------------------------------------------------------------------------------
 def xmlParse(item):
-    """ 
+    """
     Parse LaTeX text into STACK XML-compatible standard
 
     Parameters
@@ -968,7 +926,6 @@ def xmlParse(item):
                             'pt' + str(countPt)  + ':' + PtStr + ';\n')
                         pltlist += 'pt' + str(countPt) + ','
                         st += 'points,'
-                        # col += 'black,'
                         col += pointColors.pop(0) + ','
                         countPt+=1
 

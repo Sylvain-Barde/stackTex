@@ -31,19 +31,19 @@ from .dependencies import (decimalCheck, genParams, getFieldName, logCheck,
 #------------------------------------------------------------------------------
 def import_ex(TexFolder,BankJSON,mode = 'append'):
     """
-    Import raw Latex exercises into a question bank.    
+    Import raw Latex exercises into a question bank.
 
     Parameters
     ----------
     TexFolder : string
         Path to a folder containing raw latex exercises
     BankJSON : string
-        Path to a JSON file containing the question bank. This can be either a 
+        Path to a JSON file containing the question bank. This can be either a
         new file or an existing file.
     mode : string, optional
         Controls how exercises are added to an existing JSON question bank.
         Two options are available:
-        - 'append': only additonal exercises are added to the bank, exisiting 
+        - 'append': only additonal exercises are added to the bank, exisiting
            exercises already in the bank are unchanged
         - 'update': all exexercises in the folder are added to the bank, over-
            writing any existing exercise in the bank.
@@ -113,7 +113,6 @@ def import_ex(TexFolder,BankJSON,mode = 'append'):
               "solution":["solutions","items",[]],
               "mark":["questions","marks",[]]}
     # -------------------------------------------------------------------------
-
     # Explore tex exercises folder to extract filenames
     # Will ignore any non-Tex file
     files = []
@@ -222,13 +221,13 @@ def import_ex(TexFolder,BankJSON,mode = 'append'):
 def export_ex(BankJSON,outFolder):
     """
     Export a JSON question bank back to raw latex. Enables a JSON stackTex
-    question back to be converted back to raw Latex, for example if a user 
+    question back to be converted back to raw Latex, for example if a user
     wants to modify exercises in a question bank that was shared with them.
 
     Parameters
     ----------
     BankJSON : string
-         Path to a JSON file containing the question bank. 
+         Path to a JSON file containing the question bank.
     outFolder : string
         Path to a folder to save the raw latex exercises
 
@@ -307,11 +306,6 @@ def export_ex(BankJSON,outFolder):
         if 'feedback' in ex['solutions'].keys():
             SolTxtList = list(ex['solutions']['feedback'])
 
-        # if 'tolerance' in ex['solutions'].keys():
-        #     TolStrList = list(ex['solutions']['tolerance'])
-        # else:
-            # TolStrList = ['']*len(QuTxtList)
-
         ItemStr = ''
         for QuTypeItem in QuTypeList:
 
@@ -325,8 +319,6 @@ def export_ex(BankJSON,outFolder):
             ItemStrBase = re.sub('PrmptStr',texItem,ItemStrBase)
             texItem = trim(parseTexEnv(SolStrList.pop(0)))
             ItemStrBase = re.sub('SolStr',texItem,ItemStrBase)
-            # texItem = trim(parseTexEnv(TolStrList.pop(0)))
-            # ItemStrBase = re.sub('TolStr',texItem,ItemStrBase)
             texItem = trim(parseTexEnv(MarkStrList.pop(0)))
             ItemStrBase = re.sub('MarkStr',texItem,ItemStrBase)
 
@@ -337,7 +329,6 @@ def export_ex(BankJSON,outFolder):
                 ItemStrBase = re.sub('SolTxt','',ItemStrBase)
                 ItemStrBase = re.sub(r'\fieldname{feedbackText}',
                                  '',ItemStrBase)
-                # ItemStrBase = re.sub('DecPlaces\n\n','',ItemStrBase)
             if 'tolerance' in ex['solutions'].keys():
                 texItem = trim(parseTexEnv(TolStrList.pop(0)))
                 ItemStrBase = re.sub('TolStr',texItem,ItemStrBase)
@@ -366,15 +357,15 @@ def export_ex(BankJSON,outFolder):
 #------------------------------------------------------------------------------
 def build_tex(BankJSON,build_file):
     """
-    Build a latex document incorporating exercises taken from a JSON question 
+    Build a latex document incorporating exercises taken from a JSON question
     bank, using instructions provided in a buildfile.
 
     Parameters
     ----------
     BankJSON : string
-         Path to a JSON file containing the question bank. 
+         Path to a JSON file containing the question bank.
     build_file : string
-         Path to a JSON file containing the build instructions. 
+         Path to a JSON file containing the build instructions.
 
     Returns
     -------
@@ -463,13 +454,8 @@ def build_tex(BankJSON,build_file):
             exData.append((ex['category'],ex['subCategory'],ex_label))
 
         # Sort exercises by category and subcategory (labels already sorted)
-        # sortedEx = sorted(exData,key=lambda item: item[1])
-        # sortedEx = sorted(sortedEx,key=lambda item: item[0])
-        
-        #-----------------------------------------------------------------
         sortedEx = sortedNicely(exData, ind = 1)
         sortedEx = sortedNicely(sortedEx, ind = 0)
-        #-----------------------------------------------------------------
 
         exList = []
         for ex in sortedEx:
@@ -731,15 +717,15 @@ def build_tex(BankJSON,build_file):
 def build_xml(BankJSON,build_file):
     """
 
-    Build a set of STACK Moodle quiz questions using exercises taken from a 
+    Build a set of STACK Moodle quiz questions using exercises taken from a
     JSON question bank, using instructions provided in a buildfile.
 
     Parameters
     ----------
     BankJSON : string
-         Path to a JSON file containing the question bank. 
+         Path to a JSON file containing the question bank.
     build_file : string
-         Path to a JSON file containing the build instructions. 
+         Path to a JSON file containing the build instructions.
 
     Returns
     -------
@@ -760,7 +746,6 @@ def build_xml(BankJSON,build_file):
         exBank = json.loads(json_str)
     f.close
 
-    # with open('stacktex/snippets.json') as f:          # Load formats
     head, tail = os.path.split(inspect.getsourcefile(import_ex))
     with open(os.path.join(head,'snippets.json')) as f:          # Load formats
         json_str = f.read()
@@ -842,8 +827,6 @@ def build_xml(BankJSON,build_file):
                 exParams =  ex['params']
                 random.seed(0)
                 paramDict = genParams(exParams)
-                # paramList = processParamFuncs(exParams, paramDict, funcDict)
-                # SolVars = paramList
                 SolVars = processParamFuncs(exParams, paramDict, funcDict)
 
             # Process main question text, substituting parameter values
@@ -947,11 +930,8 @@ def build_xml(BankJSON,build_file):
                                 symbItem = re.sub(token[0],token[1],symbItem)
                             for var in CASVars:
                                 SolVars.append(var)
-                                # SolVars.append(var + ';')
-                            # SolVars = list(set(SolVars + CASVars))
 
                     SolVars.append('sol' + str(Qnum) + ':' + symbItem + ';\n')
-                    # SolVars.append('sol' + str(Qnum) + ':' + symbItem + '\n')
                     prompt = xmlPrompts.pop(0)
                     if prompt == '':
                         eqsign = ''
