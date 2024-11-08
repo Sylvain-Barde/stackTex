@@ -20,7 +20,7 @@ Functions:
     genParams
     getFieldName
     logCheck
-    parseTex
+    pad
     parseTexEnv
     processParamFuncs
     paramSub
@@ -28,7 +28,6 @@ Functions:
     safeSub
     sortedNicely
     symbParse
-    pad
     trim
     xmlParse
 
@@ -203,20 +202,32 @@ def logCheck(item):
 
     return [item,tokens,CASVars]
 #------------------------------------------------------------------------------
-# CAN I GET RID OF THIS?
-def parseTex(item):
+def pad(InStr,PadStr):
+    """
+    Adds left padding to a set of lines
 
-    OutStr = []
+    Parameters
+    ----------
+    InStr : string
+        String containign multi-line text.
+    PadStr : string
+        String contain the padding to be added to each line.
 
-    for line in item.splitlines():
+    Returns
+    -------
+    padLines : list
+        List of strings with padding added before each line.
 
-        # substitute '¬' for '\' regex operations
-        safeline = re.sub('\\\\','¬',line)
-        OutStr.append(safeline + '\n')
+    """
+    
 
-    return "".join(OutStr)
+    lines = InStr.splitlines()
+    padLines = []
+    for line in lines:
+        padLines.append(PadStr+line+'\n')
+
+    return padLines
 #------------------------------------------------------------------------------
-# COMBINE IN FUTURE ?
 def parseTexEnv(item):
     """
     Parse latex text, safely escaping the `\` character and centering figure/
@@ -577,25 +588,43 @@ def safeSub(pttrn, repl, InStr):
 
     return OutStr
 #------------------------------------------------------------------------------
-def sortedNicely( iterable ):
+def sortedNicely(iterable, ind=None):
     """
-    Sorts the given iterable in the way that is expected.
+    Sorts the given iterable in a natural way (i.e. 10 after 9 instead of in 
+    between 1 and 2).
 
     Parameters
     ----------
-    iterable : iterable
-        The iterable to be sorted.
+    iterable : list
+        The list to be sorted, can be a list of iterables (list/tuple)
+    ind : None or int, optional
+        If the list contains iterables, indexes the element to be used for
+        sorting. The default is None, which assumes that the iterable items are
+        not iterables themselves
 
     Returns
     -------
-    iterable
+    sorted_iterable
         The naturally sorted iterable.
 
     """
-
+    
+    # Generate natural sorting rule
     convert = lambda text: int(text) if text.isdigit() else text
-    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key)]
-    return sorted(iterable, key = alphanum_key)
+    alphanum_key = lambda key: [convert(c) for c in re.split('([0-9]+)', key[1])]
+        
+    # Extract iterable items if required
+    if ind is None:
+        iterable_extract = iterable
+    else:
+        iterable_extract = [item[ind] for item in iterable]
+    
+    # Get natrual sorting indices, and sort the iterable back.
+    sortInds = [i[0] for i in sorted(enumerate(iterable_extract), 
+                                     key = alphanum_key)]
+    sorted_iterable = [iterable[ind] for ind in sortInds]
+    
+    return sorted_iterable
 #------------------------------------------------------------------------------
 def symbParse(item,paramNames):
     """
@@ -663,32 +692,6 @@ def symbParse(item,paramNames):
         symbStr = symbStr.replace(fun+'*',fun)
 
     return symbStr
-#------------------------------------------------------------------------------
-def pad(InStr,PadStr):
-    """
-    
-
-    Parameters
-    ----------
-    InStr : string
-        String containign multi-line text.
-    PadStr : string
-        String contain the padding to be added to each line.
-
-    Returns
-    -------
-    padLines : list
-        List of strings with padding added before each line.
-
-    """
-    
-
-    lines = InStr.splitlines()
-    padLines = []
-    for line in lines:
-        padLines.append(PadStr+line+'\n')
-
-    return padLines
 #------------------------------------------------------------------------------
 def trim(line):
     """ 

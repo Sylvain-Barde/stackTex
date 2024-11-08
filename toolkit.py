@@ -26,10 +26,8 @@ import inspect
 import random
 
 from .dependencies import (decimalCheck, genParams, getFieldName, logCheck,
-                           parseTex, parseTexEnv, processParamFuncs, paramSub,
-                           safeSub, sortedNicely, symbParse, pad,
-                           trim, xmlParse)
-
+                           pad, parseTexEnv, processParamFuncs, paramSub,
+                           safeSub, sortedNicely, symbParse, trim, xmlParse)
 #------------------------------------------------------------------------------
 def import_ex(TexFolder,BankJSON,mode = 'append'):
     """
@@ -269,17 +267,17 @@ def export_ex(BankJSON,outFolder):
         print('  Exporting ' + outName)
 
         # Required components
-        texItem = trim(parseTex(ex['category']))
+        texItem = trim(parseTexEnv(ex['category']))
         templateStr = re.sub('CatStr',texItem,templateStr)
-        texItem = trim(parseTex(ex['subCategory']))
+        texItem = trim(parseTexEnv(ex['subCategory']))
         templateStr = re.sub('SubCtStr',texItem,templateStr)
-        texItem = trim(parseTex(ex['questions']['format']))
+        texItem = trim(parseTexEnv(ex['questions']['format']))
         templateStr = re.sub('QuFrmtStr',texItem,templateStr)
-        texItem = trim(parseTex(ex['solutions']['format']))
+        texItem = trim(parseTexEnv(ex['solutions']['format']))
         templateStr = re.sub('SolFrmtStr',texItem,templateStr)
-        texItem = trim(parseTex(ex['questions']['blurb']))
+        texItem = trim(parseTexEnv(ex['questions']['blurb']))
         templateStr = re.sub('QuBlrb',texItem,templateStr)
-        texItem = trim(parseTex(ex['solutions']['blurb']))
+        texItem = trim(parseTexEnv(ex['solutions']['blurb']))
         templateStr = re.sub('SolBlrb',texItem,templateStr)
 
         QuTypeList = list(ex['questions']['types'])
@@ -291,7 +289,7 @@ def export_ex(BankJSON,outFolder):
 
         # Optional components
         if 'params' in ex.keys():
-            texItem = trim(parseTex(ex['params']))
+            texItem = trim(parseTexEnv(ex['params']))
             templateStr = re.sub('ParamStr',texItem,templateStr)
         else:
             templateStr = re.sub(r'\\fieldname\{exerciseParameters\}\n',
@@ -299,7 +297,7 @@ def export_ex(BankJSON,outFolder):
             templateStr = re.sub('ParamStr\n\n','',templateStr)
 
         if 'decimalPlaces' in ex.keys():
-            texItem = trim(parseTex(ex['decimalPlaces']))
+            texItem = trim(parseTexEnv(ex['decimalPlaces']))
             templateStr = re.sub('DecPlaces',texItem,templateStr)
         else:
             templateStr = re.sub(r'\\fieldname\{decimalPlaces\}\n',
@@ -317,23 +315,23 @@ def export_ex(BankJSON,outFolder):
         ItemStr = ''
         for QuTypeItem in QuTypeList:
 
-            ItemStrBase = parseTex(snippets['Template']['item'])
+            ItemStrBase = parseTexEnv(snippets['Template']['item'])
 
-            texItem = trim(parseTex(QuTypeItem))
+            texItem = trim(parseTexEnv(QuTypeItem))
             ItemStrBase = re.sub('QuType',texItem,ItemStrBase)
-            texItem = trim(parseTex(QuTxtList.pop(0)))
+            texItem = trim(parseTexEnv(QuTxtList.pop(0)))
             ItemStrBase = re.sub('QuTxt',texItem,ItemStrBase)
-            texItem = trim(parseTex(PrmptStrList.pop(0)))
+            texItem = trim(parseTexEnv(PrmptStrList.pop(0)))
             ItemStrBase = re.sub('PrmptStr',texItem,ItemStrBase)
-            texItem = trim(parseTex(SolStrList.pop(0)))
+            texItem = trim(parseTexEnv(SolStrList.pop(0)))
             ItemStrBase = re.sub('SolStr',texItem,ItemStrBase)
-            # texItem = trim(parseTex(TolStrList.pop(0)))
+            # texItem = trim(parseTexEnv(TolStrList.pop(0)))
             # ItemStrBase = re.sub('TolStr',texItem,ItemStrBase)
-            texItem = trim(parseTex(MarkStrList.pop(0)))
+            texItem = trim(parseTexEnv(MarkStrList.pop(0)))
             ItemStrBase = re.sub('MarkStr',texItem,ItemStrBase)
 
             if 'feedback' in ex['solutions'].keys():
-                texItem = trim(parseTex(SolTxtList.pop(0)))
+                texItem = trim(parseTexEnv(SolTxtList.pop(0)))
                 ItemStrBase = re.sub('SolTxt',texItem,ItemStrBase)
             else:
                 ItemStrBase = re.sub('SolTxt','',ItemStrBase)
@@ -341,7 +339,7 @@ def export_ex(BankJSON,outFolder):
                                  '',ItemStrBase)
                 # ItemStrBase = re.sub('DecPlaces\n\n','',ItemStrBase)
             if 'tolerance' in ex['solutions'].keys():
-                texItem = trim(parseTex(TolStrList.pop(0)))
+                texItem = trim(parseTexEnv(TolStrList.pop(0)))
                 ItemStrBase = re.sub('TolStr',texItem,ItemStrBase)
             else:
                 ItemStrBase = re.sub('TolStr','',ItemStrBase)
@@ -465,8 +463,13 @@ def build_tex(BankJSON,build_file):
             exData.append((ex['category'],ex['subCategory'],ex_label))
 
         # Sort exercises by category and subcategory (labels already sorted)
-        sortedEx = sorted(exData,key=lambda item: item[1])
-        sortedEx = sorted(sortedEx,key=lambda item: item[0])
+        # sortedEx = sorted(exData,key=lambda item: item[1])
+        # sortedEx = sorted(sortedEx,key=lambda item: item[0])
+        
+        #-----------------------------------------------------------------
+        sortedEx = sortedNicely(exData, ind = 1)
+        sortedEx = sortedNicely(sortedEx, ind = 0)
+        #-----------------------------------------------------------------
 
         exList = []
         for ex in sortedEx:
