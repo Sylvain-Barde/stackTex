@@ -1,0 +1,2655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+        <text>$course$/ECON101/blurbStr</text>
+
+    </category>
+  </question>
+
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A random sample of size \(n={@r1@}\) is taken from a large population with known standard deviation \(\sigma = {@r3@}\). If the sample mean is {@r2@}, calculate to 2 decimal places the following confidence intervals for the population mean \(\mu\):<br></p>
+<p>The 90% confidence interval.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(C.I._{90}\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>The 95% confidence interval.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(C.I._{95}\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p><p>The 99% confidence interval.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(C.I._{99}\) = [[input:ans3]] [[validation:ans3]]</p><p>[[feedback:Result3]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>9.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+r1:40+rand(21);
+r2:70+rand(21);
+r3:25 + rand(10);
+
+p1:float((r3^2)/r1);
+p2:float(sqrt(p1));
+
+cl_1:float(r2 - 1.645*round(p2*100)/100);
+cr_1:float(r2 + 1.645*round(p2*100)/100);
+
+cl_2:float(r2 - 1.96*round(p2*100)/100);
+cr_2:float(r2 + 1.96*round(p2*100)/100);
+
+cl_3:float(r2 - 2.575*round(p2*100)/100);
+cr_3:float(r2 + 2.575*round(p2*100)/100);
+
+solA: [cl_1, cr_1];
+solB: [cl_2, cr_2];
+solC: [cl_3, cr_3];
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>solC</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>If the sample of size \(n={@r1@}\) has a mean \(\bar x = {@r2@}\) and the population has a standard deviation \(\sigma={@r3@}\), then the sampling distribution of the mean follows a normal distribution:<br>\[<br>\bar X \sim N \left(\bar x,\frac{\sigma^2}{n}\right) = N \left({@r2@},\frac{{@r3@}^2}{{@r1@}}\right) = N \left({@r2@},{@decimalplaces(p1,2)@}\right)<br>\]<br>Note, we are given the population standard deviation \(\sigma\), which means that we can use the Normal distribution to calculate the confidence interval regardless of sample size (i.e. we do not need the Central Limit Theorem).<br><br>The 90% confidence interval can be constructed using the standard normal distribution, but looking for the value of \(z\) such that:<br>\[<br>P(-z &lt Z &lt z) = 0.9 \quad \iff \quad P(0 \le Z \le z) = 0.45<br>\]<br>Using the table of values, we find \(z = \pm 1.645\). Using the mean and standard deviation of the distribution of \(\bar X\), we can then recover 90% confidence interval.<br>\[<br>C.I._{90} = \bar x \pm 1.645 \frac{\sigma}{\sqrt{n}} = {@r2@} \pm 1.645 \cdot {@decimalplaces(p2,2)@} = ({@decimalplaces(cl_1,2)@}, {@decimalplaces(cr_1,2)@})<br>\]<br>With 90% confidence, the population mean \(\mu\) is between {@decimalplaces(cl_1,2)@} and {@decimalplaces(cr_1,2)@}.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>If the sample of size \(n={@r1@}\) has a mean \(\bar x = {@r2@}\) and the population has a standard deviation \(\sigma={@r3@}\), then the sampling distribution of the mean follows a normal distribution:<br>\[<br>\bar X \sim N \left(\bar x,\frac{\sigma^2}{n}\right) = N \left({@r2@},\frac{{@r3@}^2}{{@r1@}}\right) = N \left({@r2@},{@decimalplaces(p1,2)@}\right)<br>\]<br>Note, we are given the population standard deviation \(\sigma\), which means that we can use the Normal distribution to calculate the confidence interval regardless of sample size (i.e. we do not need the Central Limit Theorem).<br><br>The 90% confidence interval can be constructed using the standard normal distribution, but looking for the value of \(z\) such that:<br>\[<br>P(-z &lt Z &lt z) = 0.9 \quad \iff \quad P(0 \le Z \le z) = 0.45<br>\]<br>Using the table of values, we find \(z = \pm 1.645\). Using the mean and standard deviation of the distribution of \(\bar X\), we can then recover 90% confidence interval.<br>\[<br>C.I._{90} = \bar x \pm 1.645 \frac{\sigma}{\sqrt{n}} = {@r2@} \pm 1.645 \cdot {@decimalplaces(p2,2)@} = ({@decimalplaces(cl_1,2)@}, {@decimalplaces(cr_1,2)@})<br>\]<br>With 90% confidence, the population mean \(\mu\) is between {@decimalplaces(cl_1,2)@} and {@decimalplaces(cr_1,2)@}.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions>0.1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The 95% confidence interval can be constructed by looking for the value of \(z\) such that:<br>\[<br>P(-z &lt Z &lt z) = 0.95 \quad \iff \quad P(0 \le Z \le z) = 0.475<br>\]<br>Using the table of values, we find \(z = \pm 1.96\). Using the mean and standard deviation of the distribution of \(\bar X\), we can then recover 95% confidence interval.<br>\[<br>C.I._{95} = \bar x \pm 1.96 \frac{\sigma}{\sqrt{n}} = {@r2@} \pm 1.96 \cdot {@decimalplaces(p2,2)@} = ({@decimalplaces(cl_2,2)@}, {@decimalplaces(cr_2,2)@})<br>\]<br>With 95% confidence, the population mean \(\mu\) is between {@decimalplaces(cl_2,2)@} and {@decimalplaces(cr_2,2)@}.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The 95% confidence interval can be constructed by looking for the value of \(z\) such that:<br>\[<br>P(-z &lt Z &lt z) = 0.95 \quad \iff \quad P(0 \le Z \le z) = 0.475<br>\]<br>Using the table of values, we find \(z = \pm 1.96\). Using the mean and standard deviation of the distribution of \(\bar X\), we can then recover 95% confidence interval.<br>\[<br>C.I._{95} = \bar x \pm 1.96 \frac{\sigma}{\sqrt{n}} = {@r2@} \pm 1.96 \cdot {@decimalplaces(p2,2)@} = ({@decimalplaces(cl_2,2)@}, {@decimalplaces(cr_2,2)@})<br>\]<br>With 95% confidence, the population mean \(\mu\) is between {@decimalplaces(cl_2,2)@} and {@decimalplaces(cr_2,2)@}.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result3</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans3</sans>
+        <tans>solC</tans>
+        <testoptions>0.1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q3_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The 99% confidence interval can be constructed by looking for the value of \(z\) such that:<br>\[<br>P(-z &lt Z &lt z) = 0.99 \quad \iff \quad P(0 \le Z \le z) = 0.495<br>\]<br>Using the table of values, we find \(z = \pm 2.575\). Using the mean and standard deviation of the distribution of \(\bar X\), we can then recover 99% confidence interval.<br>\[<br>C.I._{99} = \bar x \pm 2.575 \frac{\sigma}{\sqrt{n}} = {@r2@} \pm 2.575 \cdot {@decimalplaces(p2,2)@} = ({@decimalplaces(cl_3,2)@}, {@decimalplaces(cr_3,2)@})<br>\]<br>With 99% confidence, the population mean \(\mu\) is between {@decimalplaces(cl_3,2)@} and {@decimalplaces(cr_3,2)@}.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q3_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The 99% confidence interval can be constructed by looking for the value of \(z\) such that:<br>\[<br>P(-z &lt Z &lt z) = 0.99 \quad \iff \quad P(0 \le Z \le z) = 0.495<br>\]<br>Using the table of values, we find \(z = \pm 2.575\). Using the mean and standard deviation of the distribution of \(\bar X\), we can then recover 99% confidence interval.<br>\[<br>C.I._{99} = \bar x \pm 2.575 \frac{\sigma}{\sqrt{n}} = {@r2@} \pm 2.575 \cdot {@decimalplaces(p2,2)@} = ({@decimalplaces(cl_3,2)@}, {@decimalplaces(cr_3,2)@})<br>\]<br>With 99% confidence, the population mean \(\mu\) is between {@decimalplaces(cl_3,2)@} and {@decimalplaces(cr_3,2)@}.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_11</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A random sample of size \(n={@p1@}\) is taken from a large population. The sample mean is \(\bar x = {@p2@}\), and the sample standard deviation is \(s = {@p3@}\).<br></p>
+<p>Using this information, construct a 95% confidence interval for the population mean \(\mu\). Enter the interval using square brackets, separating the two values with commas \(\left[\dots ,\dots \right]\):&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(C.I._{95}\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>Suppose you are told that {@p3@} is also the value of the population standard deviation \(\sigma\). Construct a new 95% confidence interval and compare this with your previous calculation.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(C.I._{95}\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>5.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+idx:1+rand(3);
+L1: [9, 16, 25];
+L2: [2.306, 2.131, 2.064];
+
+p1: L1[idx];
+p2: 70+rand(21);
+p3: 25 + rand(10);
+p4:float( p3/sqrt(p1));
+p5:float( L2[idx]);
+
+[cl1,cr1]: [float(p2 - round(1.96*p4*100)/100),float( p2 + round(1.96*p4*100)/100)];
+[cl2,cr2]: [float(p2 - round(p5*p4*100)/100),float( p2 + round(p5*p4*100)/100)];
+solA: [cl2,cr2];
+solB: [cl1,cr1];
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>Given that the sample has a size \(n={@p1@}\), if we do not know the population standard deviation \(\sigma\), then we need to (a) replace \(\sigma\) by the sample standard deviation \(s\) and (b) rely on the \(t\)-distribution instead of the standard normal distribution, to allow for additional uncertainty generated by using \(s\), which is an estimate of \(\sigma\):<br>\[<br>C.I._{95} = \bar x \pm t_{0.05}^{n-1} \frac{s}{\sqrt{n}}<br>\]<br><br>The critical value \(t_{0.05}^{n-1}\) can be found in the table of values for Student's t-distribution, for a two-tailed probability of 0.05 (corresponding to 95% confidence) and \(n-1 = {{@p1@}-1}\) degrees of freedom. In this case, \(t_{0.05}^{{@p1@}-1} = {@decimalplaces(p5,3)@}\). This gives us the following confidence interval:<br>\[<br>C.I._{95} =  {@p2@} \pm {@decimalplaces(p5,3)@}\frac{{@p3@}}{\sqrt{{@p1@}}}  =  \left[{@decimalplaces(cl2,3)@} \, , \, {@decimalplaces(cr2,3)@}\right]<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>Given that the sample has a size \(n={@p1@}\), if we do not know the population standard deviation \(\sigma\), then we need to (a) replace \(\sigma\) by the sample standard deviation \(s\) and (b) rely on the \(t\)-distribution instead of the standard normal distribution, to allow for additional uncertainty generated by using \(s\), which is an estimate of \(\sigma\):<br>\[<br>C.I._{95} = \bar x \pm t_{0.05}^{n-1} \frac{s}{\sqrt{n}}<br>\]<br><br>The critical value \(t_{0.05}^{n-1}\) can be found in the table of values for Student's t-distribution, for a two-tailed probability of 0.05 (corresponding to 95% confidence) and \(n-1 = {{@p1@}-1}\) degrees of freedom. In this case, \(t_{0.05}^{{@p1@}-1} = {@decimalplaces(p5,3)@}\). This gives us the following confidence interval:<br>\[<br>C.I._{95} =  {@p2@} \pm {@decimalplaces(p5,3)@}\frac{{@p3@}}{\sqrt{{@p1@}}}  =  \left[{@decimalplaces(cl2,3)@} \, , \, {@decimalplaces(cr2,3)@}\right]<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions>0.1</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>If the sample of size \(n={@p1@}\) has a mean \(\bar x = {@p2@}\) and the population has standard deviation \(\sigma={@p3@}\), then the sampling distribution of the mean follows a normal distribution:<br>\[<br>\bar X \sim N \left(\bar x,\frac{\sigma^2}{n}\right) = N \left({@p2@},\frac{{@p3@}^2}{{@p1@}}\right) \approx N \left({@p2@},{@decimalplaces(p4,3)@}^2\right)<br>\]<br>Note, because we now know the value of the population standard deviation \(\sigma\), we are able to calculate confidence intervals using the normal distribution, and we do not need to use Student's t-distribution. This is only required when (a) we use the sample standard deviation \(s\) as an estimate of \(\sigma\) and (b) the sample size \(n&lt30\), so that there is a lot of uncertainty in the accuracy of \(s\).<br><br>The 95% confidence interval can be constructed using the standard normal distribution, but looking for the value of \(z\) such that:<br>\[<br>P(-z &lt Z &lt z) = 0.95 \quad \iff \quad P(0 \le Z \le z) = 0.475<br>\]<br>Using the table of values, we find \(z = \pm 1.96\). Using the mean and standard deviation of the distribution of \(\bar X\), we can then calculate 95% confidence interval.<br>\[<br>C.I._{95} = \bar x \pm 1.96 \frac{\sigma}{\sqrt{n}} = {@p2@} \pm 1.96 \frac{{@p3@}}{\sqrt{{@p1@}}} = \left[{@decimalplaces(cl1,3)@} \, , \, {@decimalplaces(cr1,3)@}\right]<br>\]<br>This is much tighter confidence interval than the previous answer. Even if the actual value of the standard deviation has not changed (still \(p3\)), the fact that we know for certain the value of the population standard deviation \(\sigma\) rather than have to rely on an estimate \(s\) means we can be much more precise for a given confidence level.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>If the sample of size \(n={@p1@}\) has a mean \(\bar x = {@p2@}\) and the population has standard deviation \(\sigma={@p3@}\), then the sampling distribution of the mean follows a normal distribution:<br>\[<br>\bar X \sim N \left(\bar x,\frac{\sigma^2}{n}\right) = N \left({@p2@},\frac{{@p3@}^2}{{@p1@}}\right) \approx N \left({@p2@},{@decimalplaces(p4,3)@}^2\right)<br>\]<br>Note, because we now know the value of the population standard deviation \(\sigma\), we are able to calculate confidence intervals using the normal distribution, and we do not need to use Student's t-distribution. This is only required when (a) we use the sample standard deviation \(s\) as an estimate of \(\sigma\) and (b) the sample size \(n&lt30\), so that there is a lot of uncertainty in the accuracy of \(s\).<br><br>The 95% confidence interval can be constructed using the standard normal distribution, but looking for the value of \(z\) such that:<br>\[<br>P(-z &lt Z &lt z) = 0.95 \quad \iff \quad P(0 \le Z \le z) = 0.475<br>\]<br>Using the table of values, we find \(z = \pm 1.96\). Using the mean and standard deviation of the distribution of \(\bar X\), we can then calculate 95% confidence interval.<br>\[<br>C.I._{95} = \bar x \pm 1.96 \frac{\sigma}{\sqrt{n}} = {@p2@} \pm 1.96 \frac{{@p3@}}{\sqrt{{@p1@}}} = \left[{@decimalplaces(cl1,3)@} \, , \, {@decimalplaces(cr1,3)@}\right]<br>\]<br>This is much tighter confidence interval than the previous answer. Even if the actual value of the standard deviation has not changed (still \(p3\)), the fact that we know for certain the value of the population standard deviation \(\sigma\) rather than have to rely on an estimate \(s\) means we can be much more precise for a given confidence level.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_13</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A pair of dice is tossed {@r1@} times and the sum is seven {@r2@} times.<br></p>
+<p>If the dice were fair, what would be the probability of the sum being seven? Round to 3 decimal places if required.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(P\left(X = 7\right)\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>We can reject the hypothesis that the dice are fair using a two tailed test at 5% significance. True or False?&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p> = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p><p>We can reject the hypothesis that the dice are fair using a one tailed test at 5% significance. True or False? Explain which type of test you think is more appropriate in this case.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p> = [[input:ans3]] [[validation:ans3]]</p><p>[[feedback:Result3]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>9.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+r1: 90+rand(21);
+r2: ceiling(r1/6) + 2 + rand(10);
+
+p1:float( r2/r1);
+p2:float( p1 - 1/6);
+p3:float( 5/36);
+p4:float( sqrt(p3/r1));
+p5:float( p2/p4);
+p6: r1/6;
+
+solA:float(1/6);
+
+if is(abs(p5)>1.96) then solB:true else solB:false;
+if is(abs(p5)>1.96) then txtB:"" else txtB:"not";
+
+if is(abs(p5)>1.645) then solC:true else solC:false;
+if is(abs(p5)>1.645) then txtC:"can" else txtC:"cannot";
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>boolean</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>boolean</type>
+      <tans>solC</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>With two dice, a throw will result in \(6^2=36\) possible pairs of faces. There are \(6\) possible ways that the sum of the two faces \(X\) can be \(7\):<br>\[<br>\begin{aligned}<br>1 + 6 \quad & \quad 2 + 5 \quad & \quad 3 + 4\\<br>4 + 3 \quad & \quad 5 + 2 \quad & \quad 6 + 1\\<br>\end{aligned}<br>\]<br>If the dice are fair, all 36 outcomes are equally probable and the probability is therefore:<br>\[P\left(X = 7 \right) = \frac{6}{36} = \frac{1}{6}\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>With two dice, a throw will result in \(6^2=36\) possible pairs of faces. There are \(6\) possible ways that the sum of the two faces \(X\) can be \(7\):<br>\[<br>\begin{aligned}<br>1 + 6 \quad & \quad 2 + 5 \quad & \quad 3 + 4\\<br>4 + 3 \quad & \quad 5 + 2 \quad & \quad 6 + 1\\<br>\end{aligned}<br>\]<br>If the dice are fair, all 36 outcomes are equally probable and the probability is therefore:<br>\[P\left(X = 7 \right) = \frac{6}{36} = \frac{1}{6}\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The information required to set up the hypothesis test is that the true proportion is \(p = \frac{1}{6}\), while the sample proportion is \(\hat p = {@decimalplaces(p1,3)@}\) with a population standard deviation component \(\sigma = \sqrt{\frac{6}{36} \times \frac{30}{36}} = \sqrt{\frac{5}{36}}\) (remember, we assume that the null is true!). The sample size is \(n={@r1@}\), therefore we can draw the critical values from the normal distribution.<br><br>The hypotheses we want to test are:<br>\[<br>\left\{\begin{aligned}<br>H_0: \, & p = \frac{1}{6} \\<br>H_1: \, & p \ne \frac{1}{6} \\<br>\end{aligned}\right.<br>\]<br><br>The test statistic is:<br>\[<br>t = \frac{\hat p - p}{\frac{\sigma}{\sqrt{n}}} = \frac{{@decimalplaces(p1,3)@}-\frac{1}{6}}{\sqrt{\frac{5}{36\times{@r1@}}}} = \frac{{@decimalplaces(p2,3)@}}{{@decimalplaces(p4,3)@}} = {@decimalplaces(p5,3)@}<br>\]<br><br>Given that we want 95% confidence on a two-tailed test with a sample size of \(n={@r1@}\), the critical value of the t-statistic is \(z_{0.05} = 1.96\). This tells us that \(t &lt z_{0.02}\), therefore there is {@txtB@}enough evidence to reject the null hypothesis that the dice are fair. The statement is <i>{@solB@}</i>.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The information required to set up the hypothesis test is that the true proportion is \(p = \frac{1}{6}\), while the sample proportion is \(\hat p = {@decimalplaces(p1,3)@}\) with a population standard deviation component \(\sigma = \sqrt{\frac{6}{36} \times \frac{30}{36}} = \sqrt{\frac{5}{36}}\) (remember, we assume that the null is true!). The sample size is \(n={@r1@}\), therefore we can draw the critical values from the normal distribution.<br><br>The hypotheses we want to test are:<br>\[<br>\left\{\begin{aligned}<br>H_0: \, & p = \frac{1}{6} \\<br>H_1: \, & p \ne \frac{1}{6} \\<br>\end{aligned}\right.<br>\]<br><br>The test statistic is:<br>\[<br>t = \frac{\hat p - p}{\frac{\sigma}{\sqrt{n}}} = \frac{{@decimalplaces(p1,3)@}-\frac{1}{6}}{\sqrt{\frac{5}{36\times{@r1@}}}} = \frac{{@decimalplaces(p2,3)@}}{{@decimalplaces(p4,3)@}} = {@decimalplaces(p5,3)@}<br>\]<br><br>Given that we want 95% confidence on a two-tailed test with a sample size of \(n={@r1@}\), the critical value of the t-statistic is \(z_{0.05} = 1.96\). This tells us that \(t &lt z_{0.02}\), therefore there is {@txtB@}enough evidence to reject the null hypothesis that the dice are fair. The statement is <i>{@solB@}</i>.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result3</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text>fn0:0.39894228*exp(-0.5*x^2);
+fn1:[discrete,[ [p5,0],[p5,0.5] ]];
+fn2:[discrete,[ [1.96,0],[1.96,0.5] ]];
+fn3:[discrete,[ [1.645,0],[1.645,0.5] ]];
+st:[style,lines,lines,lines,lines];
+col:[color,blue,black,red,green];
+leg:[legend,"N(0,1)","t","z_{0.05} = 1.96","z_{0.1} = 1.645"];</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>solC</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q3_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>For the one-tailed test, given that \(\hat p &gt p\), we can set up the following hypotheses:<br>\[<br>\left\{\begin{aligned}<br>H_0: \, & p \le \frac{1}{6} \\<br>H_1: \, & p &gt \frac{1}{6} \\<br>\end{aligned}\right.<br>\]<br><br>The  test statistic is the same as before, \(t = {@decimalplaces(p5,3)@}\) If we want 95% confidence, on a one-tailed test the critical value of the t-statistic becomes \(z_{0.1} = 1.645\). This tells us that \(t &gt z_{0.1}\), therefore we {@txtC@}reject the null hypothesis that the dice are fair. The statement is <i>{@solC@}</i>.<br><br>The difference here rests in the choice of alternate hypothesis. In a two-tailed test, the alternate hypothesis is \(H_1: \, p \ne \frac{1}{6}\). We are simply stating the sample proportion is not equal to the stated proportion: it could be higher, or it could be lower. In the absence of information about how the dice might be unfair, this is the most conservative approach as it allows for either possibility. In contrast, with the one-tailed test, we have \(H_1: \, p &gt \frac{1}{6}\): we are explicitly ruling out the possibility that the true proportion is lower than {@p6@} out of {@r1@}. This assumption allows us to reject the null more easily (i.e. with a smaller deviation from the stated proportion), at the risk of being very wrong if our assumption was incorrect.<br><br><p>{@plot([fn0,fn1,fn2,fn3], [x, -4,4], [y, 0,0.75], st, col, [point_type, bullet], [box, false], [axes, solid], [xtics, -4, 0.5, 4], leg)@}</p><br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q3_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>For the one-tailed test, given that \(\hat p &gt p\), we can set up the following hypotheses:<br>\[<br>\left\{\begin{aligned}<br>H_0: \, & p \le \frac{1}{6} \\<br>H_1: \, & p &gt \frac{1}{6} \\<br>\end{aligned}\right.<br>\]<br><br>The  test statistic is the same as before, \(t = {@decimalplaces(p5,3)@}\) If we want 95% confidence, on a one-tailed test the critical value of the t-statistic becomes \(z_{0.1} = 1.645\). This tells us that \(t &gt z_{0.1}\), therefore we {@txtC@}reject the null hypothesis that the dice are fair. The statement is <i>{@solC@}</i>.<br><br>The difference here rests in the choice of alternate hypothesis. In a two-tailed test, the alternate hypothesis is \(H_1: \, p \ne \frac{1}{6}\). We are simply stating the sample proportion is not equal to the stated proportion: it could be higher, or it could be lower. In the absence of information about how the dice might be unfair, this is the most conservative approach as it allows for either possibility. In contrast, with the one-tailed test, we have \(H_1: \, p &gt \frac{1}{6}\): we are explicitly ruling out the possibility that the true proportion is lower than {@p6@} out of {@r1@}. This assumption allows us to reject the null more easily (i.e. with a smaller deviation from the stated proportion), at the risk of being very wrong if our assumption was incorrect.<br><br><p>{@plot([fn0,fn1,fn2,fn3], [x, -4,4], [y, 0,0.75], st, col, [point_type, bullet], [box, false], [axes, solid], [xtics, -4, 0.5, 4], leg)@}</p><br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_17</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>You are told that a random variable \(X\) has a population standard deviation of {@r3@}.<br></p>
+<p>How large a sample \(n\) would you need in order to be able to estimate the population mean to within \(\pm\){@decimalplaces(r4,3)@} at the {@c3@}% confidence level? Round your answer up to an integer.&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(n\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>2.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+idx:1+rand(3);
+L1:[90, 95, 99];
+L2:[1.645, 1.96, 2.575];
+
+c3:L1[idx];
+c4:float(L2[idx]);
+
+r3:5 + rand(11);
+r4:float(1 + rand(30)/10);
+
+p1_a:float(c3/100);
+p1_b:float(p1_a/2);
+
+p3:float(c4*(r3/r4));
+p4:float(p3^2);
+
+solA: ceiling(p4);
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>2</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>In order to determine how large a sample we need to achieve an error of \(\pm\){@decimalplaces(r4,3)@} at {@c3@}% confidence, we can invert the formula for the confidence interval, where \(z_{{@c3@}}\) is the critical value of the standard normal distribution. Suppose we pick the upper \(U_{{@c3@}}\) bound of the confidence interval:<br><br>\[<br>\begin{aligned}<br>U_{{@c3@}} & = \bar x + z_{{@c3@}} \frac{\sigma}{\sqrt{n}}\\<br>U_{{@c3@}} - \bar x  & = z_{{@c3@}} \frac{\sigma}{\sqrt{n}}\\<br>\sqrt{n} & =z_{{@c3@}} \frac{\sigma}{U_{{@c3@}} - \bar x} \\<br>n & = \left(z_{{@c3@}} \frac{\sigma}{U_{{@c3@}} - \bar x}\right)^2 \\<br>\end{aligned}<br>\]<br><br>The {@c3@}% critical value interval can be constructed using the standard normal distribution, but looking for the value of \(z_{{@c3@}}\) such that:<br>\[<br>P(-z_{{@c3@}} &lt Z &lt z_{{@c3@}}) = {@decimalplaces(p1_a,3)@} \quad \iff \quad P(0 \le Z \le z_{{@c3@}}) = {@decimalplaces(p1_b,3)@}<br>\]<br>Using the table of values, we find \(z_{{@c3@}} = {@decimalplaces(c4,3)@}\). Replacing this in the equation above, and including the information that the upper bound of the confidence interval should be {@decimalplaces(r4,3)@} above the mean, we can find the required sample size.<br><br>\[<br>n = \left({@decimalplaces(c4,3)@} \frac{{@r3@}}{{@decimalplaces(r4,3)@}}\right)^2 \approx \left({@decimalplaces(p3,3)@}\right)^2 \approx {@decimalplaces(p4,3)@}<br>\]<br>We need a sample of at least {@solA@} observations in order to generate a confidence interval of \(\pm\){@decimalplaces(r4,3)@} around the sample mean.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>In order to determine how large a sample we need to achieve an error of \(\pm\){@decimalplaces(r4,3)@} at {@c3@}% confidence, we can invert the formula for the confidence interval, where \(z_{{@c3@}}\) is the critical value of the standard normal distribution. Suppose we pick the upper \(U_{{@c3@}}\) bound of the confidence interval:<br><br>\[<br>\begin{aligned}<br>U_{{@c3@}} & = \bar x + z_{{@c3@}} \frac{\sigma}{\sqrt{n}}\\<br>U_{{@c3@}} - \bar x  & = z_{{@c3@}} \frac{\sigma}{\sqrt{n}}\\<br>\sqrt{n} & =z_{{@c3@}} \frac{\sigma}{U_{{@c3@}} - \bar x} \\<br>n & = \left(z_{{@c3@}} \frac{\sigma}{U_{{@c3@}} - \bar x}\right)^2 \\<br>\end{aligned}<br>\]<br><br>The {@c3@}% critical value interval can be constructed using the standard normal distribution, but looking for the value of \(z_{{@c3@}}\) such that:<br>\[<br>P(-z_{{@c3@}} &lt Z &lt z_{{@c3@}}) = {@decimalplaces(p1_a,3)@} \quad \iff \quad P(0 \le Z \le z_{{@c3@}}) = {@decimalplaces(p1_b,3)@}<br>\]<br>Using the table of values, we find \(z_{{@c3@}} = {@decimalplaces(c4,3)@}\). Replacing this in the equation above, and including the information that the upper bound of the confidence interval should be {@decimalplaces(r4,3)@} above the mean, we can find the required sample size.<br><br>\[<br>n = \left({@decimalplaces(c4,3)@} \frac{{@r3@}}{{@decimalplaces(r4,3)@}}\right)^2 \approx \left({@decimalplaces(p3,3)@}\right)^2 \approx {@decimalplaces(p4,3)@}<br>\]<br>We need a sample of at least {@solA@} observations in order to generate a confidence interval of \(\pm\){@decimalplaces(r4,3)@} around the sample mean.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_12</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A sample of 100 UK households have the following distribution:<br><br><table style="text-align: center">
+    <tbody>
+        <tr style=border-bottom:1px solid black>
+            <th style="padding-left:10px;padding-right:10px;">Household size </th>
+            <th style="padding-left:10px;padding-right:10px;"> Frequency \(f_i\) </th>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">1 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f1@} </td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">2 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f2@} </td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">3 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f3@} </td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">4 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f4@} </td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">5 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f5@} </td>
+        </tr>
+        <tr style=border-bottom:1px solid black>
+            <td style="padding-left:10px;padding-right:10px;">6 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f6@} </td>
+        </tr>
+    </tbody>
+</table><br></p>
+<p>Calculate the mean household size \(\bar x\). Round your answer to two decimal places if needed.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(\bar x\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>Calculate the median household size \(\tilde x\).&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(\tilde x\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p><p>Calculate the mode.&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>Mode = [[input:ans3]] [[validation:ans3]]</p><p>[[feedback:Result3]]</p><p>Calculate the sample standard deviation \(s\), rounded to 2 decimal places.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(s\) = [[input:ans4]] [[validation:ans4]]</p><p>[[feedback:Result4]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>10.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+f1:23+rand(5);
+f2:30+rand(6);
+f3:15+rand(4);
+f5:5+rand(4);
+f6:1+rand(5);
+f4:100-f1-f2-f3-f5-f6;
+
+m1:1;
+m2:2;
+m3:3;
+m4:4;
+m5:5;
+m6:6;
+
+c1:f1;
+c2:c1+f2;
+c3:c2+f3;
+c4:c3+f4;
+c5:c4+f5;
+c6:c5+f6;
+
+d1:f1*m1;
+d2:f2*m2;
+d3:f3*m3;
+d4:f4*m4;
+d5:f5*m5;
+d6:f6*m6;
+fmt:d1+d2+d3+d4+d5+d6;
+mu:float(fmt/100);
+
+fmsq1:float(f1*(m1-mu)^2);
+fmsq2:float(f2*(m2-mu)^2);
+fmsq3:float(f3*(m3-mu)^2);
+fmsq4:float(f4*(m4-mu)^2);
+fmsq5:float(f5*(m5-mu)^2);
+fmsq6:float(f6*(m6-mu)^2);
+fmsqt:float(fmsq1+fmsq2+fmsq3+fmsq4+fmsq5+fmsq6);
+var:float(fmsqt/99);
+std:float(var^0.5);
+
+solA:float(round(mu*100)/100);
+solBC:m2;
+solD:float(round(std*100)/100);
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solBC</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>solBC</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>solD</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The frequency table is given by:<br><br><table style="text-align: center">
+    <tbody>
+        <tr style=border-bottom:1px solid black>
+            <th style="padding-left:10px;padding-right:10px;">Household size </th>
+            <th style="padding-left:10px;padding-right:10px;"> Frequency \(f_i\) </th>
+            <th style="padding-left:10px;padding-right:10px;"> \(f_i x_i\) </th>
+            <th style="padding-left:10px;padding-right:10px;"> \(f_i (x_i-\bar x)^2\)</th>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">1 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f1@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d1@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq1,2)@}</td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">2 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f2@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d2@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq2,2)@}</td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">3 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f3@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d3@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq3,2)@}</td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">4 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f4@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d4@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq4,2)@}</td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">5 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f5@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d5@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq5,2)@}</td>
+        </tr>
+        <tr style=border-bottom:1px solid black>
+            <td style="padding-left:10px;padding-right:10px;">6 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f6@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d6@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq6,2)@}</td>
+        </tr>
+        <tr style=border-bottom:1px solid black>
+            <td style="padding-left:10px;padding-right:10px;">Total </td>
+            <td style="padding-left:10px;padding-right:10px;"> 100 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@fmt@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsqt,2)@} </td>
+        </tr>
+    </tbody>
+</table><br><br>\[<br>\bar x = \frac{\sum_i f_i x_i}{N} =\frac{@fmt@}{100} = {@decimalplaces(mu,2)@}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The frequency table is given by:<br><br><table style="text-align: center">
+    <tbody>
+        <tr style=border-bottom:1px solid black>
+            <th style="padding-left:10px;padding-right:10px;">Household size </th>
+            <th style="padding-left:10px;padding-right:10px;"> Frequency \(f_i\) </th>
+            <th style="padding-left:10px;padding-right:10px;"> \(f_i x_i\) </th>
+            <th style="padding-left:10px;padding-right:10px;"> \(f_i (x_i-\bar x)^2\)</th>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">1 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f1@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d1@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq1,2)@}</td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">2 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f2@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d2@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq2,2)@}</td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">3 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f3@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d3@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq3,2)@}</td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">4 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f4@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d4@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq4,2)@}</td>
+        </tr>
+        <tr >
+            <td style="padding-left:10px;padding-right:10px;">5 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f5@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d5@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq5,2)@}</td>
+        </tr>
+        <tr style=border-bottom:1px solid black>
+            <td style="padding-left:10px;padding-right:10px;">6 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@f6@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@d6@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsq6,2)@}</td>
+        </tr>
+        <tr style=border-bottom:1px solid black>
+            <td style="padding-left:10px;padding-right:10px;">Total </td>
+            <td style="padding-left:10px;padding-right:10px;"> 100 </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@fmt@} </td>
+            <td style="padding-left:10px;padding-right:10px;"> {@decimalplaces(fmsqt,2)@} </td>
+        </tr>
+    </tbody>
+</table><br><br>\[<br>\bar x = \frac{\sum_i f_i x_i}{N} =\frac{@fmt@}{100} = {@decimalplaces(mu,2)@}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans2</sans>
+        <tans>solBC</tans>
+        <testoptions>0.005</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\tilde x = {@solBC@}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\tilde x = {@solBC@}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result3</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans3</sans>
+        <tans>solBC</tans>
+        <testoptions>0.005</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q3_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\textrm{Mode} = {@solBC@}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q3_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\textrm{Mode} = {@solBC@}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result4</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans4</sans>
+        <tans>solD</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q4_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>s^2 = \frac{\sum_i f_i (x_i-\bar x)^2}{N-1} =\frac{{@decimalplaces(fmsqt,2)@}}{99} \approx {@decimalplaces(var,2)@}<br>\]<br>If the sample variance is \(s^2 \approx {@decimalplaces(var,2)@}\) then the sample standard deviation is \(s \approx \sqrt{{@decimalplaces(var,2)@}} \approx {@decimalplaces(solD,2)@}\)<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q4_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>s^2 = \frac{\sum_i f_i (x_i-\bar x)^2}{N-1} =\frac{{@decimalplaces(fmsqt,2)@}}{99} \approx {@decimalplaces(var,2)@}<br>\]<br>If the sample variance is \(s^2 \approx {@decimalplaces(var,2)@}\) then the sample standard deviation is \(s \approx \sqrt{{@decimalplaces(var,2)@}} \approx {@decimalplaces(solD,2)@}\)<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_16</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>You are told \(P(A) = {@decimalplaces(pa,2)@}\), \(P(B) = {@decimalplaces(pb,2)@}\) and \(P(A \textrm{ or } B) = {@decimalplaces(pAB,2)@}\). Are the following statements true or false? Provide an explanation in each case.<br></p>
+<p>\(A\) and \(B\) are independent.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(A\) and \(B\) independent? = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>\(A\) and \(B\) are mutually exclusive.&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(A\) and \(B\) mutually exclusive? = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p><p>If two events that occur with non-zero probabilities are mutually exclusive, then they cannot be independent.&nbsp;&nbsp;&nbsp;&nbsp;<b>[4]</b><br></p><p>Mutually exclusive \(\implies\) not independent? = [[input:ans3]] [[validation:ans3]]</p><p>[[feedback:Result3]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>10.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+pa:float((25+rand(11))/100);
+pb:float((65+rand(11))/100);
+pAB:float((75+rand(11))/100);
+
+p1:float( pa + pb - pAB);
+p2:float( pa*pb);
+p3:float( pa + pb - pAB - pa*pb);
+
+
+if is(round(p3*100)=0) then solA:true else solA:false;
+if is(round(p3*100)=0) then txt1:"=" else txt1:"
+e";
+if is(round(p3*100)=0) then txt2:"" else txt2:"not";
+sol2:false;
+sol3:true;
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>boolean</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>boolean</type>
+      <tans>sol2</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>boolean</type>
+      <tans>sol3</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>By the addition rule we know that \(P(A \textrm{ and } B) = P(A) + P(B) - P(A \textrm{ or } B)\). Using the values above, this give us:<br>\[<br>P(A \textrm{ and } B) = {@decimalplaces(pa,2)@} + {@decimalplaces(pb,2)@} - {@decimalplaces(pAB,2)@} = {@decimalplaces(p1,2)@}<br>\]<br>Furthermore, we can calculate:<br>\[<br>P(A)\times P(B) = {@decimalplaces(pa,2)@} \times {@decimalplaces(pb,2)@} = {@decimalplaces(p2,2)@}<br>\]<br>Because \(P(A \textrm{ and } B) \, {@txt1@} \, P(A)\times P(B)\), one can conclude that \(A\) and \(B\) are {@txt2@}independent. <i>{@solA@}</i><br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>By the addition rule we know that \(P(A \textrm{ and } B) = P(A) + P(B) - P(A \textrm{ or } B)\). Using the values above, this give us:<br>\[<br>P(A \textrm{ and } B) = {@decimalplaces(pa,2)@} + {@decimalplaces(pb,2)@} - {@decimalplaces(pAB,2)@} = {@decimalplaces(p1,2)@}<br>\]<br>Furthermore, we can calculate:<br>\[<br>P(A)\times P(B) = {@decimalplaces(pa,2)@} \times {@decimalplaces(pb,2)@} = {@decimalplaces(p2,2)@}<br>\]<br>Because \(P(A \textrm{ and } B) \, {@txt1@} \, P(A)\times P(B)\), one can conclude that \(A\) and \(B\) are {@txt2@}independent. <i>{@solA@}</i><br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>sol2</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\(A\) and \(B\) cannot be mutually exclusive, as \(P(A \textrm{ and } B) = {@decimalplaces(p1,2)@} \ne 0\). There is a probability that both events will happen together. <i>False</i><br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\(A\) and \(B\) cannot be mutually exclusive, as \(P(A \textrm{ and } B) = {@decimalplaces(p1,2)@} \ne 0\). There is a probability that both events will happen together. <i>False</i><br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result3</name>
+      <value>4</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>sol3</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q3_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>If two events \(A\) and \(B\) are mutually exclusive, then \(P(A \textrm{ and } B) = 0\). If these two events are also independent, then  we also have \(P(A \textrm{ and } B) = P(A)\times P(B)\). The combination of the two implies:<br>\[<br>P(A \textrm{ and } B) = P(A)\times P(B) = 0<br>\]<br>This can only be the case if at least one of the events has a zero probability. As we are told that both events have non-zero probability, they cannot be mutually exclusive and independent. <i>True</i>.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q3_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>If two events \(A\) and \(B\) are mutually exclusive, then \(P(A \textrm{ and } B) = 0\). If these two events are also independent, then  we also have \(P(A \textrm{ and } B) = P(A)\times P(B)\). The combination of the two implies:<br>\[<br>P(A \textrm{ and } B) = P(A)\times P(B) = 0<br>\]<br>This can only be the case if at least one of the events has a zero probability. As we are told that both events have non-zero probability, they cannot be mutually exclusive and independent. <i>True</i>.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_18</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A ball is drawn from a box containing {@nR@} red, {@nW@} white, {@nB@} blue and {@nO@} orange balls. Find the probability (rounded to 2 decimal places if required) that it is:<br></p>
+<p>Orange or red.&nbsp;&nbsp;&nbsp;&nbsp;<b>[1]</b><br></p><p>\(P(O \textrm{ or } R)\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>Not red and not blue.&nbsp;&nbsp;&nbsp;&nbsp;<b>[1]</b><br></p><p>\(P(\textrm{not } R \textrm{ and not } B)\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p><p>Not blue.&nbsp;&nbsp;&nbsp;&nbsp;<b>[1]</b><br></p><p>\(P(\textrm{not } B)\) = [[input:ans3]] [[validation:ans3]]</p><p>[[feedback:Result3]]</p><p>White.&nbsp;&nbsp;&nbsp;&nbsp;<b>[1]</b><br></p><p>\(P(W)\) = [[input:ans4]] [[validation:ans4]]</p><p>[[feedback:Result4]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>4.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+nR:7+rand(5);
+nW:27+rand(6);
+nB:18+rand(7);
+nO:14+rand(4);
+
+n_0:nR+nW+nB+nO;
+p1:n_0 - nR-nB;
+p2:n_0 - nB;
+
+[p3,p4,p5,p6]:[float((nO+nR)/n_0),float(p1/n_0),float(p2/n_0),float(nW/n_0)];
+
+solA:float(round(p3*100)/100);
+solB:float(round(p4*100)/100);
+solC:float(round(p5*100)/100);
+solD:float(round(p6*100)/100);
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>solC</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>solD</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>1</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>There are \({@nR@} + {@nW@} + {@nB@} + {@nO@} = {@n_0@}\) balls in total in the box. The probabilities can be calculated by counting the number of balls that meet the condition described in the event and dividing by the total number of balls (\({@n_0@}\)). In this case we are using \(P(O \textrm{ or } R) = P(O) + P(R)\), as the draw is mutually exclusive: we cannot draw both an orange and a red, so \(P(O \textrm{ and } R) = 0\).<br>\[<br>P(O \textrm{ or } R) = \frac{{@nO@} + {@nR@}}{@n_0@} \approx {@decimalplaces(solA,2)@}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>There are \({@nR@} + {@nW@} + {@nB@} + {@nO@} = {@n_0@}\) balls in total in the box. The probabilities can be calculated by counting the number of balls that meet the condition described in the event and dividing by the total number of balls (\({@n_0@}\)). In this case we are using \(P(O \textrm{ or } R) = P(O) + P(R)\), as the draw is mutually exclusive: we cannot draw both an orange and a red, so \(P(O \textrm{ and } R) = 0\).<br>\[<br>P(O \textrm{ or } R) = \frac{{@nO@} + {@nR@}}{@n_0@} \approx {@decimalplaces(solA,2)@}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>1</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The most direct route is to realise that the only types of balls that are simultaneously `not red' and `not blue' are the orange and white ones, which directly gives:<br><br>\[<br>P(\textrm{not } R \textrm{ and not } B) =  P( O \textrm{and } W) = \frac{{@nO@}+{@nW@}}{{@n_0@}} = \frac{{@p1@}}{{@n_0@}} \approx {@decimalplaces(solB,2)@}<br>\]<br><br>Alternatively, you can also work out the solution using the addition rule. This takes a bit longer and the use of `not' can complicate thinking about this, but the formula still works:<br><br>\[<br>P(\textrm{not } R \textrm{ or not } B) = P(\textrm{not } R) + P(\textrm{not } B) - P(\textrm{not } R \textrm{ and not } B)<br>\]<br><br>Rearranging:<br><br>\[<br>P(\textrm{not } R \textrm{ and not } B) = P(\textrm{not } R) + P(\textrm{not } B) - P(\textrm{not } R \textrm{ or not } B)<br>\]<br><br>A key aspect is to realise that \(P(\textrm{not } R \textrm{ or not } B) = 1\). Any ball you pick is guaranteed to be either `not red' or `not blue'. This is obviously true for the orange and white balls, but also the red and blue ones: a red ball is `not blue' and a blue ball is `not red'! Using this, and replacing \(P(\textrm{not } R) = 1 - P(R)\) and \(P(\textrm{not } B) = 1 - P(B)\) we get:<br><br>\[<br>P(\textrm{not } R \textrm{ and not } B) = 1 - P(R) + 1 - P(B) - 1 \; = \; 1 - P(R) - P(B)<br>\]<br><br>\[<br>P(\textrm{not } R \textrm{ and not } B) = \frac{{@n_0@} - {@nR@} - {@nB@}}{{@n_0@}} = \frac{{@p1@}}{{@n_0@}}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The most direct route is to realise that the only types of balls that are simultaneously `not red' and `not blue' are the orange and white ones, which directly gives:<br><br>\[<br>P(\textrm{not } R \textrm{ and not } B) =  P( O \textrm{and } W) = \frac{{@nO@}+{@nW@}}{{@n_0@}} = \frac{{@p1@}}{{@n_0@}} \approx {@decimalplaces(solB,2)@}<br>\]<br><br>Alternatively, you can also work out the solution using the addition rule. This takes a bit longer and the use of `not' can complicate thinking about this, but the formula still works:<br><br>\[<br>P(\textrm{not } R \textrm{ or not } B) = P(\textrm{not } R) + P(\textrm{not } B) - P(\textrm{not } R \textrm{ and not } B)<br>\]<br><br>Rearranging:<br><br>\[<br>P(\textrm{not } R \textrm{ and not } B) = P(\textrm{not } R) + P(\textrm{not } B) - P(\textrm{not } R \textrm{ or not } B)<br>\]<br><br>A key aspect is to realise that \(P(\textrm{not } R \textrm{ or not } B) = 1\). Any ball you pick is guaranteed to be either `not red' or `not blue'. This is obviously true for the orange and white balls, but also the red and blue ones: a red ball is `not blue' and a blue ball is `not red'! Using this, and replacing \(P(\textrm{not } R) = 1 - P(R)\) and \(P(\textrm{not } B) = 1 - P(B)\) we get:<br><br>\[<br>P(\textrm{not } R \textrm{ and not } B) = 1 - P(R) + 1 - P(B) - 1 \; = \; 1 - P(R) - P(B)<br>\]<br><br>\[<br>P(\textrm{not } R \textrm{ and not } B) = \frac{{@n_0@} - {@nR@} - {@nB@}}{{@n_0@}} = \frac{{@p1@}}{{@n_0@}}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result3</name>
+      <value>1</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans3</sans>
+        <tans>solC</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q3_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>P(\textrm{not } B) = 1 - P(B) = \frac{{@n_0@} - {@nB@}}{{@n_0@}} = \frac{{@p2@}}{{@n_0@}} \approx {@decimalplaces(solC,2)@}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q3_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>P(\textrm{not } B) = 1 - P(B) = \frac{{@n_0@} - {@nB@}}{{@n_0@}} = \frac{{@p2@}}{{@n_0@}} \approx {@decimalplaces(solC,2)@}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result4</name>
+      <value>1</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans4</sans>
+        <tans>solD</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q4_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>P(W) = \frac{@nW@}{@n_0@} \approx {@decimalplaces(solD,2)@}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q4_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>P(W) = \frac{@nW@}{@n_0@} \approx {@decimalplaces(solD,2)@}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_8</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Suppose {@n0@}% of customers at Aldi pay by cash. In a random sample of {@n1@} customers, what is the probability (rounded to 4 decimal places) that:<br></p>
+<p>Two of the customers pay by cash?&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(P(X = 2)\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>At least two of the customers pay by cash?&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(P(X \ge 2)\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>4.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+/* Extra function definitions for Maxima */
+binom_pdf(x,n,p):=binomial(n,x)*(p^x)*((1-p)^(n-x));
+
+/* Exercise parameters */
+n0: 18 + rand(5);
+n1: 8 + rand(7);
+
+pS:float( n0/100);
+pF:float( 1-pS);
+
+p0:float( binom_pdf(0,n1,pS));
+p1:float( binom_pdf(1,n1,pS));
+p2:float( binom_pdf(2,n1,pS));
+p3:float( 1-p0-p1);
+
+solA:float(round(10000*p2)/10000);
+solB:float(round(10000*p3)/10000);
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>P(X = 2)  = C^{{@n1@}}_2 {@decimalplaces(pS,4)@}^2 {@decimalplaces(pF,4)@}^{{@n1@}-2} \approx {@decimalplaces(p2,4)@}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>P(X = 2)  = C^{{@n1@}}_2 {@decimalplaces(pS,4)@}^2 {@decimalplaces(pF,4)@}^{{@n1@}-2} \approx {@decimalplaces(p2,4)@}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>To calculated \(P(X \ge 2)\), one first decomposes the probability as:<br>\[<br>P(X \ge 2) = 1 - P(X&lt2) = 1 - P(X=0) - P(X=1)<br>\]<br>Each individual probability can be calculated using the binomial formula:<br>\[<br>\begin{aligned}<br>P(X \ge 2) &= 1 - C^{{@n1@}}_0 {@decimalplaces(pS,4)@}^0 {@decimalplaces(pF,4)@}^{{@n1@}} - C^{{@n1@}}_1 {@decimalplaces(pS,4)@}^1 {@decimalplaces(pF,4)@}^{{@n1@}-1}\\<br>P(X \ge 2) &\approx 1 - {@decimalplaces(p0,4)@} - {@decimalplaces(p1,4)@} \\<br>P(X \ge 2) &\approx {@decimalplaces(solB,4)@} \\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>To calculated \(P(X \ge 2)\), one first decomposes the probability as:<br>\[<br>P(X \ge 2) = 1 - P(X&lt2) = 1 - P(X=0) - P(X=1)<br>\]<br>Each individual probability can be calculated using the binomial formula:<br>\[<br>\begin{aligned}<br>P(X \ge 2) &= 1 - C^{{@n1@}}_0 {@decimalplaces(pS,4)@}^0 {@decimalplaces(pF,4)@}^{{@n1@}} - C^{{@n1@}}_1 {@decimalplaces(pS,4)@}^1 {@decimalplaces(pF,4)@}^{{@n1@}-1}\\<br>P(X \ge 2) &\approx 1 - {@decimalplaces(p0,4)@} - {@decimalplaces(p1,4)@} \\<br>P(X \ge 2) &\approx {@decimalplaces(solB,4)@} \\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_9</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What is the probability, rounded to 4 decimal places:<br></p>
+<p>Of getting exactly {@n1@} heads and {@n2@} tails in {@n0@} tosses of a fair coin?&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(P(H = {@n1@})\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>Of getting {@n4@} sixes in {@n3@} rolls of a fair dice?&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(P(X = {@n4@})\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>6.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+/* Extra function definitions for Maxima */
+binom_pdf(x,n,p):=binomial(n,x)*(p^x)*((1-p)^(n-x));
+
+/* Exercise parameters */
+n0: 6 + rand(5);
+n2: 1 + rand(3);
+n1: n0 - n2;
+
+n3: 5 + rand(5);
+n4: 1 + rand(3);
+n5: n3 - n4;
+
+pSa:float( 1/2);
+pSb:float( 1/6);
+
+p0:float( binom_pdf(n1,n0,pSa));
+p1:float( binom_pdf(n4,n3,pSb));
+
+solA:float(round(10000*p0)/10000);
+solB:float(round(10000*p1)/10000);
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The probability of getting \(H\) heads can be calculated using a Binomial distribution, with \(N={@n0@}\) being the number of trials and \(p=1/2\) being the probability of a success (getting a heads):<br>\[<br>P(H = {@n1@})  = C^{{@n0@}}_{{@n1@}}  \left(\frac{1}{2}\right)^{{@n0@}} \approx {@decimalplaces(solA,4)@}<br>\]<br>Note that we define \(H\) as the number of heads, however one could chose instead to count the number of tails. The binomial formula should provide the same answers in both cases, as \(C^{{@n0@}}_{{@n1@}} = C^{{@n0@}}_{{@n2@}}\) and \(p=1-p=1/2\). Hopefully this is intuitive, the probability of the event should be the same whether you count heads or tails.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The probability of getting \(H\) heads can be calculated using a Binomial distribution, with \(N={@n0@}\) being the number of trials and \(p=1/2\) being the probability of a success (getting a heads):<br>\[<br>P(H = {@n1@})  = C^{{@n0@}}_{{@n1@}}  \left(\frac{1}{2}\right)^{{@n0@}} \approx {@decimalplaces(solA,4)@}<br>\]<br>Note that we define \(H\) as the number of heads, however one could chose instead to count the number of tails. The binomial formula should provide the same answers in both cases, as \(C^{{@n0@}}_{{@n1@}} = C^{{@n0@}}_{{@n2@}}\) and \(p=1-p=1/2\). Hopefully this is intuitive, the probability of the event should be the same whether you count heads or tails.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The probability of getting \(X\) sixes can be calculated using a Binomial distribution, with \(N={@n0@}\) being the number of trials and \(p=1/6\) being the probability of a success (getting a six):<br>\[<br>P(X = {@n4@})  = C^{{@n3@}}_{{@n4@}}  \left(\frac{1}{6}\right)^{{@n4@}} \left(\frac{5}{6}\right)^{{@n5@}} \approx {@decimalplaces(solB,4)@}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The probability of getting \(X\) sixes can be calculated using a Binomial distribution, with \(N={@n0@}\) being the number of trials and \(p=1/6\) being the probability of a success (getting a six):<br>\[<br>P(X = {@n4@})  = C^{{@n3@}}_{{@n4@}}  \left(\frac{1}{6}\right)^{{@n4@}} \left(\frac{5}{6}\right)^{{@n5@}} \approx {@decimalplaces(solB,4)@}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_14</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>If \(Z \sim N(0,1)\), find the critical value \(z_0\), rounded to 2 decimal places, such that:<br></p>
+<p>\(P(Z \ge z_0) = {@decimalplaces(r1,3)@}\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(z_0\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>\(P(Z \le z_0) = {@decimalplaces(r2,3)@}\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(z_0\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p><p>\(P(-z_0 \le Z \le z_0) = {@decimalplaces(r3,3)@}\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(z_0\) = [[input:ans3]] [[validation:ans3]]</p><p>[[feedback:Result3]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>6.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+/* Extra function definitions for Maxima */
+u1(x):= 0.5*log(1-x^2) + 4.330746750799873;
+u2(x):= log(1-x^2)/0.147;
+inverf(x):= sqrt(-u1(x) + sqrt(u1(x)^2 - u2(x)));
+norm_qnt(x,m,s):=m+s*(2^0.5)*inverf(2*x-1);
+
+/* Exercise parameters */
+r1:float(0.01+rand(9)/100);
+r2:float(0.2+rand(21)/100);
+r3:float(0.4+rand(21)/100);
+
+p1:float(0.5-r1);
+p2:float(0.5-r2);
+p3:float(r3/2);
+
+c1:float(norm_qnt(p1+0.5,0,1));
+c2:float(norm_qnt(p2+0.5,0,1));
+c3:float(norm_qnt(p3+0.5,0,1));
+
+solA:float(round(c1*100)/100);
+solB:float(-round(c2*100)/100);
+solC:float(round(c3*100)/100);
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>solC</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>If \(P(Z \ge z_0) = {@decimalplaces(r1,3)@}\), then \(P(0 \le Z \le z_0)  = 0.5 - P(z \ge z_0) = {@decimalplaces(p1,3)@}\). Looking this value up in the table for the standard normal tells us that \(z_0 = {@decimalplaces(c1,3)@}\).<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>If \(P(Z \ge z_0) = {@decimalplaces(r1,3)@}\), then \(P(0 \le Z \le z_0)  = 0.5 - P(z \ge z_0) = {@decimalplaces(p1,3)@}\). Looking this value up in the table for the standard normal tells us that \(z_0 = {@decimalplaces(c1,3)@}\).<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>If \(P(Z \le z_0) = {@decimalplaces(r2,3)@}\), then \(P(z_0 \le z \le 0) = 0.5 - P(Z \le z_0) = {@decimalplaces(p2,3)@}\). In the tables of the standard distribution, this corresponds to a value of \({@decimalplaces(c2,3)@}\). However, we are looking for a value of \(z\) that is smaller than \(z_0\), therefore to the left of it. Given that the probability is less than 0.5, the critical value \(z_0\) must be negative. We therefore have \(z_0 = -{@decimalplaces(c2,3)@}\). A diagram can be particularly useful for cases like this.<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>If \(P(Z \le z_0) = {@decimalplaces(r2,3)@}\), then \(P(z_0 \le z \le 0) = 0.5 - P(Z \le z_0) = {@decimalplaces(p2,3)@}\). In the tables of the standard distribution, this corresponds to a value of \({@decimalplaces(c2,3)@}\). However, we are looking for a value of \(z\) that is smaller than \(z_0\), therefore to the left of it. Given that the probability is less than 0.5, the critical value \(z_0\) must be negative. We therefore have \(z_0 = -{@decimalplaces(c2,3)@}\). A diagram can be particularly useful for cases like this.<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result3</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans3</sans>
+        <tans>solC</tans>
+        <testoptions>0.01</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q3_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>If \(P(-z_0 \le Z \le z_0) = {@decimalplaces(r3,3)@}\) then \(P(0 \le Z \le z_0) = \frac{{@decimalplaces(r3,3)@}}{2} = {@decimalplaces(p3,3)@}\). Looking up this value in the table tells us that \(z_0 = {@decimalplaces(c3,3)@}\).<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q3_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>If \(P(-z_0 \le Z \le z_0) = {@decimalplaces(r3,3)@}\) then \(P(0 \le Z \le z_0) = \frac{{@decimalplaces(r3,3)@}}{2} = {@decimalplaces(p3,3)@}\). Looking up this value in the table tells us that \(z_0 = {@decimalplaces(c3,3)@}\).<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_15</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Using the table of areas for the standard Normal distribution, calculate the areas under \(N(0,1)\), rounded to 3 decimal places:<br></p>
+<p>Between {@decimalplaces(r1,3)@} and {@decimalplaces(r2,3)@}&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(P({@decimalplaces(r1,3)@} \le Z \le {@decimalplaces(r2,3)@})\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>For values greater than {@decimalplaces(r7,3)@}&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(P(Z \ge {@decimalplaces(r7,3)@} )\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p><p>Between {@decimalplaces(r3,3)@} and {@decimalplaces(r4,3)@}&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(P({@decimalplaces(r3,3)@} \le Z \le {@decimalplaces(r4,3)@} )\) = [[input:ans3]] [[validation:ans3]]</p><p>[[feedback:Result3]]</p><p>Between {@r5@} and {@decimalplaces(r6,3)@}.&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(P({@r5@} \le Z \le {@decimalplaces(r6,3)@})\) = [[input:ans4]] [[validation:ans4]]</p><p>[[feedback:Result4]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>8.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+/* Extra function definitions for Maxima */
+norm_cdf(x,m,s):=0.5*(1+erf((x-m)/(s*2^0.5)));
+
+/* Exercise parameters */
+L1:[0.5, 1, 1.25];
+L2:[1.645, 1.96, 2.575];
+idx1:1+rand(3);
+idx2:1+rand(3);
+idx3:1+rand(3);
+idx4:1+rand(3);
+idx5:1+rand(3);
+
+r2:float(L2[idx1]);
+r1:float(-r2);
+
+r7:float(L2[idx2]);
+
+r4:float(L1[idx3]);
+r3:float(-r4);
+
+r5:L1[idx4];
+r6:float(L2[idx5]);
+
+p1:float(norm_cdf(r2,0,1)-0.5);
+p2:float(norm_cdf(r7,0,1)-0.5);
+p3:float(norm_cdf(r4,0,1)-0.5);
+p5:float(norm_cdf(r5,0,1)-0.5);
+p6:float(norm_cdf(r6,0,1)-0.5);
+
+solA:float(round(2*p1*1000)/1000);
+solB:float(round(500-p2*1000)/1000);
+solC:float(round(2*p3*1000)/1000);
+solD:float(round(p6*1000-p5*1000)/1000);
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>algebraic</type>
+      <tans>solC</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>algebraic</type>
+      <tans>solD</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\begin{aligned}<br>P({@decimalplaces(r1,3)@} \le Z \le {@decimalplaces(r2,3)@}) & = P({@decimalplaces(r1,3)@} \le Z \le 0 ) + P( 0 \le Z \le {@decimalplaces(r2,3)@})\\<br>P({@decimalplaces(r1,3)@} \le Z \le {@decimalplaces(r2,3)@}) & = 2 \times P( 0 \le Z \le {@decimalplaces(r2,3)@})\\<br>P({@decimalplaces(r1,3)@} \le Z \le {@decimalplaces(r2,3)@}) & = 2 \times {@decimalplaces(p1,3)@} = {@decimalplaces(solA,3)@}\\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\begin{aligned}<br>P({@decimalplaces(r1,3)@} \le Z \le {@decimalplaces(r2,3)@}) & = P({@decimalplaces(r1,3)@} \le Z \le 0 ) + P( 0 \le Z \le {@decimalplaces(r2,3)@})\\<br>P({@decimalplaces(r1,3)@} \le Z \le {@decimalplaces(r2,3)@}) & = 2 \times P( 0 \le Z \le {@decimalplaces(r2,3)@})\\<br>P({@decimalplaces(r1,3)@} \le Z \le {@decimalplaces(r2,3)@}) & = 2 \times {@decimalplaces(p1,3)@} = {@decimalplaces(solA,3)@}\\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\begin{aligned}<br>P(Z \ge {@decimalplaces(r7,3)@}) = 0.5 - P( 0 \le Z \le {@r5@})\\<br>P(Z \ge {@decimalplaces(r7,3)@}) = 0.5 - {@decimalplaces(p2,3)@} = {@decimalplaces(solB,3)@} \\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\begin{aligned}<br>P(Z \ge {@decimalplaces(r7,3)@}) = 0.5 - P( 0 \le Z \le {@r5@})\\<br>P(Z \ge {@decimalplaces(r7,3)@}) = 0.5 - {@decimalplaces(p2,3)@} = {@decimalplaces(solB,3)@} \\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result3</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans3</sans>
+        <tans>solC</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q3_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\begin{aligned}<br>P({@decimalplaces(r3,3)@} \le Z \le {@decimalplaces(r4,3)@}) & = P({@decimalplaces(r3,3)@} \le Z \le 0 ) + P( 0 \le Z \le {@decimalplaces(r4,3)@})\\<br>P({@decimalplaces(r3,3)@} \le Z \le {@decimalplaces(r4,3)@}) & = 2 \times P( 0 \le Z \le {@decimalplaces(r4,3)@})\\<br>P({@decimalplaces(r3,3)@} \le Z \le {@decimalplaces(r4,3)@}) & = 2 \times {@decimalplaces(p3,3)@} = {@decimalplaces(solC,3)@}\\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q3_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\begin{aligned}<br>P({@decimalplaces(r3,3)@} \le Z \le {@decimalplaces(r4,3)@}) & = P({@decimalplaces(r3,3)@} \le Z \le 0 ) + P( 0 \le Z \le {@decimalplaces(r4,3)@})\\<br>P({@decimalplaces(r3,3)@} \le Z \le {@decimalplaces(r4,3)@}) & = 2 \times P( 0 \le Z \le {@decimalplaces(r4,3)@})\\<br>P({@decimalplaces(r3,3)@} \le Z \le {@decimalplaces(r4,3)@}) & = 2 \times {@decimalplaces(p3,3)@} = {@decimalplaces(solC,3)@}\\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result4</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>NumAbsolute</answertest>
+        <sans>ans4</sans>
+        <tans>solD</tans>
+        <testoptions>0.001</testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q4_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\begin{aligned}<br>P({@r5@} \le Z \le {@decimalplaces(r6,3)@}) & = P( 0 \le Z \le {@decimalplaces(r6,3)@}) - P( 0 \le Z \le {@r5@})\\<br>P({@r5@} \le Z \le {@decimalplaces(r6,3)@}) & = {@decimalplaces(p6,3)@} - {@decimalplaces(p5,3)@} = {@decimalplaces(solD,3)@}\\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q4_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[<br>\begin{aligned}<br>P({@r5@} \le Z \le {@decimalplaces(r6,3)@}) & = P( 0 \le Z \le {@decimalplaces(r6,3)@}) - P( 0 \le Z \le {@r5@})\\<br>P({@r5@} \le Z \le {@decimalplaces(r6,3)@}) & = {@decimalplaces(p6,3)@} - {@decimalplaces(p5,3)@} = {@decimalplaces(solD,3)@}\\<br>\end{aligned}<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+
+
+</quiz>

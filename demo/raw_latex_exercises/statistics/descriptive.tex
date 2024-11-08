@@ -1,0 +1,207 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Probability and descriptive stats
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+f1:23+rand(5)
+f2:30+rand(6)
+f3:15+rand(4)
+f5:5+rand(4)
+f6:1+rand(5)
+f4:100-f1-f2-f3-f5-f6
+
+m1:1
+m2:2
+m3:3
+m4:4
+m5:5
+m6:6
+
+c1:f1
+c2:c1+f2
+c3:c2+f3
+c4:c3+f4
+c5:c4+f5
+c6:c5+f6
+
+d1:f1*m1
+d2:f2*m2
+d3:f3*m3
+d4:f4*m4
+d5:f5*m5
+d6:f6*m6
+fmt:d1+d2+d3+d4+d5+d6
+mu:fmt/100
+
+fmsq1:f1*(m1-mu)^2
+fmsq2:f2*(m2-mu)^2
+fmsq3:f3*(m3-mu)^2
+fmsq4:f4*(m4-mu)^2
+fmsq5:f5*(m5-mu)^2
+fmsq6:f6*(m6-mu)^2
+fmsqt:fmsq1+fmsq2+fmsq3+fmsq4+fmsq5+fmsq6
+var:fmsqt/99
+std:var^0.5
+
+solA:round(mu*100)/100
+solBC:m2
+solD:round(std*100)/100
+
+\fieldname{decimalPlaces}
+2
+
+\fieldname{questionBlurb}
+A sample of 100 UK households have the following distribution:
+
+\begin{tabular}{cc}
+Household size & Frequency $f_i$ \\
+\hline
+1 & {f1} \\
+2 & {f2} \\
+3 & {f3} \\
+4 & {f4} \\
+5 & {f5} \\
+6 & {f6} \\
+\hline
+\end{tabular}
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Calculate the mean household size $\bar x$. Round your answer to two decimal places if needed.
+
+\fieldname{prompt}
+$\bar x$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+The frequency table is given by:
+
+\begin{tabular}{cccc}
+Household size & Frequency $f_i$ & $f_i x_i$ & $f_i (x_i-\bar x)^2$\\
+\hline
+1 & {f1} & {d1} & {fmsq1}\\
+2 & {f2} & {d2} & {fmsq2}\\
+3 & {f3} & {d3} & {fmsq3}\\
+4 & {f4} & {d4} & {fmsq4}\\
+5 & {f5} & {d5} & {fmsq5}\\
+6 & {f6} & {d6} & {fmsq6}\\
+\hline
+Total & 100 & {fmt} & {fmsqt} \\
+\hline
+\end{tabular}
+
+\[
+\bar x = \frac{\sum_i f_i x_i}{N} =\frac{fmt}{100} = {mu}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Calculate the median household size $\tilde x$.
+
+\fieldname{prompt}
+$\tilde x$
+
+\fieldname{solution}
+solBC
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+\[
+\tilde x = {solBC}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Calculate the mode.
+
+\fieldname{prompt}
+Mode
+
+\fieldname{solution}
+solBC
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+\[
+\textrm{Mode} = {solBC}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Calculate the sample standard deviation $s$, rounded to 2 decimal places.
+
+\fieldname{prompt}
+$s$
+
+\fieldname{solution}
+solD
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+\[
+s^2 = \frac{\sum_i f_i (x_i-\bar x)^2}{N-1} =\frac{{fmsqt}}{99} \approx {var}
+\]
+If the sample variance is $s^2 \approx {var}$ then the sample standard deviation is $s \approx \sqrt{{var}} \approx {solD}$
+
+%-------------------------------------------------------------------------------
+\end{document}

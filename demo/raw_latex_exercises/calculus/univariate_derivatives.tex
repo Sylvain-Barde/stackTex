@@ -1,0 +1,221 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Mathematics
+
+\fieldname{subCategory} % Classification information
+Calculus
+
+\fieldname{questionFormat}
+ColList
+
+\fieldname{feedbackFormat}
+ColList
+
+\fieldname{exerciseParameters}
+% Question A
+[qAr1,solA]:[(2+rand(25))*rand([-1,1]),0]
+
+% Question B
+[qBr1,solB]:[(2+rand(25))*rand([-1,1]),0]
+
+% Question C
+[qCr1,qCr2]:[(2+rand(13))*rand([-1,1]),5+rand(15)]
+solC:qCr1
+
+% Question D
+[qDr1,qDr2]:[(2+rand(13))*rand([-1,1]),5+rand(15)]
+solD:qDr1
+
+% Question E
+qEr1:(2+rand(9))*rand([-1,1])
+qEp1:2*qEr1
+
+% Question F
+[qFr1,qFr2]:[(2+rand(9))*rand([-1,1]),2+rand(4)]
+[qFp1,qFp2]:[qFr1*qFr2,qFr2-1]
+
+% Question G
+[qGr1,qGr2,qGr3,qGr4]:[(2+rand(9))*rand([-1,1]),2+rand(9),2+rand(9),2+rand(9)]
+[qGp1,qGp2]:[3*qGr1,2*qGr2]
+
+% Question H
+[qHr1,qHr2,qHr3,qHr4,qHr5,qHr6,qHr7]:[2+rand(9),6+rand(3),2+rand(9),4+rand(2),2+rand(9),2+rand(2),2+rand(9)]
+[qHp1,qHp2,qHp3,qHp4,qHp5,qHp6]:[qHr1*qHr2,qHr2-1,qHr3*qHr4,qHr4-1,qHr5*qHr6,qHr6-1]
+
+\fieldname{questionBlurb}
+Differentiate each of the following functions with respect to $x$. Use an appropriate notation in each case.
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$y = {qAr1}$
+
+\fieldname{prompt}
+$\frac{\textrm{d}y}{\textrm{d}x}$
+
+\fieldname{solution}
+${solA}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+1
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$y = {qBr1}$
+
+\fieldname{prompt}
+$\frac{\textrm{d}}{\textrm{d}x}y$
+
+\fieldname{solution}
+${solB}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+1
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$y = {qCr1}x+{qCr2}$
+
+\fieldname{prompt}
+$y'$
+
+\fieldname{solution}
+${solC}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+1
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$f(x) = {qDr1}x-{qDr2}$
+
+\fieldname{prompt}
+$f'(x)$
+
+\fieldname{solution}
+${solD}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+1
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$y = {qEr1}x^2$
+
+\fieldname{prompt}
+$\frac{\textrm{d}}{\textrm{d}x}({qEr1}x^2)$
+
+\fieldname{solution}
+${qEp1}x$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$f(x)={qFr1}x^{qFr2}$
+
+\fieldname{prompt}
+$f_x$
+
+\fieldname{solution}
+${qFp1}x^{qFp2}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$y = {qGr1}x^3 - {qGr2}x^2 + {qGr3}x + {qGr4}$
+
+\fieldname{prompt}
+$\frac{\textrm{d}y}{\textrm{d}x}$
+
+\fieldname{solution}
+${qGp1}x^2 - {qGp2}x + {qGr3}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$y = {qHr1}x^{qHr2} + {qHr3}x^{qHr4} - {qHr5}x^{qHr6} - {qHr7}$
+
+\fieldname{prompt}
+$\frac{\textrm{d}y}{\textrm{d}x}$
+
+\fieldname{solution}
+${qHp1}x^{qHp2} + {qHp3}x^{qHp4} - {qHp5}x^{qHp6}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+%-------------------------------------------------------------------------------
+\end{document}

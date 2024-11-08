@@ -1,0 +1,180 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Probability and descriptive stats
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+nR:7+rand(5)
+nW:27+rand(6)
+nB:18+rand(7)
+nO:14+rand(4)
+
+n_0:nR+nW+nB+nO
+p1:n_0 - nR-nB
+p2:n_0 - nB
+
+[p3,p4,p5,p6]:[(nO+nR)/n_0,p1/n_0,p2/n_0,nW/n_0]
+
+solA:round(p3*100)/100
+solB:round(p4*100)/100
+solC:round(p5*100)/100
+solD:round(p6*100)/100
+
+\fieldname{decimalPlaces}
+2
+
+\fieldname{questionBlurb}
+A ball is drawn from a box containing {nR} red, {nW} white, {nB} blue and {nO} orange balls. Find the probability (rounded to 2 decimal places if required) that it is:
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Orange or red.
+
+\fieldname{prompt}
+$P(O \textrm{ or } R)$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+1
+
+\fieldname{feedbackText}
+There are ${nR} + {nW} + {nB} + {nO} = {n_0}$ balls in total in the box. The probabilities can be calculated by counting the number of balls that meet the condition described in the event and dividing by the total number of balls (${n_0}$). In this case we are using $P(O \textrm{ or } R) = P(O) + P(R)$, as the draw is mutually exclusive: we cannot draw both an orange and a red, so $P(O \textrm{ and } R) = 0$.
+\[
+P(O \textrm{ or } R) = \frac{{nO} + {nR}}{n_0} \approx {solA}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Not red and not blue.
+
+\fieldname{prompt}
+$P(\textrm{not } R \textrm{ and not } B)$
+
+\fieldname{solution}
+solB
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+1
+
+\fieldname{feedbackText}
+The most direct route is to realise that the only types of balls that are simultaneously `not red' and `not blue' are the orange and white ones, which directly gives:
+
+\[
+P(\textrm{not } R \textrm{ and not } B) =  P( O \textrm{and } W) = \frac{{nO}+{nW}}{{n_0}} = \frac{{p1}}{{n_0}} \approx {solB}
+\]
+
+Alternatively, you can also work out the solution using the addition rule. This takes a bit longer and the use of `not' can complicate thinking about this, but the formula still works:
+
+\[
+P(\textrm{not } R \textrm{ or not } B) = P(\textrm{not } R) + P(\textrm{not } B) - P(\textrm{not } R \textrm{ and not } B)
+\]
+
+Rearranging:
+
+\[
+P(\textrm{not } R \textrm{ and not } B) = P(\textrm{not } R) + P(\textrm{not } B) - P(\textrm{not } R \textrm{ or not } B)
+\]
+
+A key aspect is to realise that $P(\textrm{not } R \textrm{ or not } B) = 1$. Any ball you pick is guaranteed to be either `not red' or `not blue'. This is obviously true for the orange and white balls, but also the red and blue ones: a red ball is `not blue' and a blue ball is `not red'! Using this, and replacing $P(\textrm{not } R) = 1 - P(R)$ and $P(\textrm{not } B) = 1 - P(B)$ we get:
+
+\[
+P(\textrm{not } R \textrm{ and not } B) = 1 - P(R) + 1 - P(B) - 1 \; = \; 1 - P(R) - P(B)
+\]
+
+\[
+P(\textrm{not } R \textrm{ and not } B) = \frac{{n_0} - {nR} - {nB}}{{n_0}} = \frac{{p1}}{{n_0}}
+\]
+
+% Again we use $P(\textrm{not } R \textrm{ or not } B) = 1 - P(R) - P(B)$ because $P(R \textrm{ and } B) = 0$. We cannot draw a red and a blue simultaneously.
+% \[
+% P(\textrm{not } R \textrm{ or not } B) = 1 - P( R \textrm{ or } B) = \frac{{n_0} - ({nR}+{nB})}{{n_0}} = \frac{{p1}}{{n_0}} \approx {solB}
+% \]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Not blue.
+
+\fieldname{prompt}
+$P(\textrm{not } B)$
+
+\fieldname{solution}
+solC
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+1
+
+\fieldname{feedbackText}
+\[
+P(\textrm{not } B) = 1 - P(B) = \frac{{n_0} - {nB}}{{n_0}} = \frac{{p2}}{{n_0}} \approx {solC}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+White.
+
+\fieldname{prompt}
+$P(W)$
+
+\fieldname{solution}
+solD
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+1
+
+\fieldname{feedbackText}
+\[
+P(W) = \frac{nW}{n_0} \approx {solD}
+\]
+
+%-------------------------------------------------------------------------------
+\end{document}

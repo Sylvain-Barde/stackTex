@@ -1,0 +1,113 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Mathematics
+
+\fieldname{subCategory} % Classification information
+Algebra
+
+\fieldname{questionFormat}
+ColList
+
+\fieldname{feedbackFormat}
+Vlist
+
+
+\fieldname{exerciseParameters}
+% Question A
+[qAr1,qAr2,qAr3]:[2+rand(2),4+rand(7),3+rand(10)]
+[qAp1,qAp2]:[qAr2^2,4*qAr1*qAr3]
+[qAp3,qAp4]:[qAp1+qAp2,2*qAr1]
+solA:[(qAr2-qAp3^(1/2))/(qAp4),(qAr2+qAp3^(1/2))/(qAp4)]
+
+% Question B
+[qBr1,qBr2]:[12+2*rand(7),rand([3,5,7,11])]
+[qBp1,qBp2]:[qBr1^2,4*qBr2]
+[qBp3,qBp4,qBp5]:[qBp1-qBp2,qBr1/2,(qBp1-qBp2)/4]
+solB:[-qBp4-(qBp5^(1/2)),-qBp4+(qBp5^(1/2))]
+
+\fieldname{decimalPlaces}
+3
+
+\fieldname{questionBlurb}
+Find the values of $x$ which solve the following equations. Note that $x_1 < x_2$ and make sure to enter your answers in square brackets, e.g.$[-5,3]$.
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$-{qAr1}x^2 + {qAr2}x + {qAr3} = 0$
+
+\fieldname{prompt}
+$[x_1,x_2]$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+The discriminant of the quadratic is:
+\[
+{qAr2}^2+4\cdot{qAr1}\cdot{qAr3} = {qAp1} + {qAp2} = {qAp3}
+\]
+As the discriminant is positive, there are two real roots to the quadratic:
+\[
+\left\{\begin{aligned}
+x_1 & = \frac{-{qAr2}+\sqrt{{qAp3}}}{-{qAp4}} = \frac{{qAr2}-\sqrt{{qAp3}}}{{qAp4}}\\
+x_2 & = \frac{-{qAr2}-\sqrt{{qAp3}}}{-{qAp4}} = \frac{{qAr2}+\sqrt{{qAp3}}}{{qAp4}}\\
+\end{aligned}\right.
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$x^2 + {qBr1}x + {qBr2} = 0$
+
+\fieldname{prompt}
+$[x_1,x_2]$
+
+\fieldname{solution}
+solB
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+The discriminant of the quadratic is:
+\[
+{qBr1}^2-4\cdot{qBr2} = {qBp1} - {qBp2} = {qBp3}
+\]
+As the discriminant is positive, there are two real roots to the quadratic:
+\[
+\left\{\begin{aligned}
+x_1 & = \frac{-{qBr1}-\sqrt{{qBp3}}}{2} = -{qBp4} - \sqrt{{qBp5}}\\
+x_2 & = \frac{-{qBr1}+\sqrt{{qBp3}}}{2} = -{qBp4} + \sqrt{{qBp5}}\\
+\end{aligned}\right.
+\]
+
+%-------------------------------------------------------------------------------
+\end{document}

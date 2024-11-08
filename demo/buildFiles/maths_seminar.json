@@ -1,0 +1,16 @@
+{
+  "filename":"algebra_seminar",
+  "template": "seminar.tex",
+  "modCode":"ECON101",
+  "modName":"Mathematics 101",
+  "weekNo": "1",
+  "blurbStr":"Maths seminar material",
+  "titleStr":"Algebra",
+  "marks":true,
+  "verbose":true,
+  "seed":180,
+  "exList": [["Ex_1",
+              "Ex_2",
+              "Ex_3",
+              "Ex_4"]]
+}

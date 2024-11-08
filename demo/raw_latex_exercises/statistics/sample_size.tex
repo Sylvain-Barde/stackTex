@@ -1,0 +1,97 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Inference
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+idx:1+rand(3)
+L1:[90, 95, 99]
+L2:[1.645, 1.96, 2.575]
+
+c3:L1[idx]
+c4:L2[idx]
+
+r3:5 + rand(11)
+r4:1 + rand(30)/10
+
+p1_a:c3/100
+p1_b:p1_a/2
+
+p3:c4*(r3/r4)
+p4:p3^2
+
+solA: ceiling(p4)
+
+\fieldname{decimalPlaces}
+3
+
+\fieldname{questionBlurb}
+
+You are told that a random variable $X$ has a population standard deviation of {r3}.
+
+% A researcher wishes to estimate the mean weekly wage of several thousands of workers employed in a plant within plus or minus £{r4} with a {c3}\% level of confidence. From past experience the researcher knows that the weekly wages are normally distributed with a standard deviation of £{r3}.
+
+\fieldname{feedbackBlurb}
+Solution:
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+How large a sample $n$ would you need in order to be able to estimate the population mean to within $\pm${r4} at the {c3}\% confidence level? Round your answer up to an integer.
+
+\fieldname{prompt}
+$n$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+2
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+In order to determine how large a sample we need to achieve an error of $\pm${r4} at {c3}\% confidence, we can invert the formula for the confidence interval, where $z_{{c3}}$ is the critical value of the standard normal distribution. Suppose we pick the upper $U_{{c3}}$ bound of the confidence interval:
+
+\[
+\begin{aligned}
+U_{{c3}} & = \bar x + z_{{c3}} \frac{\sigma}{\sqrt{n}}\\
+U_{{c3}} - \bar x  & = z_{{c3}} \frac{\sigma}{\sqrt{n}}\\
+\sqrt{n} & =z_{{c3}} \frac{\sigma}{U_{{c3}} - \bar x} \\
+n & = \left(z_{{c3}} \frac{\sigma}{U_{{c3}} - \bar x}\right)^2 \\
+\end{aligned}
+\]
+
+The {c3}\% critical value interval can be constructed using the standard normal distribution, but looking for the value of $z_{{c3}}$ such that:
+\[
+P(-z_{{c3}} < Z < z_{{c3}}) = {p1_a} \quad \iff \quad P(0 \le Z \le z_{{c3}}) = {p1_b}
+\]
+Using the table of values, we find $z_{{c3}} = {c4}$. Replacing this in the equation above, and including the information that the upper bound of the confidence interval should be {r4} above the mean, we can find the required sample size.
+
+\[
+n = \left({c4} \frac{{r3}}{{r4}}\right)^2 \approx \left({p3}\right)^2 \approx {p4}
+\]
+We need a sample of at least {solA} observations in order to generate a confidence interval of $\pm${r4} around the sample mean.
+
+%-------------------------------------------------------------------------------
+\end{document}

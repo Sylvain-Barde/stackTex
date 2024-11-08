@@ -1,0 +1,331 @@
+%-------------------------------------------------------------------------------
+%                      PREAMBLE - Document Declaration
+%-------------------------------------------------------------------------------
+\documentclass[a4paper, leqno, 12pt]{article} % REQUIRE 12pt font size
+
+\usepackage{setspace}
+\usepackage[asymmetric]{geometry}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{calc}
+\usepackage{xintexpr}
+% \usepackage{l3regex}
+\usepackage{expl3}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{multirow}
+
+% - REQUIRE Arial
+% ... load a Helvetica clone (Arial is proprietary - thank you Monotype Corp!)
+\usepackage{sansmathfonts}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\rmdefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\pgfplotsset{compat=1.16}
+
+% REQUIRE - margins to specification
+\geometry{tmargin=2.7cm,
+          bmargin=2.9cm,
+          hmargin=2.3cm }
+
+% REQUIRE - correct header/footers
+\fancypagestyle{plain}{     % Redefine plain style for document
+\fancyhf{}                  % clear all header and footer fields
+% \fancyfoot[RO]{\textbf{Turn over}}  % Right odd pages has 'turn over'
+\renewcommand{\headrulewidth}{0pt}  % NO horizontal lines
+\renewcommand{\footrulewidth}{0pt}}
+\pagestyle{plain}                   % Declare plain as the style to use
+
+% - Below, not an exam template requirement but for consistency
+\newenvironment{top_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{2em}
+  \setlength{\topsep}{-0pt}
+  \setlength{\partopsep}{-0pt}
+}{\end{enumerate}}
+
+\newlength{\EqL}
+\newlength{\RunL}
+\setlength{\RunL}{0pt}
+\newcommand{\EqContent}{foo}
+\renewcommand{\theequation}{\alph{equation}}
+
+\ExplSyntaxOn
+\tl_new:N \l_mathexp_tl
+\cs_new:Npn \nodollar #1 {
+    \tl_set:Nn \l_mathexp_tl {#1}
+    \regex_replace_all:nnN { \$ } {} \l_mathexp_tl
+    \tl_use:N \l_mathexp_tl
+}
+\ExplSyntaxOff
+
+% --  Define struts and padding for tables
+\newcommand\T{\rule{0pt}{2.6ex}}
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}}
+
+% --  Ragged right fixed-width column
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% -- Ragged right text
+\raggedright
+%-------------------------------------------------------------------------------
+%                               FRONT PAGE
+%-------------------------------------------------------------------------------
+\begin{document}
+\chead{}            % No page number on page 1
+\singlespacing
+
+\begin{center}
+\textbf{\large{     % REQUIRE - 14pt, Bold
+UNIVERSITY OF LIFE
+}}
+\end{center}
+
+\begin{flushright}
+\textbf{\large{ECON101}}
+\end{flushright}
+\vspace{-1cm}
+
+\doublespacing
+\begin{center}
+\textbf{\large{   % REQUIRE - 14pt, Bold
+\\
+DEPARTMENT OF LEARNING STUFF
+\\
+LEVEL 4 CLASS TEST}}
+\end{center}
+
+\begin{center}
+\textbf{\large{
+Statistics 101
+\\
+\quad
+\\
+7/11/2024}}
+
+\textbf{\large{DURATION:} 2 hours
+\\
+\quad
+\\
+Paper Instructions}
+\end{center}
+
+\singlespacing
+\noindent
+There are \textbf{THREE} sections. Candidates should answer \textbf{ALL THREE} sections.
+
+\medskip
+\noindent
+Each section is worth the same amount of marks in total, and a mark in square brackets is assigned to each part of a question.
+
+\medskip
+\noindent
+Student is permitted to remove question paper from examination venue.
+
+
+% \begin{flushright}
+% \textbf{Do not turnover until instructed to do so.}
+% \end{flushright}
+\fancyfoot[RO]{\textbf{Do not turnover until instructed to do so.}}  % Right odd pages has 'turn over'
+%-------------------------------------------------------------------------------
+%                               MAIN BODY
+%-------------------------------------------------------------------------------
+\newpage
+\chead{\thepage}            % Page numbers on center header from here
+\rfoot{}                % No footer (in case of odd page)
+\fancyfoot[RO]{\textbf{Turn over}}  % Right odd pages has 'turn over'
+
+
+
+\section*{\centering{\normalsize{SECTION 1}}}
+
+\begin{top_enumerate}
+
+\item A random sample of size $n={48}$ is taken from a large population with known standard deviation $\sigma = {26}$. If the sample mean is {74}, calculate to 2 decimal places the following confidence intervals for the population mean $\mu$:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item The 90\% confidence interval.
+	 \quad \textbf{[3]}
+		\item The 95\% confidence interval.
+	 \quad \textbf{[3]}
+		\item The 99\% confidence interval.
+	 \quad \textbf{[3]}
+\end{enumerate}\item A random sample of size $n={25}$ is taken from a large population. The sample mean is $\bar x = {84}$, and the sample standard deviation is $s = {32}$.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Using this information, construct a 95\% confidence interval for the population mean $\mu$. Enter the interval using square brackets, separating the two values with commas $\left[\dots ,\dots \right]$:
+	 \quad \textbf{[2]}
+		\item Suppose you are told that {32} is also the value of the population standard deviation $\sigma$. Construct a new 95\% confidence interval and compare this with your previous calculation.
+	 \quad \textbf{[3]}
+\end{enumerate}\item A pair of dice is tossed {105} times and the sum is seven {20} times.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item If the dice were fair, what would be the probability of the sum being seven? Round to 3 decimal places if required.
+	 \quad \textbf{[3]}
+		\item We can reject the hypothesis that the dice are fair using a two tailed test at 5\% significance. True or False?
+	 \quad \textbf{[3]}
+		\item We can reject the hypothesis that the dice are fair using a one tailed test at 5\% significance. True or False? Explain which type of test you think is more appropriate in this case.
+	 \quad \textbf{[3]}
+\end{enumerate}\item You are told that a random variable $X$ has a population standard deviation of {14}.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item How large a sample $n$ would you need in order to be able to estimate the population mean to within $\pm${3.3} at the {90}\% confidence level? Round your answer up to an integer.
+	 \quad \textbf{[2]}
+\end{enumerate}
+
+\end{top_enumerate}
+
+\bigskip
+\section*{\centering{\normalsize{SECTION 2}}}
+
+\begin{top_enumerate}
+
+\item A sample of 100 UK households have the following distribution:
+
+\begin{center}
+\begin{tabular}{cc}
+Household size & Frequency $f_i$ \\
+\hline
+1 & {27} \\
+2 & {33} \\
+3 & {18} \\
+4 & {14} \\
+5 & {7} \\
+6 & {1} \\
+\hline
+\end{tabular}
+\end{center}
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Calculate the mean household size $\bar x$. Round your answer to two decimal places if needed.
+	 \quad \textbf{[3]}
+		\item Calculate the median household size $\tilde x$.
+	 \quad \textbf{[2]}
+		\item Calculate the mode.
+	 \quad \textbf{[2]}
+		\item Calculate the sample standard deviation $s$, rounded to 2 decimal places.
+	 \quad \textbf{[3]}
+\end{enumerate}\item You are told $P(A) = {0.34}$, $P(B) = {0.71}$ and $P(A \textrm{ or } B) = {0.84}$. Are the following statements true or false? Provide an explanation in each case.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item $A$ and $B$ are independent.
+	 \quad \textbf{[3]}
+		\item $A$ and $B$ are mutually exclusive.
+	 \quad \textbf{[3]}
+		\item If two events that occur with non-zero probabilities are mutually exclusive, then they cannot be independent.
+	 \quad \textbf{[4]}
+\end{enumerate}\item A ball is drawn from a box containing {11} red, {27} white, {21} blue and {17} orange balls. Find the probability (rounded to 2 decimal places if required) that it is:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Orange or red.
+	 \quad \textbf{[1]}
+		\item Not red and not blue.
+	 \quad \textbf{[1]}
+		\item Not blue.
+	 \quad \textbf{[1]}
+		\item White.
+	 \quad \textbf{[1]}
+\end{enumerate}
+
+\end{top_enumerate}
+
+\bigskip
+\section*{\centering{\normalsize{SECTION 3}}}
+
+\begin{top_enumerate}
+
+\item Suppose {22}\% of customers at Aldi pay by cash. In a random sample of {13} customers, what is the probability (rounded to 4 decimal places) that:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Two of the customers pay by cash?
+	 \quad \textbf{[2]}
+		\item At least two of the customers pay by cash?
+	 \quad \textbf{[2]}
+\end{enumerate}\item What is the probability, rounded to 4 decimal places:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Of getting exactly {7} heads and {1} tails in {8} tosses of a fair coin?
+	 \quad \textbf{[3]}
+		\item Of getting {2} sixes in {8} rolls of a fair dice?
+	 \quad \textbf{[3]}
+\end{enumerate}\item If $Z \sim N(0,1)$, find the critical value $z_0$, rounded to 2 decimal places, such that:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item $P(Z \ge z_0) = {0.09}$
+	 \quad \textbf{[2]}
+		\item $P(Z \le z_0) = {0.25}$
+	 \quad \textbf{[2]}
+		\item $P(-z_0 \le Z \le z_0) = {0.53}$
+	 \quad \textbf{[2]}
+\end{enumerate}\item Using the table of areas for the standard Normal distribution, calculate the areas under $N(0,1)$, rounded to 3 decimal places:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Between {-1.645} and {1.645}
+	 \quad \textbf{[2]}
+		\item For values greater than {2.575}
+	 \quad \textbf{[2]}
+		\item Between {-1.25} and {1.25}
+	 \quad \textbf{[2]}
+		\item Between {0.5} and {1.96}.
+	 \quad \textbf{[2]}
+\end{enumerate}
+
+\end{top_enumerate}
+
+% End of paper, cancel 'turn over' footer and declare end
+\rfoot{}                % No footer (in case of odd page)
+\begin{flushright}      % Display end of paper
+\textbf{End}
+\end{flushright}
+%-------------------------------------------------------------------------------
+\end{document}
+%-------------------------------------------------------------------------------

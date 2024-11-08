@@ -1,0 +1,95 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Mathematics
+
+\fieldname{subCategory} % Classification information
+Algebra
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+% Question A
+[qAx,qAy]:[(1+rand(10))*rand([-1,1]),(1+rand(10))*rand([-1,1])]
+[qAr1,qAr2,qAr3,qAr4]:[2+rand(7),2+rand(7),2+rand(12),2+rand(3)]
+qAp1:qAr4*qAr1
+[qAp2,qAp3]:[qAp1*qAx-qAr2*qAy,qAr1*qAx+qAr3*qAy]
+[qAp4,qAp5,qAp6]:[-qAr2-qAr4*qAr3, qAp2 - qAr4*qAp3, qAp2 + qAr2*qAy]
+solA:[qAx,qAy]
+
+\fieldname{questionBlurb}
+Solve the following pair of equations. Make sure to enter your answers in square brackets, e.g. $[5,-3]$.
+
+\fieldname{feedbackBlurb}
+The approach used here is to solve by adding/subtracting one equation from the other. Note that it can help to plot the two linear equations, the coordinates of the intersection point gives the solution to the system of equations.
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$\left\{\begin{aligned}
+{qAp1}x - {qAr2}y & = {qAp2}\\
+{qAr1}x + {qAr3}y & = {qAp3}\\
+\end{aligned}\right.$
+
+\fieldname{prompt}
+$(x,y)$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+Multiplying the second equation by ${qAr4}$ and subtracting each side to the first equation:
+\[
+\begin{aligned}
+{qAp1}x - {qAr2}y - {qAr4}({qAr1}x + {qAr3}y) & = {qAp2} - {qAr4}\cdot{qAp3}\\
+{qAp4}y & = {qAp5}\\
+y & = {qAy}\\
+\end{aligned}
+\]
+Replace in equation 1 to solve for $x$
+\[
+\begin{aligned}
+{qAp1}x-{qAr2}\cdot{qAy} & = {qAp2}\\
+{qAp1}x & = {qAp6}\\
+x & = {qAx}\\
+\end{aligned}
+\]
+
+\begin{tikzpicture}
+\begin{axis}[
+xlabel=$x$,
+ylabel=$y$,
+axis lines = center,
+legend style={at={(0.5,-0.1)},anchor=north,draw=none,legend columns=-1}]
+\addplot[domain=-10:10,color=blue]{({qAp1}/{qAr2})*x-({qAp2}/{qAr2})};
+\addlegendentry{Equation 1}
+\addplot[domain=-10:10,color=red]{-({qAr1}/{qAr3})*x+({qAp3}/{qAr3})};
+\addlegendentry{Equation 2}
+\addplot[mark=*]coordinates {({qAx},{qAy})};
+\addlegendentry{Solution point}
+\end{axis}
+\end{tikzpicture}
+
+%-------------------------------------------------------------------------------
+\end{document}

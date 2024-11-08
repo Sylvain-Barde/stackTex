@@ -1,0 +1,178 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Probability distributions
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+L1:[0.5, 1, 1.25]
+L2:[1.645, 1.96, 2.575]
+idx1:1+rand(3)
+idx2:1+rand(3)
+idx3:1+rand(3)
+idx4:1+rand(3)
+idx5:1+rand(3)
+
+r2:L2[idx1]
+r1:-r2
+
+r7:L2[idx2]
+
+r4:L1[idx3]
+r3:-r4
+
+r5:L1[idx4]
+r6:L2[idx5]
+
+p1:norm_cdf(r2,0,1)-0.5
+p2:norm_cdf(r7,0,1)-0.5
+p3:norm_cdf(r4,0,1)-0.5
+p5:norm_cdf(r5,0,1)-0.5
+p6:norm_cdf(r6,0,1)-0.5
+
+solA:round(2*p1*1000)/1000
+solB:round(500-p2*1000)/1000
+solC:round(2*p3*1000)/1000
+solD:round(p6*1000-p5*1000)/1000
+
+\fieldname{decimalPlaces}
+3
+
+\fieldname{questionBlurb}
+Using the table of areas for the standard Normal distribution, calculate the areas under $N(0,1)$, rounded to 3 decimal places:
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Between {r1} and {r2}
+
+\fieldname{prompt}
+$P({r1} \le Z \le {r2})$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+\[
+\begin{aligned}
+P({r1} \le Z \le {r2}) & = P({r1} \le Z \le 0 ) + P( 0 \le Z \le {r2})\\
+P({r1} \le Z \le {r2}) & = 2 \times P( 0 \le Z \le {r2})\\
+P({r1} \le Z \le {r2}) & = 2 \times {p1} = {solA}\\
+\end{aligned}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+For values greater than {r7}
+
+\fieldname{prompt}
+$P(Z \ge {r7} )$
+
+\fieldname{solution}
+solB
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+\[
+\begin{aligned}
+P(Z \ge {r7}) = 0.5 - P( 0 \le Z \le {r5})\\
+P(Z \ge {r7}) = 0.5 - {p2} = {solB} \\
+\end{aligned}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Between {r3} and {r4}
+
+\fieldname{prompt}
+$P({r3} \le Z \le {r4} )$
+
+\fieldname{solution}
+solC
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+\[
+\begin{aligned}
+P({r3} \le Z \le {r4}) & = P({r3} \le Z \le 0 ) + P( 0 \le Z \le {r4})\\
+P({r3} \le Z \le {r4}) & = 2 \times P( 0 \le Z \le {r4})\\
+P({r3} \le Z \le {r4}) & = 2 \times {p3} = {solC}\\
+\end{aligned}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Between {r5} and {r6}.
+
+\fieldname{prompt}
+$P({r5} \le Z \le {r6})$
+
+\fieldname{solution}
+solD
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+\[
+\begin{aligned}
+P({r5} \le Z \le {r6}) & = P( 0 \le Z \le {r6}) - P( 0 \le Z \le {r5})\\
+P({r5} \le Z \le {r6}) & = {p6} - {p5} = {solD}\\
+\end{aligned}
+\]
+
+%-------------------------------------------------------------------------------
+\end{document}

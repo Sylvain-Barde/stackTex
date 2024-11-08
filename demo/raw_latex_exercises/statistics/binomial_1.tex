@@ -1,0 +1,112 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Probability distributions
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+n0: 18 + rand(5)
+n1: 8 + rand(7)
+
+pS: n0/100
+pF: 1-pS
+
+p0: binom_pdf(0,n1,pS)
+p1: binom_pdf(1,n1,pS)
+p2: binom_pdf(2,n1,pS)
+p3: 1-p0-p1
+
+solA:round(10000*p2)/10000
+solB:round(10000*p3)/10000
+
+\fieldname{decimalPlaces}
+4
+
+\fieldname{questionBlurb}
+Suppose {n0}\% of customers at Aldi pay by cash. In a random sample of {n1} customers, what is the probability (rounded to 4 decimal places) that:
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+The probability of a given number of customers $X$ paying in cash can be modelled using a Binomial distribution, with $N={n1}$ being the number of trials and $p={pS}$ the probability of a success (paying in cash):
+\[
+P(X=k \, | \, n={n1},p={pS}) \quad = \quad C^{{n1}}_k {pS}^k {pF}^{{n1}-k}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Two of the customers pay by cash?
+
+\fieldname{prompt}
+$P(X = 2)$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+\[
+P(X = 2)  = C^{{n1}}_2 {pS}^2 {pF}^{{n1}-2} \approx {p2}
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+At least two of the customers pay by cash?
+
+\fieldname{prompt}
+$P(X \ge 2)$
+
+\fieldname{solution}
+solB
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+To calculated $P(X \ge 2)$, one first decomposes the probability as:
+\[
+P(X \ge 2) = 1 - P(X<2) = 1 - P(X=0) - P(X=1)
+\]
+Each individual probability can be calculated using the binomial formula:
+\[
+\begin{aligned}
+P(X \ge 2) &= 1 - C^{{n1}}_0 {pS}^0 {pF}^{{n1}} - C^{{n1}}_1 {pS}^1 {pF}^{{n1}-1}\\
+P(X \ge 2) &\approx 1 - {p0} - {p1} \\
+P(X \ge 2) &\approx {solB} \\
+\end{aligned}
+\]
+
+%-------------------------------------------------------------------------------
+\end{document}

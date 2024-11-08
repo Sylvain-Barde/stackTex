@@ -1,0 +1,121 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Probability distributions
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+r1:0.01+rand(9)/100
+r2:0.2+rand(21)/100
+r3:0.4+rand(21)/100
+
+p1:0.5-r1
+p2:0.5-r2
+p3:r3/2
+
+c1:norm_qnt(p1+0.5,0,1)
+c2:norm_qnt(p2+0.5,0,1)
+c3:norm_qnt(p3+0.5,0,1)
+
+solA:round(c1*100)/100
+solB:-round(c2*100)/100
+solC:round(c3*100)/100
+
+\fieldname{decimalPlaces}
+3
+
+\fieldname{questionBlurb}
+If $Z \sim N(0,1)$, find the critical value $z_0$, rounded to 2 decimal places, such that:
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+Note: It may help you to draw pictures to visualise the area you are being asked to calculate.
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+$P(Z \ge z_0) = {r1}$
+
+\fieldname{prompt}
+$z_0$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+If $P(Z \ge z_0) = {r1}$, then $P(0 \le Z \le z_0)  = 0.5 - P(z \ge z_0) = {p1}$. Looking this value up in the table for the standard normal tells us that $z_0 = {c1}$.
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+$P(Z \le z_0) = {r2}$
+
+\fieldname{prompt}
+$z_0$
+
+\fieldname{solution}
+solB
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+If $P(Z \le z_0) = {r2}$, then $P(z_0 \le z \le 0) = 0.5 - P(Z \le z_0) = {p2}$. In the tables of the standard distribution, this corresponds to a value of ${c2}$. However, we are looking for a value of $z$ that is smaller than $z_0$, therefore to the left of it. Given that the probability is less than 0.5, the critical value $z_0$ must be negative. We therefore have $z_0 = -{c2}$. A diagram can be particularly useful for cases like this.
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+$P(-z_0 \le Z \le z_0) = {r3}$
+
+\fieldname{prompt}
+$z_0$
+
+\fieldname{solution}
+solC
+
+\fieldname{tolerance}
+0.01
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+If $P(-z_0 \le Z \le z_0) = {r3}$ then $P(0 \le Z \le z_0) = \frac{{r3}}{2} = {p3}$. Looking up this value in the table tells us that $z_0 = {c3}$.
+
+%-------------------------------------------------------------------------------
+\end{document}

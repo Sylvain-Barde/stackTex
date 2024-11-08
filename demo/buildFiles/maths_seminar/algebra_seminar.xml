@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+        <text>$course$/ECON101/Maths seminar material</text>
+
+    </category>
+  </question>
+
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Given the following pair of coordinate points \((x,y)\), find and sketch the linear equation \(y = ax + b\). Where necessary, make sure you enter any rational number as a fraction, and not as a decimal number.<br></p>
+<p>\(A= ({@qAr1@},{@qAr2@}),\, B= ({@qAr3@},{@qAr4@})\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(y=\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>3.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+[qAr1,qAr2,qAt3,qAr4]:[-rand(10),rand(10)*rand([-1,1]),rand(10),rand(10)*rand([-1,1])];
+if is(qAt3=qAr1) then qAr3:qAt3+rand([-2,-1,1,2]) else qAr3:qAt3;
+[qAp1,qAp2]:[qAr4-qAr2,qAr3-qAr1];
+qAp3:qAp2*qAr2-qAp1*qAr1;
+[qAp5,qAp6]:[float(qAp3/qAp2),float(qAp1/qAp2)];
+if is(qAp6>0) then qAsig:"+" else qAsig:"";
+sol1:x*(qAp1/qAp2) + qAp3/qAp2;
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>sol1</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text>fn0:qAp3/qAp2+qAp1/qAp2*x;
+pt0:[discrete,[ [qAr1,qAr2] ]];
+pt1:[discrete,[ [qAr3,qAr4] ]];
+st:[style,lines,points,points];
+col:[color,blue,black,blue];
+leg:[legend,"y=ax+b","A","B"];</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>sol1</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>First, the slope is linear, which means that \(a = \frac{y_B-y_A}{x_B-x_A}\). Once \(a\) is known, its value can be replaced in the linear expression \(y = ax + b\), and the \(x\)/\(y\) values of either point can be used to determine the value of \(b\).<br><br>For \(A= ({@qAr1@},{@qAr2@}),\, B= ({@qAr3@},{@qAr4@})\):<br>\[<br>\left\{\begin{aligned}<br>a & = \frac{y_B-y_A}{x_B-x_A} = \frac{{@qAr4@}-{@qAr2@}}{{@qAr3@}-{@qAr1@}} = \frac{{@qAp1@}}{{@qAp2@}}\\<br>b & = y_A -ax_A = {@qAr2@} - \frac{{@qAp1@}}{{@qAp2@}}{@qAr1@} = \frac{{@qAp3@}}{{@qAp2@}} \\<br> \end{aligned}\right.<br>\]<br><br>Therefore \(y = \frac{{@qAp3@}}{{@qAp2@}} + \frac{{@qAp1@}}{{@qAp2@}}x \approx {@decimalplaces(qAp5,3)@} {@qAsig@} {@decimalplaces(qAp6,3)@}x\)<br><br><p>{@plot([fn0,pt0,pt1], [x, -10,10], st, col, [point_type, bullet], [box, false], [axes, solid], [xtics, -10, 1, 10], leg)@}</p><br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>First, the slope is linear, which means that \(a = \frac{y_B-y_A}{x_B-x_A}\). Once \(a\) is known, its value can be replaced in the linear expression \(y = ax + b\), and the \(x\)/\(y\) values of either point can be used to determine the value of \(b\).<br><br>For \(A= ({@qAr1@},{@qAr2@}),\, B= ({@qAr3@},{@qAr4@})\):<br>\[<br>\left\{\begin{aligned}<br>a & = \frac{y_B-y_A}{x_B-x_A} = \frac{{@qAr4@}-{@qAr2@}}{{@qAr3@}-{@qAr1@}} = \frac{{@qAp1@}}{{@qAp2@}}\\<br>b & = y_A -ax_A = {@qAr2@} - \frac{{@qAp1@}}{{@qAp2@}}{@qAr1@} = \frac{{@qAp3@}}{{@qAp2@}} \\<br> \end{aligned}\right.<br>\]<br><br>Therefore \(y = \frac{{@qAp3@}}{{@qAp2@}} + \frac{{@qAp1@}}{{@qAp2@}}x \approx {@decimalplaces(qAp5,3)@} {@qAsig@} {@decimalplaces(qAp6,3)@}x\)<br><br><p>{@plot([fn0,pt0,pt1], [x, -10,10], st, col, [point_type, bullet], [box, false], [axes, solid], [xtics, -10, 1, 10], leg)@}</p><br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Given \(A=\left( {\begin{array}{cc}<br>   {@ar1@} & {@ar2@} \\<br>   {@ar3@} & {@ar4@} \\<br> \end{array} } \right) \), \(B=\left( {\begin{array}{cc}<br>     {@br1@} & {@br2@} \\<br>     {@br3@} & {@br4@} \\<br>    \end{array} } \right) \), calculate the following matrix operations. Where necessary, make sure you keep any rational number as a fraction, and not as a decimal number.<br></p>
+<p>\(A+B\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[1]</b><br></p><p>\(A+B\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>\({@bA0@}A-{@bB0@}B\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[1]</b><br></p><p>\({@bA0@}A-{@bB0@}B\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p><p>\({@cA0@}A+{@cB0@}B\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[1]</b><br></p><p>\({@cA0@}A+{@cB0@}B\) = [[input:ans3]] [[validation:ans3]]</p><p>[[feedback:Result3]]</p><p>\(AB\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\(AB\) = [[input:ans4]] [[validation:ans4]]</p><p>[[feedback:Result4]]</p><p>\(|A|\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(|A|\) = [[input:ans5]] [[validation:ans5]]</p><p>[[feedback:Result5]]</p><p>\(|B|\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(|B|\) = [[input:ans6]] [[validation:ans6]]</p><p>[[feedback:Result6]]</p><p>\(A^{-1}\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(A^{-1}\) = [[input:ans7]] [[validation:ans7]]</p><p>[[feedback:Result7]]</p><p>\(B^{-1}\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\(B^{-1}\) = [[input:ans8]] [[validation:ans8]]</p><p>[[feedback:Result8]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>14.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+[ar1,ar2,ar3,ar4]: [rand(10), 1 + rand(8), 1 + rand(4), -1 - rand(5)];
+
+[br1,br2,br3,br4]:[-1 - rand(8),1 + rand(5),rand(9),1 + rand(6)];
+
+[a1,a2,a3,a4]:[ar1 + br1,ar2 + br2,ar3 + br3,ar4 + br4];
+sol_a: matrix([a1,a2],[a3,a4]);
+
+[bA0,bB0]:[2 + rand(4),2 + rand(6)];
+[b1,b2,b3,b4]:[bA0*ar1 - bB0*br1,bA0*ar2 - bB0*br2,bA0*ar3 - bB0*br3,bA0*ar4 - bB0*br4];
+sol_b: matrix([b1,b2],[b3,b4]);
+
+[cA0,cB0]:[2 + rand(8),2 + rand(4)];
+[c1,c2,c3,c4]:[cA0*ar1 + cB0*br1,cA0*ar2 + cB0*br2,cA0*ar3 + cB0*br3,cA0*ar4 + cB0*br4];
+sol_c: matrix([c1,c2],[c3,c4]);
+
+[d1,d2,d3,d4]:[ar1*br1 + ar2*br3,ar1*br2 + ar2*br4,ar3*br1 + ar4*br3,ar3*br2 + ar4*br4];
+sol_d: matrix([d1,d2],[d3,d4]);
+
+detA:ar1*ar4 - ar2*ar3;
+
+detB:br1*br4 - br2*br3;
+
+[adjA1,adjA2,adjA3,adjA4]: [ar4,-ar2,-ar3, ar1];
+[g1,g2,g3,g4]:[float(adjA1/detA),float(adjA2/detA),float(adjA3/detA),float(adjA4/detA)];
+sol_g: matrix([adjA1/detA, adjA2/detA],[adjA3/detA,adjA4/detA]);
+
+[adjB1, adjB2, adjB3, adjB4]: [br4,-br2,-br3,br1];
+[h1,h2,h3,h4]:[float(adjB1/detB),float(adjB2/detB),float(adjB3/detB),float(adjB4/detB)];
+sol_h: matrix([adjB1/detB, adjB2/detB],[adjB3/detB,adjB4/detB]);
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>matrix</type>
+      <tans>sol_a</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>matrix</type>
+      <tans>sol_b</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans3</name>
+      <type>matrix</type>
+      <tans>sol_c</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans4</name>
+      <type>matrix</type>
+      <tans>sol_d</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans5</name>
+      <type>algebraic</type>
+      <tans>detA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans6</name>
+      <type>algebraic</type>
+      <tans>detB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans7</name>
+      <type>matrix</type>
+      <tans>sol_g</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans8</name>
+      <type>matrix</type>
+      <tans>sol_h</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>1</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>sol_a</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[A+B = \left( {\begin{array}{cc}<br>    {@a1@} & {@a2@} \\<br>    {@a3@} & {@a4@} \\<br> \end{array} } \right) \]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[A+B = \left( {\begin{array}{cc}<br>    {@a1@} & {@a2@} \\<br>    {@a3@} & {@a4@} \\<br> \end{array} } \right) \]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>1</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>sol_b</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[{@bA0@}A-{@bB0@}B = \left( {\begin{array}{cc}<br>   {@b1@} & {@b2@} \\<br>   {@b3@} & {@b4@} \\<br> \end{array} } \right) \]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[{@bA0@}A-{@bB0@}B = \left( {\begin{array}{cc}<br>   {@b1@} & {@b2@} \\<br>   {@b3@} & {@b4@} \\<br> \end{array} } \right) \]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result3</name>
+      <value>1</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans3</sans>
+        <tans>sol_c</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q3_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[{@cA0@}A+{@cB0@}B = \left( {\begin{array}{cc}<br>   {@c1@} & {@c2@} \\<br>   {@c3@} & {@c4@} \\<br> \end{array} } \right) \]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q3_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[{@cA0@}A+{@cB0@}B = \left( {\begin{array}{cc}<br>   {@c1@} & {@c2@} \\<br>   {@c3@} & {@c4@} \\<br> \end{array} } \right) \]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result4</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans4</sans>
+        <tans>sol_d</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q4_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[AB = \left( {\begin{array}{cc}<br>   {@d1@} & {@d2@} \\<br>   {@d3@} & {@d4@} \\<br> \end{array} } \right) \]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q4_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[AB = \left( {\begin{array}{cc}<br>   {@d1@} & {@d2@} \\<br>   {@d3@} & {@d4@} \\<br> \end{array} } \right) \]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result5</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans5</sans>
+        <tans>detA</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q5_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[|A| = {@ar1@} \times {@ar4@} - ({@ar2@} \times {@ar3@}) = {@detA@}\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q5_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[|A| = {@ar1@} \times {@ar4@} - ({@ar2@} \times {@ar3@}) = {@detA@}\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result6</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans6</sans>
+        <tans>detB</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q6_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[|B| = {@br1@} \times {@br4@} - ({@br2@} \times {@br3@}) = {@detB@}\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q6_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[|B| = {@br1@} \times {@br4@} - ({@br2@} \times {@br3@}) = {@detB@}\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result7</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans7</sans>
+        <tans>sol_g</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q7_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[A^{-1} = \frac{\textrm{Adj}A}{|A|} = \left( {\begin{array}{cc}<br>    \frac{{@adjA1@}}{{@detA@}} & \frac{{@adjA2@}}{{@detA@}} \\<br>    \frac{{@adjA3@}}{{@detA@}} & \frac{{@adjA4@}}{{@detA@}} \\<br>  \end{array} } \right) \approx \left( {\begin{array}{cc}<br>       {@decimalplaces(g1,2)@} & {@decimalplaces(g2,2)@} \\<br>       {@decimalplaces(g3,2)@} & {@decimalplaces(g4,2)@} \\<br>      \end{array} } \right) \]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q7_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[A^{-1} = \frac{\textrm{Adj}A}{|A|} = \left( {\begin{array}{cc}<br>    \frac{{@adjA1@}}{{@detA@}} & \frac{{@adjA2@}}{{@detA@}} \\<br>    \frac{{@adjA3@}}{{@detA@}} & \frac{{@adjA4@}}{{@detA@}} \\<br>  \end{array} } \right) \approx \left( {\begin{array}{cc}<br>       {@decimalplaces(g1,2)@} & {@decimalplaces(g2,2)@} \\<br>       {@decimalplaces(g3,2)@} & {@decimalplaces(g4,2)@} \\<br>      \end{array} } \right) \]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result8</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans8</sans>
+        <tans>sol_h</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q8_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>\[B^{-1} = \frac{\textrm{Adj}B}{|B|} = \left( {\begin{array}{cc}<br>    \frac{{@adjB1@}}{{@detB@}} & \frac{{@adjB2@}}{{@detB@}} \\<br>    \frac{{@adjB3@}}{{@detB@}} & \frac{{@adjB4@}}{{@detB@}} \\<br>  \end{array} } \right) \approx \left( {\begin{array}{cc}<br>       {@decimalplaces(h1,2)@} & {@decimalplaces(h2,2)@} \\<br>       {@decimalplaces(h3,2)@} & {@decimalplaces(h4,2)@} \\<br>      \end{array} } \right)\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q8_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>\[B^{-1} = \frac{\textrm{Adj}B}{|B|} = \left( {\begin{array}{cc}<br>    \frac{{@adjB1@}}{{@detB@}} & \frac{{@adjB2@}}{{@detB@}} \\<br>    \frac{{@adjB3@}}{{@detB@}} & \frac{{@adjB4@}}{{@detB@}} \\<br>  \end{array} } \right) \approx \left( {\begin{array}{cc}<br>       {@decimalplaces(h1,2)@} & {@decimalplaces(h2,2)@} \\<br>       {@decimalplaces(h3,2)@} & {@decimalplaces(h4,2)@} \\<br>      \end{array} } \right)\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_3</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Find the values of \(x\) which solve the following equations. Note that \(x_1 &lt x_2\) and make sure to enter your answers in square brackets, e.g.\([-5,3]\).<br></p>
+<p>\(-{@qAr1@}x^2 + {@qAr2@}x + {@qAr3@} = 0\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\((x_1,x_2)\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p><p>\(x^2 + {@qBr1@}x + {@qBr2@} = 0\)&nbsp;&nbsp;&nbsp;&nbsp;<b>[3]</b><br></p><p>\((x_1,x_2)\) = [[input:ans2]] [[validation:ans2]]</p><p>[[feedback:Result2]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>6.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+[qAr1,qAr2,qAr3]:[2+rand(2),4+rand(7),3+rand(10)];
+[qAp1,qAp2]:[qAr2^2,4*qAr1*qAr3];
+[qAp3,qAp4]:[qAp1+qAp2,2*qAr1];
+solA:[(qAr2-qAp3^(1/2))/(qAp4),(qAr2+qAp3^(1/2))/(qAp4)];
+
+[qBr1,qBr2]:[12+2*rand(7),rand([3,5,7,11])];
+[qBp1,qBp2]:[qBr1^2,4*qBr2];
+[qBp3,qBp4,qBp5]:[qBp1-qBp2,qBr1/2,(qBp1-qBp2)/4];
+solB:[-qBp4-(qBp5^(1/2)),-qBp4+(qBp5^(1/2))];
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>solB</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The discriminant of the quadratic is:<br>\[<br>{@qAr2@}^2+4\cdot{@qAr1@}\cdot{@qAr3@} = {@qAp1@} + {@qAp2@} = {@qAp3@}<br>\]<br>As the discriminant is positive, there are two real roots to the quadratic:<br>\[<br>\left\{\begin{aligned}<br>x_1 & = \frac{-{@qAr2@}+\sqrt{{@qAp3@}}}{-{@qAp4@}} = \frac{{@qAr2@}-\sqrt{{@qAp3@}}}{{@qAp4@}}\\<br>x_2 & = \frac{-{@qAr2@}-\sqrt{{@qAp3@}}}{-{@qAp4@}} = \frac{{@qAr2@}+\sqrt{{@qAp3@}}}{{@qAp4@}}\\<br>\end{aligned}\right.<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The discriminant of the quadratic is:<br>\[<br>{@qAr2@}^2+4\cdot{@qAr1@}\cdot{@qAr3@} = {@qAp1@} + {@qAp2@} = {@qAp3@}<br>\]<br>As the discriminant is positive, there are two real roots to the quadratic:<br>\[<br>\left\{\begin{aligned}<br>x_1 & = \frac{-{@qAr2@}+\sqrt{{@qAp3@}}}{-{@qAp4@}} = \frac{{@qAr2@}-\sqrt{{@qAp3@}}}{{@qAp4@}}\\<br>x_2 & = \frac{-{@qAr2@}-\sqrt{{@qAp3@}}}{-{@qAp4@}} = \frac{{@qAr2@}+\sqrt{{@qAp3@}}}{{@qAp4@}}\\<br>\end{aligned}\right.<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+    <prt>
+      <name>Result2</name>
+      <value>3</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>solB</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q2_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>The discriminant of the quadratic is:<br>\[<br>{@qBr1@}^2-4\cdot{@qBr2@} = {@qBp1@} - {@qBp2@} = {@qBp3@}<br>\]<br>As the discriminant is positive, there are two real roots to the quadratic:<br>\[<br>\left\{\begin{aligned}<br>x_1 & = \frac{-{@qBr1@}-\sqrt{{@qBp3@}}}{2} = -{@qBp4@} - \sqrt{{@qBp5@}}\\<br>x_2 & = \frac{-{@qBr1@}+\sqrt{{@qBp3@}}}{2} = -{@qBp4@} + \sqrt{{@qBp5@}}\\<br>\end{aligned}\right.<br>\]<br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q2_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>The discriminant of the quadratic is:<br>\[<br>{@qBr1@}^2-4\cdot{@qBr2@} = {@qBp1@} - {@qBp2@} = {@qBp3@}<br>\]<br>As the discriminant is positive, there are two real roots to the quadratic:<br>\[<br>\left\{\begin{aligned}<br>x_1 & = \frac{-{@qBr1@}-\sqrt{{@qBp3@}}}{2} = -{@qBp4@} - \sqrt{{@qBp5@}}\\<br>x_2 & = \frac{-{@qBr1@}+\sqrt{{@qBp3@}}}{2} = -{@qBp4@} + \sqrt{{@qBp5@}}\\<br>\end{aligned}\right.<br>\]<br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+<!-- question: tag  -->
+  <question type="stack">
+    <name>
+      <text>Ex_4</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Solve the following pair of equations. Make sure to enter your answers in square brackets, e.g. \([5,-3]\).<br></p>
+<p>\[\left\{\begin{aligned}<br>{@qAp1@}x - {@qAr2@}y & = {@qAp2@}\\<br>{@qAr1@}x + {@qAr3@}y & = {@qAp3@}\\<br>\end{aligned}\right.\]&nbsp;&nbsp;&nbsp;&nbsp;<b>[2]</b><br></p><p>\((x,y)\) = [[input:ans1]] [[validation:ans1]]</p><p>[[feedback:Result1]]</p>]]>
+</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>2.0</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2019052700</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+/* Exercise parameters */
+[qAx,qAy]:[(1+rand(10))*rand([-1,1]),(1+rand(10))*rand([-1,1])];
+[qAr1,qAr2,qAr3,qAr4]:[2+rand(7),2+rand(7),2+rand(12),2+rand(3)];
+qAp1:qAr4*qAr1;
+[qAp2,qAp3]:[qAp1*qAx-qAr2*qAy,qAr1*qAx+qAr3*qAy];
+[qAp4,qAp5,qAp6]:[-qAr2-qAr4*qAr3, qAp2 - qAr4*qAp3, qAp2 + qAr2*qAy];
+solA:[qAx,qAy];
+
+]]>
+</text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text></text>
+    </specificfeedback>
+    <questionnote>
+      <text>QNote</text>
+    </questionnote>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p><span class="correct">Correct answer, well done.</span></p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p><span class="partially">Your answer is partially correct.</span></p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p><span class="incorrect">Incorrect answer.</span></p>]]></text>
+    </prtincorrect>
+    <multiplicationsign>none</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <matrixparens>(</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>solA</tans>
+      <boxsize>25</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords>solve</forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>0</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>1</checkanswertype>
+      <mustverify>1</mustverify>
+      <showvalidation>1</showvalidation>
+      <options></options>
+    </input>
+
+    <prt>
+      <name>Result1</name>
+      <value>2</value>
+      <autosimplify>1</autosimplify>
+      <feedbackvariables>
+        <text>fn0:(qAp1/qAr2)*x-(qAp2/qAr2);
+fn1:-(qAr1/qAr3)*x+(qAp3/qAr3);
+pt0:[discrete,[ [qAx,qAy] ]];
+st:[style,lines,lines,points];
+col:[color,blue,red,black];
+leg:[legend,"Equation 1","Equation 2","Solution point"];</text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>solA</tans>
+        <testoptions></testoptions>
+        <quiet>0</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>1.0000000</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>q1_corr</trueanswernote>
+        <truefeedback format="html">
+          <text>
+            <![CDATA[<p>Multiplying the second equation by \({@qAr4@}\) and subtracting each side to the first equation:<br>\[<br>\begin{aligned}<br>{@qAp1@}x - {@qAr2@}y - {@qAr4@}({@qAr1@}x + {@qAr3@}y) & = {@qAp2@} - {@qAr4@}\cdot{@qAp3@}\\<br>{@qAp4@}y & = {@qAp5@}\\<br>y & = {@qAy@}\\<br>\end{aligned}<br>\]<br>Replace in equation 1 to solve for \(x\)<br>\[<br>\begin{aligned}<br>{@qAp1@}x-{@qAr2@}\cdot{@qAy@} & = {@qAp2@}\\<br>{@qAp1@}x & = {@qAp6@}\\<br>x & = {@qAx@}\\<br>\end{aligned}<br>\]<br><br><p>{@plot([fn0,fn1,pt0], [x, -10,10], st, col, [point_type, bullet], [box, false], [axes, solid], [xtics, -10, 1, 10], leg)@}</p><br></p>]]>
+          </text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0.0000000</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>q1_incorr</falseanswernote>
+        <falsefeedback format="html">
+          <text>
+            <![CDATA[<p>Multiplying the second equation by \({@qAr4@}\) and subtracting each side to the first equation:<br>\[<br>\begin{aligned}<br>{@qAp1@}x - {@qAr2@}y - {@qAr4@}({@qAr1@}x + {@qAr3@}y) & = {@qAp2@} - {@qAr4@}\cdot{@qAp3@}\\<br>{@qAp4@}y & = {@qAp5@}\\<br>y & = {@qAy@}\\<br>\end{aligned}<br>\]<br>Replace in equation 1 to solve for \(x\)<br>\[<br>\begin{aligned}<br>{@qAp1@}x-{@qAr2@}\cdot{@qAy@} & = {@qAp2@}\\<br>{@qAp1@}x & = {@qAp6@}\\<br>x & = {@qAx@}\\<br>\end{aligned}<br>\]<br><br><p>{@plot([fn0,fn1,pt0], [x, -10,10], st, col, [point_type, bullet], [box, false], [axes, solid], [xtics, -10, 1, 10], leg)@}</p><br></p>]]>
+          </text>
+        </falsefeedback>
+      </node>
+    </prt>
+
+  </question>
+
+
+</quiz>

@@ -1,3 +1,9 @@
+#-------------- Python ignores
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+#-------------- Latex ignores
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

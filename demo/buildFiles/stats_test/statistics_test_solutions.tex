@@ -1,0 +1,743 @@
+%-------------------------------------------------------------------------------
+%                      PREAMBLE - Document Declaration
+%-------------------------------------------------------------------------------
+\documentclass[a4paper, leqno, 12pt]{article} % REQUIRE 12pt font size
+
+\usepackage{setspace}
+\usepackage[asymmetric]{geometry}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{calc}
+\usepackage{xintexpr}
+% \usepackage{l3regex}
+\usepackage{expl3}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{multirow}
+
+% - REQUIRE Arial
+% ... load a Helvetica clone (Arial is proprietary - thank you Monotype Corp!)
+\usepackage{sansmathfonts}
+\usepackage[scaled=0.92]{helvet}
+\renewcommand{\rmdefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+
+\pgfplotsset{compat=1.16}
+
+% REQUIRE - margins to specification
+\geometry{tmargin=2.7cm,
+          bmargin=2.9cm,
+          hmargin=2.3cm }
+
+% REQUIRE - correct header/footers
+\fancypagestyle{plain}{     % Redefine plain style for document
+\fancyhf{}                  % clear all header and footer fields
+% \fancyfoot[RO]{\textbf{Turn over}}  % Right odd pages has 'turn over'
+\renewcommand{\headrulewidth}{0pt}  % NO horizontal lines
+\renewcommand{\footrulewidth}{0pt}}
+\pagestyle{plain}                   % Declare plain as the style to use
+
+% - Below, not an exam template requirement but for consistency
+\newenvironment{top_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{2em}
+  \setlength{\topsep}{-0pt}
+  \setlength{\partopsep}{-0pt}
+}{\end{enumerate}}
+
+\newlength{\EqL}
+\newlength{\RunL}
+\setlength{\RunL}{0pt}
+\newcommand{\EqContent}{foo}
+\renewcommand{\theequation}{\alph{equation}}
+
+\ExplSyntaxOn
+\tl_new:N \l_mathexp_tl
+\cs_new:Npn \nodollar #1 {
+    \tl_set:Nn \l_mathexp_tl {#1}
+    \regex_replace_all:nnN { \$ } {} \l_mathexp_tl
+    \tl_use:N \l_mathexp_tl
+}
+\ExplSyntaxOff
+
+% --  Define struts and padding for tables
+\newcommand\T{\rule{0pt}{2.6ex}}
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}}
+
+% --  Ragged right fixed-width column
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% -- Ragged right text
+\raggedright
+%-------------------------------------------------------------------------------
+%                               FRONT PAGE
+%-------------------------------------------------------------------------------
+\begin{document}
+\chead{}            % No page number on page 1
+\singlespacing
+
+\begin{center}
+\textbf{\large{     % REQUIRE - 14pt, Bold
+UNIVERSITY OF LIFE
+}}
+\end{center}
+
+\begin{flushright}
+\textbf{\large{ECON101}}
+\end{flushright}
+\vspace{-1cm}
+
+\doublespacing
+\begin{center}
+\textbf{\large{   % REQUIRE - 14pt, Bold
+\\
+DEPARTMENT OF LEARNING STUFF
+\\
+LEVEL 4 CLASS TEST}}
+\end{center}
+
+\begin{center}
+\textbf{\large{
+Statistics 101
+\\
+\quad
+\\
+7/11/2024}}
+
+\textbf{\large{DURATION:} 2 hours
+\\
+\quad
+\\
+Paper Instructions}
+\end{center}
+
+\singlespacing
+\noindent
+There are \textbf{THREE} sections. Candidates should answer \textbf{ALL THREE} sections.
+
+\medskip
+\noindent
+Each section is worth the same amount of marks in total, and a mark in square brackets is assigned to each part of a question.
+
+\medskip
+\noindent
+Student is permitted to remove question paper from examination venue.
+
+
+% \begin{flushright}
+% \textbf{Do not turnover until instructed to do so.}
+% \end{flushright}
+\fancyfoot[RO]{\textbf{Do not turnover until instructed to do so.}}  % Right odd pages has 'turn over'
+%-------------------------------------------------------------------------------
+%                               MAIN BODY
+%-------------------------------------------------------------------------------
+\newpage
+\chead{\thepage}            % Page numbers on center header from here
+\rfoot{}                % No footer (in case of odd page)
+\fancyfoot[RO]{\textbf{Turn over}}  % Right odd pages has 'turn over'
+
+
+
+\section*{\centering{\normalsize{SECTION 1}}}
+
+\begin{top_enumerate}
+
+\item A random sample of size $n={48}$ is taken from a large population with known standard deviation $\sigma = {26}$. If the sample mean is {74}, calculate to 2 decimal places the following confidence intervals for the population mean $\mu$:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item The 90\% confidence interval.
+	 \quad \textbf{[3]}
+		\item The 95\% confidence interval.
+	 \quad \textbf{[3]}
+		\item The 99\% confidence interval.
+	 \quad \textbf{[3]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solution:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item If the sample of size $n={48}$ has a mean $\bar x = {74}$ and the population has a standard deviation $\sigma={26}$, then the sampling distribution of the mean follows a normal distribution:
+	\[
+	\bar X \sim N \left(\bar x,\frac{\sigma^2}{n}\right) = N \left({74},\frac{{26}^2}{{48}}\right) = N \left({74},{14.08}\right)
+	\]
+	Note, we are given the population standard deviation $\sigma$, which means that we can use the Normal distribution to calculate the confidence interval regardless of sample size (i.e. we do not need the Central Limit Theorem).
+	
+	The 90\% confidence interval can be constructed using the standard normal distribution, but looking for the value of $z$ such that:
+	\[
+	P(-z < Z < z) = 0.9 \quad \iff \quad P(0 \le Z \le z) = 0.45
+	\]
+	Using the table of values, we find $z = \pm 1.645$. Using the mean and standard deviation of the distribution of $\bar X$, we can then recover 90\% confidence interval.
+	\[
+	C.I._{90} = \bar x \pm 1.645 \frac{\sigma}{\sqrt{n}} = {74} \pm 1.645 \cdot {3.75} = ({67.83}, {80.17})
+	\]
+	With 90\% confidence, the population mean $\mu$ is between {67.83} and {80.17}.
+	 \quad \textbf{}
+		\item The 95\% confidence interval can be constructed by looking for the value of $z$ such that:
+	\[
+	P(-z < Z < z) = 0.95 \quad \iff \quad P(0 \le Z \le z) = 0.475
+	\]
+	Using the table of values, we find $z = \pm 1.96$. Using the mean and standard deviation of the distribution of $\bar X$, we can then recover 95\% confidence interval.
+	\[
+	C.I._{95} = \bar x \pm 1.96 \frac{\sigma}{\sqrt{n}} = {74} \pm 1.96 \cdot {3.75} = ({66.65}, {81.35})
+	\]
+	With 95\% confidence, the population mean $\mu$ is between {66.65} and {81.35}.
+	 \quad \textbf{}
+		\item The 99\% confidence interval can be constructed by looking for the value of $z$ such that:
+	\[
+	P(-z < Z < z) = 0.99 \quad \iff \quad P(0 \le Z \le z) = 0.495
+	\]
+	Using the table of values, we find $z = \pm 2.575$. Using the mean and standard deviation of the distribution of $\bar X$, we can then recover 99\% confidence interval.
+	\[
+	C.I._{99} = \bar x \pm 2.575 \frac{\sigma}{\sqrt{n}} = {74} \pm 2.575 \cdot {3.75} = ({64.34}, {83.66})
+	\]
+	With 99\% confidence, the population mean $\mu$ is between {64.34} and {83.66}.
+	 \quad \textbf{}
+\end{enumerate}\newpage
+\item A random sample of size $n={25}$ is taken from a large population. The sample mean is $\bar x = {84}$, and the sample standard deviation is $s = {32}$.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Using this information, construct a 95\% confidence interval for the population mean $\mu$. Enter the interval using square brackets, separating the two values with commas $\left[\dots ,\dots \right]$:
+	 \quad \textbf{[2]}
+		\item Suppose you are told that {32} is also the value of the population standard deviation $\sigma$. Construct a new 95\% confidence interval and compare this with your previous calculation.
+	 \quad \textbf{[3]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solution:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Given that the sample has a size $n={25}$, if we do not know the population standard deviation $\sigma$, then we need to (a) replace $\sigma$ by the sample standard deviation $s$ and (b) rely on the $t$-distribution instead of the standard normal distribution, to allow for additional uncertainty generated by using $s$, which is an estimate of $\sigma$:
+	\[
+	C.I._{95} = \bar x \pm t_{0.05}^{n-1} \frac{s}{\sqrt{n}}
+	\]
+	
+	The critical value $t_{0.05}^{n-1}$ can be found in the table of values for Student's t-distribution, for a two-tailed probability of 0.05 (corresponding to 95\% confidence) and $n-1 = {{25}-1}$ degrees of freedom. In this case, $t_{0.05}^{{25}-1} = {2.064}$. This gives us the following confidence interval:
+	\[
+	C.I._{95} =  {84} \pm {2.064}\frac{{32}}{\sqrt{{25}}}  =  \left[{70.790} \, , \, {97.21}\right]
+	\]
+	 \quad \textbf{}
+		\item If the sample of size $n={25}$ has a mean $\bar x = {84}$ and the population has standard deviation $\sigma={32}$, then the sampling distribution of the mean follows a normal distribution:
+	\[
+	\bar X \sim N \left(\bar x,\frac{\sigma^2}{n}\right) = N \left({84},\frac{{32}^2}{{25}}\right) \approx N \left({84},{6.4}^2\right)
+	\]
+	Note, because we now know the value of the population standard deviation $\sigma$, we are able to calculate confidence intervals using the normal distribution, and we do not need to use Student's t-distribution. This is only required when (a) we use the sample standard deviation $s$ as an estimate of $\sigma$ and (b) the sample size $n<30$, so that there is a lot of uncertainty in the accuracy of $s$.
+	
+	The 95\% confidence interval can be constructed using the standard normal distribution, but looking for the value of $z$ such that:
+	\[
+	P(-z < Z < z) = 0.95 \quad \iff \quad P(0 \le Z \le z) = 0.475
+	\]
+	Using the table of values, we find $z = \pm 1.96$. Using the mean and standard deviation of the distribution of $\bar X$, we can then calculate 95\% confidence interval.
+	\[
+	C.I._{95} = \bar x \pm 1.96 \frac{\sigma}{\sqrt{n}} = {84} \pm 1.96 \frac{{32}}{\sqrt{{25}}} = \left[{71.46} \, , \, {96.540}\right]
+	\]
+	This is much tighter confidence interval than the previous answer. Even if the actual value of the standard deviation has not changed (still $p3$), the fact that we know for certain the value of the population standard deviation $\sigma$ rather than have to rely on an estimate $s$ means we can be much more precise for a given confidence level.
+	 \quad \textbf{}
+\end{enumerate}\newpage
+\item A pair of dice is tossed {105} times and the sum is seven {20} times.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item If the dice were fair, what would be the probability of the sum being seven? Round to 3 decimal places if required.
+	 \quad \textbf{[3]}
+		\item We can reject the hypothesis that the dice are fair using a two tailed test at 5\% significance. True or False?
+	 \quad \textbf{[3]}
+		\item We can reject the hypothesis that the dice are fair using a one tailed test at 5\% significance. True or False? Explain which type of test you think is more appropriate in this case.
+	 \quad \textbf{[3]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solution:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item With two dice, a throw will result in $6^2=36$ possible pairs of faces. There are $6$ possible ways that the sum of the two faces $X$ can be $7$:
+	\[
+	\begin{aligned}
+	1 + 6 \quad & \quad 2 + 5 \quad & \quad 3 + 4\\
+	4 + 3 \quad & \quad 5 + 2 \quad & \quad 6 + 1\\
+	\end{aligned}
+	\]
+	If the dice are fair, all 36 outcomes are equally probable and the probability is therefore:
+	$P\left(X = 7 \right) = \frac{6}{36} = \frac{1}{6}$
+	 \quad \textbf{}
+		\item The information required to set up the hypothesis test is that the true proportion is $p = \frac{1}{6}$, while the sample proportion is $\hat p = {0.190}$ with a population standard deviation component $\sigma = \sqrt{\frac{6}{36} \times \frac{30}{36}} = \sqrt{\frac{5}{36}}$ (remember, we assume that the null is true!). The sample size is $n={105}$, therefore we can draw the critical values from the normal distribution.
+	
+	The hypotheses we want to test are:
+	\[
+	\left\{\begin{aligned}
+	H_0: \, & p = \frac{1}{6} \\
+	H_1: \, & p \ne \frac{1}{6} \\
+	\end{aligned}\right.
+	\]
+	
+	The test statistic is:
+	\[
+	t = \frac{\hat p - p}{\frac{\sigma}{\sqrt{n}}} = \frac{{0.190}-\frac{1}{6}}{\sqrt{\frac{5}{36\times{105}}}} = \frac{{0.024}}{{0.036}} = {0.655}
+	\]
+	
+	Given that we want 95\% confidence on a two-tailed test with a sample size of $n={105}$, the critical value of the t-statistic is $z_{0.05} = 1.96$. This tells us that $t < z_{0.02}$, therefore there is { not }enough evidence to reject the null hypothesis that the dice are fair. The statement is \emph{{false}}.
+	 \quad \textbf{}
+		\item For the one-tailed test, given that $\hat p > p$, we can set up the following hypotheses:
+	\[
+	\left\{\begin{aligned}
+	H_0: \, & p \le \frac{1}{6} \\
+	H_1: \, & p > \frac{1}{6} \\
+	\end{aligned}\right.
+	\]
+	
+	The  test statistic is the same as before, $t = {0.655}$ If we want 95\% confidence, on a one-tailed test the critical value of the t-statistic becomes $z_{0.1} = 1.645$. This tells us that $t > z_{0.1}$, therefore we { cannot }reject the null hypothesis that the dice are fair. The statement is \emph{{false}}.
+	
+	The difference here rests in the choice of alternate hypothesis. In a two-tailed test, the alternate hypothesis is $H_1: \, p \ne \frac{1}{6}$. We are simply stating the sample proportion is not equal to the stated proportion: it could be higher, or it could be lower. In the absence of information about how the dice might be unfair, this is the most conservative approach as it allows for either possibility. In contrast, with the one-tailed test, we have $H_1: \, p > \frac{1}{6}$: we are explicitly ruling out the possibility that the true proportion is lower than {17.5} out of {105}. This assumption allows us to reject the null more easily (i.e. with a smaller deviation from the stated proportion), at the risk of being very wrong if our assumption was incorrect.
+	
+	\begin{center}
+	\begin{tikzpicture}
+	\begin{axis}[
+	    samples = 50,
+	    axis lines = center,
+	    legend style={at={(0.5,-0.1)},anchor=north, draw=none},
+	    ymin=0,
+	    ymax=0.75,
+	    xmin=-4,
+	    xmax=4,
+	    xlabel = $x$,
+	    ylabel = $f(x)$
+	]
+	\addplot[domain=-4:4,color=blue,]{0.39894228*exp(-0.5*x^2)};
+	\addlegendentry{$N(0,1)$}
+	\addplot[mark=no,color=black] coordinates { (0.655, 0) (0.655, 0.5)};
+	\addlegendentry{$t$}
+	\addplot[mark=no,color=red] coordinates { (1.96, 0) (1.96, 0.5)};
+	\addlegendentry{$z_{0.05} = 1.96$}
+	\addplot[mark=no,dashed,color=green] coordinates { (1.645, 0) (1.645, 0.5)};
+	\addlegendentry{$z_{0.1} = 1.645$}
+	\end{axis}
+	\end{tikzpicture}
+	\end{center}
+	 \quad \textbf{}
+\end{enumerate}\newpage
+\item You are told that a random variable $X$ has a population standard deviation of {14}.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item How large a sample $n$ would you need in order to be able to estimate the population mean to within $\pm${3.3} at the {90}\% confidence level? Round your answer up to an integer.
+	 \quad \textbf{[2]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solution:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item In order to determine how large a sample we need to achieve an error of $\pm${3.3} at {90}\% confidence, we can invert the formula for the confidence interval, where $z_{{90}}$ is the critical value of the standard normal distribution. Suppose we pick the upper $U_{{90}}$ bound of the confidence interval:
+	
+	\[
+	\begin{aligned}
+	U_{{90}} & = \bar x + z_{{90}} \frac{\sigma}{\sqrt{n}}\\
+	U_{{90}} - \bar x  & = z_{{90}} \frac{\sigma}{\sqrt{n}}\\
+	\sqrt{n} & =z_{{90}} \frac{\sigma}{U_{{90}} - \bar x} \\
+	n & = \left(z_{{90}} \frac{\sigma}{U_{{90}} - \bar x}\right)^2 \\
+	\end{aligned}
+	\]
+	
+	The {90}\% critical value interval can be constructed using the standard normal distribution, but looking for the value of $z_{{90}}$ such that:
+	\[
+	P(-z_{{90}} < Z < z_{{90}}) = {0.9} \quad \iff \quad P(0 \le Z \le z_{{90}}) = {0.45}
+	\]
+	Using the table of values, we find $z_{{90}} = {1.645}$. Replacing this in the equation above, and including the information that the upper bound of the confidence interval should be {3.3} above the mean, we can find the required sample size.
+	
+	\[
+	n = \left({1.645} \frac{{14}}{{3.3}}\right)^2 \approx \left({6.979}\right)^2 \approx {48.703}
+	\]
+	We need a sample of at least {49} observations in order to generate a confidence interval of $\pm${3.3} around the sample mean.
+	 \quad \textbf{}
+\end{enumerate}\newpage
+
+
+\end{top_enumerate}
+
+\bigskip
+\section*{\centering{\normalsize{SECTION 2}}}
+
+\begin{top_enumerate}
+
+\item A sample of 100 UK households have the following distribution:
+
+\begin{center}
+\begin{tabular}{cc}
+Household size & Frequency $f_i$ \\
+\hline
+1 & {27} \\
+2 & {33} \\
+3 & {18} \\
+4 & {14} \\
+5 & {7} \\
+6 & {1} \\
+\hline
+\end{tabular}
+\end{center}
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Calculate the mean household size $\bar x$. Round your answer to two decimal places if needed.
+	 \quad \textbf{[3]}
+		\item Calculate the median household size $\tilde x$.
+	 \quad \textbf{[2]}
+		\item Calculate the mode.
+	 \quad \textbf{[2]}
+		\item Calculate the sample standard deviation $s$, rounded to 2 decimal places.
+	 \quad \textbf{[3]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solutions:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item The frequency table is given by:
+	
+	\begin{center}
+	\begin{tabular}{cccc}
+	Household size & Frequency $f_i$ & $f_i x_i$ & $f_i (x_i-\bar x)^2$\\
+	\hline
+	1 & {27} & {27} & {55.99}\\
+	2 & {33} & {66} & {6.39}\\
+	3 & {18} & {54} & {5.64}\\
+	4 & {14} & {56} & {34.07}\\
+	5 & {7} & {35} & {45.88}\\
+	6 & {1} & {6} & {12.67}\\
+	\hline
+	Total & 100 & {244} & {160.64} \\
+	\hline
+	\end{tabular}
+	\end{center}
+	
+	\[
+	\bar x = \frac{\sum_i f_i x_i}{N} =\frac{244}{100} = {2.44}
+	\]
+	 \quad \textbf{}
+		\item \[
+	\tilde x = {2}
+	\]
+	 \quad \textbf{}
+		\item \[
+	\textrm{Mode} = {2}
+	\]
+	 \quad \textbf{}
+		\item \[
+	s^2 = \frac{\sum_i f_i (x_i-\bar x)^2}{N-1} =\frac{{160.64}}{99} \approx {1.62}
+	\]
+	If the sample variance is $s^2 \approx {1.62}$ then the sample standard deviation is $s \approx \sqrt{{1.62}} \approx {1.27}$
+	 \quad \textbf{}
+\end{enumerate}\newpage
+\item You are told $P(A) = {0.34}$, $P(B) = {0.71}$ and $P(A \textrm{ or } B) = {0.84}$. Are the following statements true or false? Provide an explanation in each case.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item $A$ and $B$ are independent.
+	 \quad \textbf{[3]}
+		\item $A$ and $B$ are mutually exclusive.
+	 \quad \textbf{[3]}
+		\item If two events that occur with non-zero probabilities are mutually exclusive, then they cannot be independent.
+	 \quad \textbf{[4]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solutions:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item By the addition rule we know that $P(A \textrm{ and } B) = P(A) + P(B) - P(A \textrm{ or } B)$. Using the values above, this give us:
+	\[
+	P(A \textrm{ and } B) = {0.34} + {0.71} - {0.84} = {0.21}
+	\]
+	Furthermore, we can calculate:
+	\[
+	P(A)\times P(B) = {0.34} \times {0.71} = {0.24}
+	\]
+	Because $P(A \textrm{ and } B) \, { \ne} \, P(A)\times P(B)$, one can conclude that $A$ and $B$ are { not }independent. \emph{{false}}
+	 \quad \textbf{}
+		\item $A$ and $B$ cannot be mutually exclusive, as $P(A \textrm{ and } B) = {0.21} \ne 0$. There is a probability that both events will happen together. \emph{False}
+	 \quad \textbf{}
+		\item If two events $A$ and $B$ are mutually exclusive, then $P(A \textrm{ and } B) = 0$. If these two events are also independent, then  we also have $P(A \textrm{ and } B) = P(A)\times P(B)$. The combination of the two implies:
+	\[
+	P(A \textrm{ and } B) = P(A)\times P(B) = 0
+	\]
+	This can only be the case if at least one of the events has a zero probability. As we are told that both events have non-zero probability, they cannot be mutually exclusive and independent. \emph{True}.
+	 \quad \textbf{}
+\end{enumerate}\newpage
+\item A ball is drawn from a box containing {11} red, {27} white, {21} blue and {17} orange balls. Find the probability (rounded to 2 decimal places if required) that it is:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Orange or red.
+	 \quad \textbf{[1]}
+		\item Not red and not blue.
+	 \quad \textbf{[1]}
+		\item Not blue.
+	 \quad \textbf{[1]}
+		\item White.
+	 \quad \textbf{[1]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solutions:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item There are ${11} + {27} + {21} + {17} = {76}$ balls in total in the box. The probabilities can be calculated by counting the number of balls that meet the condition described in the event and dividing by the total number of balls (${76}$). In this case we are using $P(O \textrm{ or } R) = P(O) + P(R)$, as the draw is mutually exclusive: we cannot draw both an orange and a red, so $P(O \textrm{ and } R) = 0$.
+	\[
+	P(O \textrm{ or } R) = \frac{{17} + {11}}{76} \approx {0.37}
+	\]
+	 \quad \textbf{}
+		\item The most direct route is to realise that the only types of balls that are simultaneously `not red' and `not blue' are the orange and white ones, which directly gives:
+	
+	\[
+	P(\textrm{not } R \textrm{ and not } B) =  P( O \textrm{and } W) = \frac{{17}+{27}}{{76}} = \frac{{44}}{{76}} \approx {0.58}
+	\]
+	
+	Alternatively, you can also work out the solution using the addition rule. This takes a bit longer and the use of `not' can complicate thinking about this, but the formula still works:
+	
+	\[
+	P(\textrm{not } R \textrm{ or not } B) = P(\textrm{not } R) + P(\textrm{not } B) - P(\textrm{not } R \textrm{ and not } B)
+	\]
+	
+	Rearranging:
+	
+	\[
+	P(\textrm{not } R \textrm{ and not } B) = P(\textrm{not } R) + P(\textrm{not } B) - P(\textrm{not } R \textrm{ or not } B)
+	\]
+	
+	A key aspect is to realise that $P(\textrm{not } R \textrm{ or not } B) = 1$. Any ball you pick is guaranteed to be either `not red' or `not blue'. This is obviously true for the orange and white balls, but also the red and blue ones: a red ball is `not blue' and a blue ball is `not red'! Using this, and replacing $P(\textrm{not } R) = 1 - P(R)$ and $P(\textrm{not } B) = 1 - P(B)$ we get:
+	
+	\[
+	P(\textrm{not } R \textrm{ and not } B) = 1 - P(R) + 1 - P(B) - 1 \; = \; 1 - P(R) - P(B)
+	\]
+	
+	\[
+	P(\textrm{not } R \textrm{ and not } B) = \frac{{76} - {11} - {21}}{{76}} = \frac{{44}}{{76}}
+	\]
+	 \quad \textbf{}
+		\item \[
+	P(\textrm{not } B) = 1 - P(B) = \frac{{76} - {21}}{{76}} = \frac{{55}}{{76}} \approx {0.72}
+	\]
+	 \quad \textbf{}
+		\item \[
+	P(W) = \frac{27}{76} \approx {0.36}
+	\]
+	 \quad \textbf{}
+\end{enumerate}\newpage
+
+
+\end{top_enumerate}
+
+\bigskip
+\section*{\centering{\normalsize{SECTION 3}}}
+
+\begin{top_enumerate}
+
+\item Suppose {22}\% of customers at Aldi pay by cash. In a random sample of {13} customers, what is the probability (rounded to 4 decimal places) that:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Two of the customers pay by cash?
+	 \quad \textbf{[2]}
+		\item At least two of the customers pay by cash?
+	 \quad \textbf{[2]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solutions:
+
+The probability of a given number of customers $X$ paying in cash can be modelled using a Binomial distribution, with $N={13}$ being the number of trials and $p={0.22}$ the probability of a success (paying in cash):
+\[
+P(X=k \, | \, n={13},p={0.22}) \quad = \quad C^{{13}}_k {0.22}^k {0.78}^{{13}-k}
+\]
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item \[
+	P(X = 2)  = C^{{13}}_2 {0.22}^2 {0.78}^{{13}-2} \approx {0.2455}
+	\]
+	 \quad \textbf{}
+		\item To calculated $P(X \ge 2)$, one first decomposes the probability as:
+	\[
+	P(X \ge 2) = 1 - P(X<2) = 1 - P(X=0) - P(X=1)
+	\]
+	Each individual probability can be calculated using the binomial formula:
+	\[
+	\begin{aligned}
+	P(X \ge 2) &= 1 - C^{{13}}_0 {0.22}^0 {0.78}^{{13}} - C^{{13}}_1 {0.22}^1 {0.78}^{{13}-1}\\
+	P(X \ge 2) &\approx 1 - {0.0396} - {0.1450} \\
+	P(X \ge 2) &\approx {0.8154} \\
+	\end{aligned}
+	\]
+	 \quad \textbf{}
+\end{enumerate}\newpage
+\item What is the probability, rounded to 4 decimal places:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Of getting exactly {7} heads and {1} tails in {8} tosses of a fair coin?
+	 \quad \textbf{[3]}
+		\item Of getting {2} sixes in {8} rolls of a fair dice?
+	 \quad \textbf{[3]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solutions:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item The probability of getting $H$ heads can be calculated using a Binomial distribution, with $N={8}$ being the number of trials and $p=1/2$ being the probability of a success (getting a heads):
+	\[
+	P(H = {7})  = C^{{8}}_{{7}}  \left(\frac{1}{2}\right)^{{8}} \approx {0.0312}
+	\]
+	Note that we define $H$ as the number of heads, however one could chose instead to count the number of tails. The binomial formula should provide the same answers in both cases, as $C^{{8}}_{{7}} = C^{{8}}_{{1}}$ and $p=1-p=1/2$. Hopefully this is intuitive, the probability of the event should be the same whether you count heads or tails.
+	 \quad \textbf{}
+		\item The probability of getting $X$ sixes can be calculated using a Binomial distribution, with $N={8}$ being the number of trials and $p=1/6$ being the probability of a success (getting a six):
+	\[
+	P(X = {2})  = C^{{8}}_{{2}}  \left(\frac{1}{6}\right)^{{2}} \left(\frac{5}{6}\right)^{{6}} \approx {0.2605}
+	\]
+	 \quad \textbf{}
+\end{enumerate}\newpage
+\item If $Z \sim N(0,1)$, find the critical value $z_0$, rounded to 2 decimal places, such that:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item $P(Z \ge z_0) = {0.09}$
+	 \quad \textbf{[2]}
+		\item $P(Z \le z_0) = {0.25}$
+	 \quad \textbf{[2]}
+		\item $P(-z_0 \le Z \le z_0) = {0.53}$
+	 \quad \textbf{[2]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solutions:
+
+Note: It may help you to draw pictures to visualise the area you are being asked to calculate.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item If $P(Z \ge z_0) = {0.09}$, then $P(0 \le Z \le z_0)  = 0.5 - P(z \ge z_0) = {0.41}$. Looking this value up in the table for the standard normal tells us that $z_0 = {1.341}$.
+	 \quad \textbf{}
+		\item If $P(Z \le z_0) = {0.25}$, then $P(z_0 \le z \le 0) = 0.5 - P(Z \le z_0) = {0.25}$. In the tables of the standard distribution, this corresponds to a value of ${0.674}$. However, we are looking for a value of $z$ that is smaller than $z_0$, therefore to the left of it. Given that the probability is less than 0.5, the critical value $z_0$ must be negative. We therefore have $z_0 = -{0.674}$. A diagram can be particularly useful for cases like this.
+	 \quad \textbf{}
+		\item If $P(-z_0 \le Z \le z_0) = {0.53}$ then $P(0 \le Z \le z_0) = \frac{{0.53}}{2} = {0.265}$. Looking up this value in the table tells us that $z_0 = {0.722}$.
+	 \quad \textbf{}
+\end{enumerate}\newpage
+\item Using the table of areas for the standard Normal distribution, calculate the areas under $N(0,1)$, rounded to 3 decimal places:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item Between {-1.645} and {1.645}
+	 \quad \textbf{[2]}
+		\item For values greater than {2.575}
+	 \quad \textbf{[2]}
+		\item Between {-1.25} and {1.25}
+	 \quad \textbf{[2]}
+		\item Between {0.5} and {1.96}.
+	 \quad \textbf{[2]}
+\end{enumerate}\addtocounter{enumi}{-1}
+\item Solutions:
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item \[
+	\begin{aligned}
+	P({-1.645} \le Z \le {1.645}) & = P({-1.645} \le Z \le 0 ) + P( 0 \le Z \le {1.645})\\
+	P({-1.645} \le Z \le {1.645}) & = 2 \times P( 0 \le Z \le {1.645})\\
+	P({-1.645} \le Z \le {1.645}) & = 2 \times {0.450} = {0.9}\\
+	\end{aligned}
+	\]
+	 \quad \textbf{}
+		\item \[
+	\begin{aligned}
+	P(Z \ge {2.575}) = 0.5 - P( 0 \le Z \le {0.5})\\
+	P(Z \ge {2.575}) = 0.5 - {0.495} = {0.005} \\
+	\end{aligned}
+	\]
+	 \quad \textbf{}
+		\item \[
+	\begin{aligned}
+	P({-1.25} \le Z \le {1.25}) & = P({-1.25} \le Z \le 0 ) + P( 0 \le Z \le {1.25})\\
+	P({-1.25} \le Z \le {1.25}) & = 2 \times P( 0 \le Z \le {1.25})\\
+	P({-1.25} \le Z \le {1.25}) & = 2 \times {0.394} = {0.789}\\
+	\end{aligned}
+	\]
+	 \quad \textbf{}
+		\item \[
+	\begin{aligned}
+	P({0.5} \le Z \le {1.96}) & = P( 0 \le Z \le {1.96}) - P( 0 \le Z \le {0.5})\\
+	P({0.5} \le Z \le {1.96}) & = {0.475} - {0.191} = {0.284}\\
+	\end{aligned}
+	\]
+	 \quad \textbf{}
+\end{enumerate}\newpage
+
+
+\end{top_enumerate}
+
+% End of paper, cancel 'turn over' footer and declare end
+\rfoot{}                % No footer (in case of odd page)
+\begin{flushright}      % Display end of paper
+\textbf{End}
+\end{flushright}
+%-------------------------------------------------------------------------------
+\end{document}
+%-------------------------------------------------------------------------------

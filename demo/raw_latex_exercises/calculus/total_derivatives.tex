@@ -1,0 +1,110 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Mathematics
+
+\fieldname{subCategory} % Classification information
+Calculus
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+% Question A
+[qAr1,qAr2,qAr3,qAr4,qAr5]:[2+rand(5),2+rand(9),2+rand(5),2+rand(5),2+rand(5)]
+[qAp1,qAp2,qAp3,qAp4,qAp5,qAp6]:[qAr1-1,qAr2*qAr3,qAr2*qAr4,qAr3-1,qAr4-1,qAr5-1]
+
+% Question B
+[qBr1,qBr2]:[2+rand(9),2+rand(9)]
+qBp1:qBr2-1
+qBp2:qBp1*qBr1
+
+\fieldname{questionBlurb}
+Find the total differentials of the following functions:
+
+(Tip: use 'd' as the total differential operator, so type 'dx' for $\textrm{d}x$)
+
+\fieldname{feedbackBlurb}
+The total differential of a function $f(x,y)$ is given by:
+\[
+\textrm{d}f(x,y) = \frac{\partial f(x,y)}{\partial x}\textrm{d}x + \frac{\partial f(x,y)}{\partial y}\textrm{d}y
+\]
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$f(x,y) = x^{qAr1} + {qAr2}x^{qAr3}y^{qAr4} + y^{qAr5}$
+
+\fieldname{prompt}
+$\textrm{d}f(x,y)$
+
+\fieldname{solution}
+$({qAr1}x^{qAp1} + {qAp2}x^{qAp4}y^{qAr4})dx + ({qAp3}x^{qAr3}y^{qAp5} + {qAr5}y^{qAp6})dy$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+The partial derivatives of the function with respect to $x$ and $y$ are:
+\[
+\left\{\begin{aligned}
+\frac{\partial f(x,y)}{\partial x} & = {qAr1}x^{qAp1} + {qAp2}x^{qAp4}y^{qAr4}\\
+\frac{\partial f(x,y)}{\partial y} & = {qAp3}x^{qAr3}y^{qAp5} + {qAr5}y^{qAp6}\\
+\end{aligned}\right.
+\]
+Replacing in the expression for the total differential gives:
+\[
+\textrm{d}f(x,y) = \left({qAr1}x^{qAp1} + {qAp2}x^{qAp4}y^{qAr4}\right)\textrm{d}x + \left({qAp3}x^{qAr3}y^{qAp5} + {qAr5}y^{qAp6}\right)\textrm{d}y
+\]
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$f(x,y) = {qBr1}x^{\frac{{qBp1}}{{qBr2}}}y^{\frac{1}{{qBr2}}}$
+
+\fieldname{prompt}
+$\textrm{d}f(x,y)$
+
+\fieldname{solution}
+$(\frac{{qBp2}}{{qBr2}}x^{-\frac{1}{{qBr2}}}y^{\frac{1}{{qBr2}}})dx + (\frac{{qBr1}}{{qBr2}}x^{\frac{{qBp1}}{{qBr2}}}y^{-\frac{{qBp1}}{{qBr2}}})dy$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+The partial derivatives of the function with respect to $x$ and $y$ are:
+\[
+\left\{\begin{aligned}
+\frac{\partial f(x,y)}{\partial x} & = \frac{{qBp2}}{{qBr2}}x^{-\frac{1}{{qBr2}}}y^{\frac{1}{{qBr2}}}\\
+\frac{\partial f(x,y)}{\partial y} & = \frac{{qBr1}}{{qBr2}}x^{\frac{{qBp1}}{{qBr2}}}y^{-\frac{{qBp1}}{{qBr2}}}\\
+\end{aligned}\right.
+\]
+Replacing in the expression for the total differential gives:
+\[
+\textrm{d}f(x,y) = \left(\frac{{qBp2}}{{qBr2}}x^{-\frac{1}{{qBr2}}}y^{\frac{1}{{qBr2}}}\right)\textrm{d}x + \left(\frac{{qBr1}}{{qBr2}}x^{\frac{{qBp1}}{{qBr2}}}y^{-\frac{{qBp1}}{{qBr2}}}\right)\textrm{d}y
+\]
+
+%-------------------------------------------------------------------------------
+\end{document}

@@ -1,0 +1,214 @@
+%-------------------------------------------------------------------------------
+%                      PREAMBLE - Document Declaration
+%-------------------------------------------------------------------------------
+\documentclass[a4paper, leqno, 12pt]{article}
+
+\usepackage{setspace}
+\usepackage[asymmetric]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{calc}
+\usepackage{xintexpr}
+% \usepackage{l3regex}
+\usepackage{expl3}
+\usepackage{pgfplots}
+\usepackage{amsmath}
+\usepackage{multicol}
+\pgfplotsset{compat=1.16}
+
+
+\geometry{hmargin=2.3cm,
+vmargin=2.5cm }
+
+\newenvironment{top_enumerate}{
+\begin{enumerate}
+  \setlength{\itemsep}{2em}
+  \setlength{\topsep}{-0pt}
+  \setlength{\partopsep}{-0pt}
+}{\end{enumerate}}
+
+\newlength{\EqL}
+\newlength{\RunL}
+\setlength{\RunL}{0pt}
+\newcommand{\EqContent}{foo}
+\renewcommand{\theequation}{\alph{equation}}
+
+\ExplSyntaxOn
+\tl_new:N \l_mathexp_tl
+\cs_new:Npn \nodollar #1 {
+    \tl_set:Nn \l_mathexp_tl {#1}
+    \regex_replace_all:nnN { \$ } {} \l_mathexp_tl
+    \tl_use:N \l_mathexp_tl
+}
+\ExplSyntaxOff
+
+%-------------------------------------------------------------------------------
+%                               DOCUMENT
+%-------------------------------------------------------------------------------
+\begin{document}
+\singlespacing
+\begin{center}
+\textbf{
+ECON101 - Maths seminar material - Week 1\\
+\bigskip
+Algebra
+}
+\end{center}
+\bigskip
+
+\begin{top_enumerate}
+
+\item Given the following pair of coordinate points $(x,y)$, find and sketch the linear equation $y = ax + b$. Where necessary, make sure you enter any rational number as a fraction, and not as a decimal number.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item $A= ({-2},{-1}),\, B= ({9},{-4})$
+	 \quad \textbf{[3]}
+\end{enumerate}\item Given \(A=\left( {\begin{array}{cc}
+   {9} & {8} \\
+   {2} & {-5} \\
+ \end{array} } \right) \), \(B=\left( {\begin{array}{cc}
+     {-1} & {2} \\
+     {1} & {1} \\
+    \end{array} } \right) \), calculate the following matrix operations. Where necessary, make sure you keep any rational number as a fraction, and not as a decimal number.
+ \\ 
+\setcounter{equation}{0}  % reset counter 
+\setlength{\RunL}{0pt}
+	\renewcommand{\EqContent}{\nodollar{$A+B$
+	\qquad\textbf{[1]}}}
+	\settowidth{\EqL}{$\qquad\EqContent\qquad$}
+	\setlength{\RunL}{\RunL+\EqL}
+	\xintifboolexpr { \RunL > 0.667*\textwidth }
+		{\setlength{\RunL}{0pt}
+		\\}
+		{}
+	\begin{minipage}{\EqL}
+	\begin{equation}
+	\EqContent
+	\end{equation}
+	\end{minipage}
+	\renewcommand{\EqContent}{\nodollar{${2}A-{3}B$
+	\qquad\textbf{[1]}}}
+	\settowidth{\EqL}{$\qquad\EqContent\qquad$}
+	\setlength{\RunL}{\RunL+\EqL}
+	\xintifboolexpr { \RunL > 0.667*\textwidth }
+		{\setlength{\RunL}{0pt}
+		\\}
+		{}
+	\begin{minipage}{\EqL}
+	\begin{equation}
+	\EqContent
+	\end{equation}
+	\end{minipage}
+	\renewcommand{\EqContent}{\nodollar{${5}A+{2}B$
+	\qquad\textbf{[1]}}}
+	\settowidth{\EqL}{$\qquad\EqContent\qquad$}
+	\setlength{\RunL}{\RunL+\EqL}
+	\xintifboolexpr { \RunL > 0.667*\textwidth }
+		{\setlength{\RunL}{0pt}
+		\\}
+		{}
+	\begin{minipage}{\EqL}
+	\begin{equation}
+	\EqContent
+	\end{equation}
+	\end{minipage}
+	\renewcommand{\EqContent}{\nodollar{$AB$
+	\qquad\textbf{[3]}}}
+	\settowidth{\EqL}{$\qquad\EqContent\qquad$}
+	\setlength{\RunL}{\RunL+\EqL}
+	\xintifboolexpr { \RunL > 0.667*\textwidth }
+		{\setlength{\RunL}{0pt}
+		\\}
+		{}
+	\begin{minipage}{\EqL}
+	\begin{equation}
+	\EqContent
+	\end{equation}
+	\end{minipage}
+	\renewcommand{\EqContent}{\nodollar{$|A|$
+	\qquad\textbf{[2]}}}
+	\settowidth{\EqL}{$\qquad\EqContent\qquad$}
+	\setlength{\RunL}{\RunL+\EqL}
+	\xintifboolexpr { \RunL > 0.667*\textwidth }
+		{\setlength{\RunL}{0pt}
+		\\}
+		{}
+	\begin{minipage}{\EqL}
+	\begin{equation}
+	\EqContent
+	\end{equation}
+	\end{minipage}
+	\renewcommand{\EqContent}{\nodollar{$|B|$
+	\qquad\textbf{[2]}}}
+	\settowidth{\EqL}{$\qquad\EqContent\qquad$}
+	\setlength{\RunL}{\RunL+\EqL}
+	\xintifboolexpr { \RunL > 0.667*\textwidth }
+		{\setlength{\RunL}{0pt}
+		\\}
+		{}
+	\begin{minipage}{\EqL}
+	\begin{equation}
+	\EqContent
+	\end{equation}
+	\end{minipage}
+	\renewcommand{\EqContent}{\nodollar{$A^{-1}$
+	\qquad\textbf{[2]}}}
+	\settowidth{\EqL}{$\qquad\EqContent\qquad$}
+	\setlength{\RunL}{\RunL+\EqL}
+	\xintifboolexpr { \RunL > 0.667*\textwidth }
+		{\setlength{\RunL}{0pt}
+		\\}
+		{}
+	\begin{minipage}{\EqL}
+	\begin{equation}
+	\EqContent
+	\end{equation}
+	\end{minipage}
+	\renewcommand{\EqContent}{\nodollar{$B^{-1}$
+	\qquad\textbf{[2]}}}
+	\settowidth{\EqL}{$\qquad\EqContent\qquad$}
+	\setlength{\RunL}{\RunL+\EqL}
+	\xintifboolexpr { \RunL > 0.667*\textwidth }
+		{\setlength{\RunL}{0pt}
+		\\}
+		{}
+	\begin{minipage}{\EqL}
+	\begin{equation}
+	\EqContent
+	\end{equation}
+	\end{minipage}
+\item Find the values of $x$ which solve the following equations. Note that $x_1 < x_2$ and make sure to enter your answers in square brackets, e.g.$[-5,3]$.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{multicols}{2}
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item $-{2}x^2 + {10}x + {9} = 0$
+	 \quad \textbf{[3]}
+		\item $x^2 + {20}x + {11} = 0$
+	 \quad \textbf{[3]}
+\end{enumerate}\end{multicols}\item Solve the following pair of equations. Make sure to enter your answers in square brackets, e.g. $[5,-3]$.
+ 
+\setcounter{equation}{0}  % reset counter 
+\begin{enumerate}
+	\setlength{\topsep}{-0pt}
+	\setlength{\partopsep}{-0pt}
+	\setlength{\itemsep}{10pt}
+			\item $\left\{\begin{aligned}
+	{16}x - {3}y & = {50}\\
+	{8}x + {2}y & = {4}\\
+	\end{aligned}\right.$
+	 \quad \textbf{[2]}
+\end{enumerate}
+
+\end{top_enumerate}
+%-------------------------------------------------------------------------------
+\end{document}
+%-------------------------------------------------------------------------------

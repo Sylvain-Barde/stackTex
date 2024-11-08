@@ -1,0 +1,88 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Mathematics
+
+\fieldname{subCategory} % Classification information
+Algebra
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+% Question A
+[qAr1,qAr2,qAt3,qAr4]:[-rand(10),rand(10)*rand([-1,1]),rand(10),rand(10)*rand([-1,1])]
+% Check if 'X' draws are the same, if so modify one of them
+qAr3:if qAt3 == qAr1 then qAt3+rand([-2,-1,1,2]) else qAt3
+[qAp1,qAp2]:[qAr4-qAr2,qAr3-qAr1]
+qAp3:qAp2*qAr2-qAp1*qAr1
+[qAp5,qAp6]:[qAp3/qAp2,qAp1/qAp2]
+qAsig:if qAp6 > 0 then "+" else ""
+
+\fieldname{questionBlurb}
+Given the following pair of coordinate points $(x,y)$, find and sketch the linear equation $y = ax + b$. Where necessary, make sure you enter any rational number as a fraction, and not as a decimal number.
+
+\fieldname{feedbackBlurb}
+Solution:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$A= ({qAr1},{qAr2}),\, B= ({qAr3},{qAr4})$
+
+\fieldname{prompt}
+$y=$
+
+\fieldname{solution}
+$\frac{{qAp3}}{{qAp2}}+\frac{{qAp1}}{{qAp2}}x$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+First, the slope is linear, which means that $a = \frac{y_B-y_A}{x_B-x_A}$. Once $a$ is known, its value can be replaced in the linear expression $y = ax + b$, and the $x$/$y$ values of either point can be used to determine the value of $b$.
+
+For $A= ({qAr1},{qAr2}),\, B= ({qAr3},{qAr4})$:
+\[
+\left\{\begin{aligned}
+a & = \frac{y_B-y_A}{x_B-x_A} = \frac{{qAr4}-{qAr2}}{{qAr3}-{qAr1}} = \frac{{qAp1}}{{qAp2}}\\
+b & = y_A -ax_A = {qAr2} - \frac{{qAp1}}{{qAp2}}{qAr1} = \frac{{qAp3}}{{qAp2}} \\
+ \end{aligned}\right.
+\]
+
+Therefore $y = \frac{{qAp3}}{{qAp2}} + \frac{{qAp1}}{{qAp2}}x \approx {qAp5} {qAsig} {qAp6}x$
+
+\begin{tikzpicture}
+\begin{axis}[
+xlabel=$x$,
+ylabel=$y$,
+axis lines = center,
+legend style={at={(0.5,-0.1)},anchor=north,draw=none,legend columns=-1}]
+\addplot[domain=-10:10,color=blue,]{ {qAp3}/{qAp2} +{qAp1}/{qAp2}*x};
+\addlegendentry{$y=ax+b$}
+\addplot[mark=*]coordinates {({qAr1},{qAr2})};
+\addlegendentry{$A$}
+\addplot[mark=o]coordinates {({qAr3},{qAr4})};
+\addlegendentry{$B$}
+\end{axis}
+\end{tikzpicture}
+
+%-------------------------------------------------------------------------------
+\end{document}

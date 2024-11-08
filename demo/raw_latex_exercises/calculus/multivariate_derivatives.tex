@@ -1,0 +1,149 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Mathematics
+
+\fieldname{subCategory} % Classification information
+Calculus
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+[r1,r2,r3,r4,r5]:[2+rand(9),3+rand(5),2+rand(9),2+rand(9),2+rand(4)]
+
+% Question A
+[qAp1,qAp2]:[r1*r2,r2-1]
+
+% Question B
+[qBp1,qBp2]:[2*r4,r5+1]
+
+% Question C
+[qCp1,qCp2]:[qAp1*qAp2,qAp2-1]
+
+% Question D
+[qDp1,qDp2]:[r5*qBp2,qBp2+1]
+
+\fieldname{questionBlurb}
+A multivariate function is given by:
+\[
+z = {r1}x^{r2} + {r3}xy + {r4}xy^2 - \frac{x}{y^{r5}}
+\]
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+Find the first-order partial derivative with respect to $x$.
+
+\fieldname{prompt}
+$\frac{\partial z}{\partial x}$
+
+\fieldname{solution}
+${qAp1}x^{qAp2} + {r3}y + {r4}y^2 - \frac{1}{y^{r5}}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+Find the first-order partial derivative with respect to $y$.
+
+\fieldname{prompt}
+$\frac{\partial z}{\partial y}$
+
+\fieldname{solution}
+${r3}x + {qBp1}xy + \frac{{r5}x}{y^{qBp2}}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+Find the second-order partial derivative with respect to $x$.
+
+\fieldname{prompt}
+$\frac{\partial^2 z}{\partial x^2}$
+
+\fieldname{solution}
+% $8$
+${qCp1}x^{qCp2}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+Find the second-order partial derivative with respect to $y$.
+
+\fieldname{prompt}
+$\frac{\partial^2 z}{\partial y^2}$
+
+\fieldname{solution}
+${qBp1}x - \frac{{qDp1}x}{y^{qDp2}}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+Find the second-order partial derivative with respect to $x$ and $y$.
+
+\fieldname{prompt}
+$\frac{\partial^2 z}{\partial x \partial y}$
+
+\fieldname{solution}
+${r3} + {qBp1}y + \frac{{r5}}{y^{qBp2}}$
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+4
+
+%-------------------------------------------------------------------------------
+\end{document}

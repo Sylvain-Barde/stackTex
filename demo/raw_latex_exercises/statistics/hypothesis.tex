@@ -1,0 +1,179 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Inference
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+% sample size, claim, std
+r1: 90+rand(21)
+r2: ceiling(r1/6) + 2 + rand(10)
+
+p1: r2/r1
+p2: p1 - 1/6
+p3: 5/36
+p4: sqrt(p3/r1)
+p5: p2/p4
+p6: r1/6
+
+solA:1/6
+
+solB:if abs(p5) > 1.96 then true else false
+txtB:if abs(p5) > 1.96 then "" else "not "
+
+solC:if abs(p5) > 1.645 then true else false
+txtC:if abs(p5) > 1.645 then "can " else "cannot "
+
+
+\fieldname{decimalPlaces}
+3
+
+\fieldname{questionBlurb}
+A pair of dice is tossed {r1} times and the sum is seven {r2} times.
+
+\fieldname{feedbackBlurb}
+Solution:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+If the dice were fair, what would be the probability of the sum being seven? Round to 3 decimal places if required.
+
+\fieldname{prompt}
+$P\left(X = 7\right)$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+With two dice, a throw will result in $6^2=36$ possible pairs of faces. There are $6$ possible ways that the sum of the two faces $X$ can be $7$:
+\[
+\begin{aligned}
+1 + 6 \quad & \quad 2 + 5 \quad & \quad 3 + 4\\
+4 + 3 \quad & \quad 5 + 2 \quad & \quad 6 + 1\\
+\end{aligned}
+\]
+If the dice are fair, all 36 outcomes are equally probable and the probability is therefore:
+$P\left(X = 7 \right) = \frac{6}{36} = \frac{1}{6}$
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+We can reject the hypothesis that the dice are fair using a two tailed test at 5\% significance. True or False?
+
+\fieldname{prompt}
+
+
+\fieldname{solution}
+solB
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+The information required to set up the hypothesis test is that the true proportion is $p = \frac{1}{6}$, while the sample proportion is $\hat p = {p1}$ with a population standard deviation component $\sigma = \sqrt{\frac{6}{36} \times \frac{30}{36}} = \sqrt{\frac{5}{36}}$ (remember, we assume that the null is true!). The sample size is $n={r1}$, therefore we can draw the critical values from the normal distribution.
+
+The hypotheses we want to test are:
+\[
+\left\{\begin{aligned}
+H_0: \, & p = \frac{1}{6} \\
+H_1: \, & p \ne \frac{1}{6} \\
+\end{aligned}\right.
+\]
+
+The test statistic is:
+\[
+t = \frac{\hat p - p}{\frac{\sigma}{\sqrt{n}}} = \frac{{p1}-\frac{1}{6}}{\sqrt{\frac{5}{36\times{r1}}}} = \frac{{p2}}{{p4}} = {p5}
+\]
+
+Given that we want 95\% confidence on a two-tailed test with a sample size of $n={r1}$, the critical value of the t-statistic is $z_{0.05} = 1.96$. This tells us that $t < z_{0.02}$, therefore there is {txtB}enough evidence to reject the null hypothesis that the dice are fair. The statement is \emph{{solB}}.
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+We can reject the hypothesis that the dice are fair using a one tailed test at 5\% significance. True or False? Explain which type of test you think is more appropriate in this case.
+
+\fieldname{prompt}
+
+
+\fieldname{solution}
+solC
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+For the one-tailed test, given that $\hat p > p$, we can set up the following hypotheses:
+\[
+\left\{\begin{aligned}
+H_0: \, & p \le \frac{1}{6} \\
+H_1: \, & p > \frac{1}{6} \\
+\end{aligned}\right.
+\]
+
+The  test statistic is the same as before, $t = {p5}$ If we want 95\% confidence, on a one-tailed test the critical value of the t-statistic becomes $z_{0.1} = 1.645$. This tells us that $t > z_{0.1}$, therefore we {txtC}reject the null hypothesis that the dice are fair. The statement is \emph{{solC}}.
+
+The difference here rests in the choice of alternate hypothesis. In a two-tailed test, the alternate hypothesis is $H_1: \, p \ne \frac{1}{6}$. We are simply stating the sample proportion is not equal to the stated proportion: it could be higher, or it could be lower. In the absence of information about how the dice might be unfair, this is the most conservative approach as it allows for either possibility. In contrast, with the one-tailed test, we have $H_1: \, p > \frac{1}{6}$: we are explicitly ruling out the possibility that the true proportion is lower than {p6} out of {r1}. This assumption allows us to reject the null more easily (i.e. with a smaller deviation from the stated proportion), at the risk of being very wrong if our assumption was incorrect.
+
+\begin{tikzpicture}
+\begin{axis}[
+    samples = 50,
+    axis lines = center,
+    legend style={at={(0.5,-0.1)},anchor=north, draw=none},
+    ymin=0,
+    ymax=0.75,
+    xmin=-4,
+    xmax=4,
+    xlabel = $x$,
+    ylabel = $f(x)$
+]
+\addplot[domain=-4:4,color=blue,]{0.39894228*exp(-0.5*x^2)};
+\addlegendentry{$N(0,1)$}
+\addplot[mark=no,color=black] coordinates { ({p5}, 0) ({p5}, 0.5)};
+\addlegendentry{$t$}
+\addplot[mark=no,color=red] coordinates { (1.96, 0) (1.96, 0.5)};
+\addlegendentry{$z_{0.05} = 1.96$}
+\addplot[mark=no,dashed,color=green] coordinates { (1.645, 0) (1.645, 0.5)};
+\addlegendentry{$z_{0.1} = 1.645$}
+\end{axis}
+\end{tikzpicture}
+
+%-------------------------------------------------------------------------------
+\end{document}

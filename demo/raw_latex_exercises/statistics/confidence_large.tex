@@ -1,0 +1,153 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Inference
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+r1:40+rand(21)
+r2:70+rand(21)
+r3:25 + rand(10)
+
+p1:(r3^2)/r1
+p2:sqrt(p1)
+
+cl_1:r2 - 1.645*round(p2*100)/100
+cr_1:r2 + 1.645*round(p2*100)/100
+
+cl_2:r2 - 1.96*round(p2*100)/100
+cr_2:r2 + 1.96*round(p2*100)/100
+
+cl_3:r2 - 2.575*round(p2*100)/100
+cr_3:r2 + 2.575*round(p2*100)/100
+
+solA: [cl_1, cr_1]
+solB: [cl_2, cr_2]
+solC: [cl_3, cr_3]
+
+\fieldname{decimalPlaces}
+2
+
+\fieldname{questionBlurb}
+A random sample of size $n={r1}$ is taken from a large population with known standard deviation $\sigma = {r3}$. If the sample mean is {r2}, calculate to 2 decimal places the following confidence intervals for the population mean $\mu$:
+
+\fieldname{feedbackBlurb}
+Solution:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+The 90\% confidence interval.
+
+\fieldname{prompt}
+$C.I._{90}$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+0.1
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+If the sample of size $n={r1}$ has a mean $\bar x = {r2}$ and the population has a standard deviation $\sigma={r3}$, then the sampling distribution of the mean follows a normal distribution:
+\[
+\bar X \sim N \left(\bar x,\frac{\sigma^2}{n}\right) = N \left({r2},\frac{{r3}^2}{{r1}}\right) = N \left({r2},{p1}\right)
+\]
+Note, we are given the population standard deviation $\sigma$, which means that we can use the Normal distribution to calculate the confidence interval regardless of sample size (i.e. we do not need the Central Limit Theorem).
+
+The 90\% confidence interval can be constructed using the standard normal distribution, but looking for the value of $z$ such that:
+\[
+P(-z < Z < z) = 0.9 \quad \iff \quad P(0 \le Z \le z) = 0.45
+\]
+Using the table of values, we find $z = \pm 1.645$. Using the mean and standard deviation of the distribution of $\bar X$, we can then recover 90\% confidence interval.
+\[
+C.I._{90} = \bar x \pm 1.645 \frac{\sigma}{\sqrt{n}} = {r2} \pm 1.645 \cdot {p2} = ({cl_1}, {cr_1})
+\]
+With 90\% confidence, the population mean $\mu$ is between {cl_1} and {cr_1}.
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+The 95\% confidence interval.
+
+\fieldname{prompt}
+$C.I._{95}$
+
+\fieldname{solution}
+solB
+
+\fieldname{tolerance}
+0.1
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+The 95\% confidence interval can be constructed by looking for the value of $z$ such that:
+\[
+P(-z < Z < z) = 0.95 \quad \iff \quad P(0 \le Z \le z) = 0.475
+\]
+Using the table of values, we find $z = \pm 1.96$. Using the mean and standard deviation of the distribution of $\bar X$, we can then recover 95\% confidence interval.
+\[
+C.I._{95} = \bar x \pm 1.96 \frac{\sigma}{\sqrt{n}} = {r2} \pm 1.96 \cdot {p2} = ({cl_2}, {cr_2})
+\]
+With 95\% confidence, the population mean $\mu$ is between {cl_2} and {cr_2}.
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+The 99\% confidence interval.
+
+\fieldname{prompt}
+$C.I._{99}$
+
+\fieldname{solution}
+solC
+
+\fieldname{tolerance}
+0.1
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+The 99\% confidence interval can be constructed by looking for the value of $z$ such that:
+\[
+P(-z < Z < z) = 0.99 \quad \iff \quad P(0 \le Z \le z) = 0.495
+\]
+Using the table of values, we find $z = \pm 2.575$. Using the mean and standard deviation of the distribution of $\bar X$, we can then recover 99\% confidence interval.
+\[
+C.I._{99} = \bar x \pm 2.575 \frac{\sigma}{\sqrt{n}} = {r2} \pm 2.575 \cdot {p2} = ({cl_3}, {cr_3})
+\]
+With 99\% confidence, the population mean $\mu$ is between {cl_3} and {cr_3}.
+
+%-------------------------------------------------------------------------------
+\end{document}

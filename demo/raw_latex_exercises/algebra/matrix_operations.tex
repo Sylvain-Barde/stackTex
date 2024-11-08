@@ -1,0 +1,289 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Mathematics
+
+\fieldname{subCategory} % Classification information
+Algebra
+
+\fieldname{questionFormat}
+HlistMath
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+%Random matrix A, designed so det(A) ~=0
+[ar1,ar2,ar3,ar4]: [rand(10), 1 + rand(8), 1 + rand(4), -1 - rand(5)]
+
+%Random matrix B, designed so det(B) ~=0
+[br1,br2,br3,br4]:[-1 - rand(8),1 + rand(5),rand(9),1 + rand(6)]
+
+% A+B
+[a1,a2,a3,a4]:[ar1 + br1,ar2 + br2,ar3 + br3,ar4 + br4]
+sol_a: [[a1,a2],[a3,a4]]
+
+% 2A-3B
+[bA0,bB0]:[2 + rand(4),2 + rand(6)]
+[b1,b2,b3,b4]:[bA0*ar1 - bB0*br1,bA0*ar2 - bB0*br2,bA0*ar3 - bB0*br3,bA0*ar4 - bB0*br4]
+sol_b: [[b1,b2],[b3,b4]]
+
+% 4A+B
+[cA0,cB0]:[2 + rand(8),2 + rand(4)]
+[c1,c2,c3,c4]:[cA0*ar1 + cB0*br1,cA0*ar2 + cB0*br2,cA0*ar3 + cB0*br3,cA0*ar4 + cB0*br4]
+sol_c: [[c1,c2],[c3,c4]]
+
+% AB
+[d1,d2,d3,d4]:[ar1*br1 + ar2*br3,ar1*br2 + ar2*br4,ar3*br1 + ar4*br3,ar3*br2 + ar4*br4]
+sol_d: [[d1,d2],[d3,d4]]
+
+% |A|
+detA:ar1*ar4 - ar2*ar3
+
+% |B|
+detB:br1*br4 - br2*br3
+
+% A^{-1}
+[adjA1,adjA2,adjA3,adjA4]: [ar4,-ar2,-ar3, ar1]
+[g1,g2,g3,g4]:[adjA1/detA,adjA2/detA,adjA3/detA,adjA4/detA]
+sol_g: [[adjA1/detA, adjA2/detA],[adjA3/detA,adjA4/detA]]
+
+% B^{-1}
+[adjB1, adjB2, adjB3, adjB4]: [br4,-br2,-br3,br1]
+[h1,h2,h3,h4]:[adjB1/detB,adjB2/detB,adjB3/detB,adjB4/detB]
+sol_h: [[adjB1/detB, adjB2/detB],[adjB3/detB,adjB4/detB]]
+
+
+\fieldname{decimalPlaces}
+2
+
+\fieldname{questionBlurb}
+Given \(A=\left( {\begin{array}{cc}
+   {ar1} & {ar2} \\
+   {ar3} & {ar4} \\
+ \end{array} } \right) \), \(B=\left( {\begin{array}{cc}
+     {br1} & {br2} \\
+     {br3} & {br4} \\
+    \end{array} } \right) \), calculate the following matrix operations. Where necessary, make sure you keep any rational number as a fraction, and not as a decimal number.
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$A+B$
+
+\fieldname{prompt}
+$A+B$
+
+\fieldname{solution}
+sol_a
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+1
+
+\fieldname{feedbackText}
+$A+B = \left( {\begin{array}{cc}
+    {a1} & {a2} \\
+    {a3} & {a4} \\
+ \end{array} } \right) $
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+${bA0}A-{bB0}B$
+
+\fieldname{prompt}
+${bA0}A-{bB0}B$
+
+\fieldname{solution}
+sol_b
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+1
+
+\fieldname{feedbackText}
+${bA0}A-{bB0}B = \left( {\begin{array}{cc}
+   {b1} & {b2} \\
+   {b3} & {b4} \\
+ \end{array} } \right) $
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+${cA0}A+{cB0}B$
+
+\fieldname{prompt}
+${cA0}A+{cB0}B$
+
+\fieldname{solution}
+sol_c
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+1
+
+\fieldname{feedbackText}
+${cA0}A+{cB0}B = \left( {\begin{array}{cc}
+   {c1} & {c2} \\
+   {c3} & {c4} \\
+ \end{array} } \right) $
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$AB$
+
+\fieldname{prompt}
+$AB$
+
+\fieldname{solution}
+sol_d
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+$AB = \left( {\begin{array}{cc}
+   {d1} & {d2} \\
+   {d3} & {d4} \\
+ \end{array} } \right) $
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$|A|$
+
+\fieldname{prompt}
+$|A|$
+
+\fieldname{solution}
+detA
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+$|A| = {ar1} \times {ar4} - ({ar2} \times {ar3}) = {detA}$
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$|B|$
+
+\fieldname{prompt}
+$|B|$
+
+\fieldname{solution}
+detB
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+$|B| = {br1} \times {br4} - ({br2} \times {br3}) = {detB}$
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$A^{-1}$
+
+\fieldname{prompt}
+$A^{-1}$
+
+\fieldname{solution}
+sol_g
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+$A^{-1} = \frac{\textrm{Adj}A}{|A|} = \left( {\begin{array}{cc}
+    \frac{{adjA1}}{{detA}} & \frac{{adjA2}}{{detA}} \\
+    \frac{{adjA3}}{{detA}} & \frac{{adjA4}}{{detA}} \\
+  \end{array} } \right) \approx \left( {\begin{array}{cc}
+       {g1} & {g2} \\
+       {g3} & {g4} \\
+      \end{array} } \right) $
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$B^{-1}$
+
+\fieldname{prompt}
+$B^{-1}$
+
+\fieldname{solution}
+sol_h
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+2
+
+\fieldname{feedbackText}
+$B^{-1} = \frac{\textrm{Adj}B}{|B|} = \left( {\begin{array}{cc}
+    \frac{{adjB1}}{{detB}} & \frac{{adjB2}}{{detB}} \\
+    \frac{{adjB3}}{{detB}} & \frac{{adjB4}}{{detB}} \\
+  \end{array} } \right) \approx \left( {\begin{array}{cc}
+       {h1} & {h2} \\
+       {h3} & {h4} \\
+      \end{array} } \right)$
+
+%-------------------------------------------------------------------------------
+\end{document}

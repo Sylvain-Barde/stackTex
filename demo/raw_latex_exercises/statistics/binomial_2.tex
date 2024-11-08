@@ -1,0 +1,109 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Probability distributions
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+% Part a
+n0: 6 + rand(5)
+n2: 1 + rand(3)
+n1: n0 - n2
+
+% Part b
+n3: 5 + rand(5)
+n4: 1 + rand(3)
+n5: n3 - n4
+
+pSa: 1/2
+pSb: 1/6
+
+p0: binom_pdf(n1,n0,pSa)
+p1: binom_pdf(n4,n3,pSb)
+
+solA:round(10000*p0)/10000
+solB:round(10000*p1)/10000
+
+\fieldname{decimalPlaces}
+4
+
+\fieldname{questionBlurb}
+What is the probability, rounded to 4 decimal places:
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Of getting exactly {n1} heads and {n2} tails in {n0} tosses of a fair coin?
+
+\fieldname{prompt}
+$P(H = {n1})$
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+
+The probability of getting $H$ heads can be calculated using a Binomial distribution, with $N={n0}$ being the number of trials and $p=1/2$ being the probability of a success (getting a heads):
+\[
+P(H = {n1})  = C^{{n0}}_{{n1}}  \left(\frac{1}{2}\right)^{{n0}} \approx {solA}
+\]
+Note that we define $H$ as the number of heads, however one could chose instead to count the number of tails. The binomial formula should provide the same answers in both cases, as $C^{{n0}}_{{n1}} = C^{{n0}}_{{n2}}$ and $p=1-p=1/2$. Hopefully this is intuitive, the probability of the event should be the same whether you count heads or tails.
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Numerical
+
+\fieldname{questionText}
+Of getting {n4} sixes in {n3} rolls of a fair dice?
+
+\fieldname{prompt}
+$P(X = {n4})$
+
+\fieldname{solution}
+solB
+
+\fieldname{tolerance}
+0.001
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+
+The probability of getting $X$ sixes can be calculated using a Binomial distribution, with $N={n0}$ being the number of trials and $p=1/6$ being the probability of a success (getting a six):
+\[
+P(X = {n4})  = C^{{n3}}_{{n4}}  \left(\frac{1}{6}\right)^{{n4}} \left(\frac{5}{6}\right)^{{n5}} \approx {solB}
+\]
+
+
+%-------------------------------------------------------------------------------
+\end{document}

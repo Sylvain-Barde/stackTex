@@ -1,0 +1,926 @@
+{
+    "Ex_1": {
+        "tag": 1,
+        "source": "demo/raw_latex_exercises/algebra/linear_slope.tex",
+        "category": "Mathematics",
+        "subCategory": "Algebra",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "Given the following pair of coordinate points $(x,y)$, find and sketch the linear equation $y = ax + b$. Where necessary, make sure you enter any rational number as a fraction, and not as a decimal number.",
+            "types": [
+                "Algebraic"
+            ],
+            "items": [
+                "$A= ({qAr1},{qAr2}),\\, B= ({qAr3},{qAr4})$"
+            ],
+            "prompts": [
+                "$y=$"
+            ],
+            "marks": [
+                "3"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solution:",
+            "items": [
+                "$\\frac{{qAp3}}{{qAp2}}+\\frac{{qAp1}}{{qAp2}}x$"
+            ],
+            "tolerance": [
+                ""
+            ],
+            "feedback": [
+                "First, the slope is linear, which means that $a = \\frac{y_B-y_A}{x_B-x_A}$. Once $a$ is known, its value can be replaced in the linear expression $y = ax + b$, and the $x$/$y$ values of either point can be used to determine the value of $b$.\n\nFor $A= ({qAr1},{qAr2}),\\, B= ({qAr3},{qAr4})$:\n\\[\n\\left\\{\\begin{aligned}\na & = \\frac{y_B-y_A}{x_B-x_A} = \\frac{{qAr4}-{qAr2}}{{qAr3}-{qAr1}} = \\frac{{qAp1}}{{qAp2}}\\\\\nb & = y_A -ax_A = {qAr2} - \\frac{{qAp1}}{{qAp2}}{qAr1} = \\frac{{qAp3}}{{qAp2}} \\\\\n \\end{aligned}\\right.\n\\]\n\nTherefore $y = \\frac{{qAp3}}{{qAp2}} + \\frac{{qAp1}}{{qAp2}}x \\approx {qAp5} {qAsig} {qAp6}x$\n\n\\begin{tikzpicture}\n\\begin{axis}[\nxlabel=$x$,\nylabel=$y$,\naxis lines = center,\nlegend style={at={(0.5,-0.1)},anchor=north,draw=none,legend columns=-1}]\n\\addplot[domain=-10:10,color=blue,]{ {qAp3}/{qAp2} +{qAp1}/{qAp2}*x};\n\\addlegendentry{$y=ax+b$}\n\\addplot[mark=*]coordinates {({qAr1},{qAr2})};\n\\addlegendentry{$A$}\n\\addplot[mark=o]coordinates {({qAr3},{qAr4})};\n\\addlegendentry{$B$}\n\\end{axis}\n\\end{tikzpicture}"
+            ]
+        },
+        "params": "[qAr1,qAr2,qAt3,qAr4]:[-rand(10),rand(10)*rand([-1,1]),rand(10),rand(10)*rand([-1,1])]\nqAr3:if qAt3 == qAr1 then qAt3+rand([-2,-1,1,2]) else qAt3\n[qAp1,qAp2]:[qAr4-qAr2,qAr3-qAr1]\nqAp3:qAp2*qAr2-qAp1*qAr1\n[qAp5,qAp6]:[qAp3/qAp2,qAp1/qAp2]\nqAsig:if qAp6 > 0 then \"+\" else \"\""
+    },
+    "Ex_2": {
+        "tag": 2,
+        "source": "demo/raw_latex_exercises/algebra/matrix_operations.tex",
+        "category": "Mathematics",
+        "subCategory": "Algebra",
+        "questions": {
+            "format": "HlistMath",
+            "blurb": "Given \\(A=\\left( {\\begin{array}{cc}\n   {ar1} & {ar2} \\\\\n   {ar3} & {ar4} \\\\\n \\end{array} } \\right) \\), \\(B=\\left( {\\begin{array}{cc}\n     {br1} & {br2} \\\\\n     {br3} & {br4} \\\\\n    \\end{array} } \\right) \\), calculate the following matrix operations. Where necessary, make sure you keep any rational number as a fraction, and not as a decimal number.",
+            "types": [
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic"
+            ],
+            "items": [
+                "$A+B$",
+                "${bA0}A-{bB0}B$",
+                "${cA0}A+{cB0}B$",
+                "$AB$",
+                "$|A|$",
+                "$|B|$",
+                "$A^{-1}$",
+                "$B^{-1}$"
+            ],
+            "prompts": [
+                "$A+B$",
+                "${bA0}A-{bB0}B$",
+                "${cA0}A+{cB0}B$",
+                "$AB$",
+                "$|A|$",
+                "$|B|$",
+                "$A^{-1}$",
+                "$B^{-1}$"
+            ],
+            "marks": [
+                "1",
+                "1",
+                "1",
+                "3",
+                "2",
+                "2",
+                "2",
+                "2"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:",
+            "items": [
+                "sol_a",
+                "sol_b",
+                "sol_c",
+                "sol_d",
+                "detA",
+                "detB",
+                "sol_g",
+                "sol_h"
+            ],
+            "tolerance": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            "feedback": [
+                "$A+B = \\left( {\\begin{array}{cc}\n    {a1} & {a2} \\\\\n    {a3} & {a4} \\\\\n \\end{array} } \\right) $",
+                "${bA0}A-{bB0}B = \\left( {\\begin{array}{cc}\n   {b1} & {b2} \\\\\n   {b3} & {b4} \\\\\n \\end{array} } \\right) $",
+                "${cA0}A+{cB0}B = \\left( {\\begin{array}{cc}\n   {c1} & {c2} \\\\\n   {c3} & {c4} \\\\\n \\end{array} } \\right) $",
+                "$AB = \\left( {\\begin{array}{cc}\n   {d1} & {d2} \\\\\n   {d3} & {d4} \\\\\n \\end{array} } \\right) $",
+                "$|A| = {ar1} \\times {ar4} - ({ar2} \\times {ar3}) = {detA}$",
+                "$|B| = {br1} \\times {br4} - ({br2} \\times {br3}) = {detB}$",
+                "$A^{-1} = \\frac{\\textrm{Adj}A}{|A|} = \\left( {\\begin{array}{cc}\n    \\frac{{adjA1}}{{detA}} & \\frac{{adjA2}}{{detA}} \\\\\n    \\frac{{adjA3}}{{detA}} & \\frac{{adjA4}}{{detA}} \\\\\n  \\end{array} } \\right) \\approx \\left( {\\begin{array}{cc}\n       {g1} & {g2} \\\\\n       {g3} & {g4} \\\\\n      \\end{array} } \\right) $",
+                "$B^{-1} = \\frac{\\textrm{Adj}B}{|B|} = \\left( {\\begin{array}{cc}\n    \\frac{{adjB1}}{{detB}} & \\frac{{adjB2}}{{detB}} \\\\\n    \\frac{{adjB3}}{{detB}} & \\frac{{adjB4}}{{detB}} \\\\\n  \\end{array} } \\right) \\approx \\left( {\\begin{array}{cc}\n       {h1} & {h2} \\\\\n       {h3} & {h4} \\\\\n      \\end{array} } \\right)$"
+            ]
+        },
+        "params": "[ar1,ar2,ar3,ar4]: [rand(10), 1 + rand(8), 1 + rand(4), -1 - rand(5)]\n\n[br1,br2,br3,br4]:[-1 - rand(8),1 + rand(5),rand(9),1 + rand(6)]\n\n[a1,a2,a3,a4]:[ar1 + br1,ar2 + br2,ar3 + br3,ar4 + br4]\nsol_a: [[a1,a2],[a3,a4]]\n\n[bA0,bB0]:[2 + rand(4),2 + rand(6)]\n[b1,b2,b3,b4]:[bA0*ar1 - bB0*br1,bA0*ar2 - bB0*br2,bA0*ar3 - bB0*br3,bA0*ar4 - bB0*br4]\nsol_b: [[b1,b2],[b3,b4]]\n\n[cA0,cB0]:[2 + rand(8),2 + rand(4)]\n[c1,c2,c3,c4]:[cA0*ar1 + cB0*br1,cA0*ar2 + cB0*br2,cA0*ar3 + cB0*br3,cA0*ar4 + cB0*br4]\nsol_c: [[c1,c2],[c3,c4]]\n\n[d1,d2,d3,d4]:[ar1*br1 + ar2*br3,ar1*br2 + ar2*br4,ar3*br1 + ar4*br3,ar3*br2 + ar4*br4]\nsol_d: [[d1,d2],[d3,d4]]\n\ndetA:ar1*ar4 - ar2*ar3\n\ndetB:br1*br4 - br2*br3\n\n[adjA1,adjA2,adjA3,adjA4]: [ar4,-ar2,-ar3, ar1]\n[g1,g2,g3,g4]:[adjA1/detA,adjA2/detA,adjA3/detA,adjA4/detA]\nsol_g: [[adjA1/detA, adjA2/detA],[adjA3/detA,adjA4/detA]]\n\n[adjB1, adjB2, adjB3, adjB4]: [br4,-br2,-br3,br1]\n[h1,h2,h3,h4]:[adjB1/detB,adjB2/detB,adjB3/detB,adjB4/detB]\nsol_h: [[adjB1/detB, adjB2/detB],[adjB3/detB,adjB4/detB]]",
+        "decimalPlaces": "2"
+    },
+    "Ex_3": {
+        "tag": 3,
+        "source": "demo/raw_latex_exercises/algebra/quadratic_roots.tex",
+        "category": "Mathematics",
+        "subCategory": "Algebra",
+        "questions": {
+            "format": "ColList",
+            "blurb": "Find the values of $x$ which solve the following equations. Note that $x_1 < x_2$ and make sure to enter your answers in square brackets, e.g.$[-5,3]$.",
+            "types": [
+                "Algebraic",
+                "Algebraic"
+            ],
+            "items": [
+                "$-{qAr1}x^2 + {qAr2}x + {qAr3} = 0$",
+                "$x^2 + {qBr1}x + {qBr2} = 0$"
+            ],
+            "prompts": [
+                "$[x_1,x_2]$",
+                "$[x_1,x_2]$"
+            ],
+            "marks": [
+                "3",
+                "3"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:",
+            "items": [
+                "solA",
+                "solB"
+            ],
+            "tolerance": [
+                "",
+                ""
+            ],
+            "feedback": [
+                "The discriminant of the quadratic is:\n\\[\n{qAr2}^2+4\\cdot{qAr1}\\cdot{qAr3} = {qAp1} + {qAp2} = {qAp3}\n\\]\nAs the discriminant is positive, there are two real roots to the quadratic:\n\\[\n\\left\\{\\begin{aligned}\nx_1 & = \\frac{-{qAr2}+\\sqrt{{qAp3}}}{-{qAp4}} = \\frac{{qAr2}-\\sqrt{{qAp3}}}{{qAp4}}\\\\\nx_2 & = \\frac{-{qAr2}-\\sqrt{{qAp3}}}{-{qAp4}} = \\frac{{qAr2}+\\sqrt{{qAp3}}}{{qAp4}}\\\\\n\\end{aligned}\\right.\n\\]",
+                "The discriminant of the quadratic is:\n\\[\n{qBr1}^2-4\\cdot{qBr2} = {qBp1} - {qBp2} = {qBp3}\n\\]\nAs the discriminant is positive, there are two real roots to the quadratic:\n\\[\n\\left\\{\\begin{aligned}\nx_1 & = \\frac{-{qBr1}-\\sqrt{{qBp3}}}{2} = -{qBp4} - \\sqrt{{qBp5}}\\\\\nx_2 & = \\frac{-{qBr1}+\\sqrt{{qBp3}}}{2} = -{qBp4} + \\sqrt{{qBp5}}\\\\\n\\end{aligned}\\right.\n\\]"
+            ]
+        },
+        "params": "[qAr1,qAr2,qAr3]:[2+rand(2),4+rand(7),3+rand(10)]\n[qAp1,qAp2]:[qAr2^2,4*qAr1*qAr3]\n[qAp3,qAp4]:[qAp1+qAp2,2*qAr1]\nsolA:[(qAr2-qAp3^(1/2))/(qAp4),(qAr2+qAp3^(1/2))/(qAp4)]\n\n[qBr1,qBr2]:[12+2*rand(7),rand([3,5,7,11])]\n[qBp1,qBp2]:[qBr1^2,4*qBr2]\n[qBp3,qBp4,qBp5]:[qBp1-qBp2,qBr1/2,(qBp1-qBp2)/4]\nsolB:[-qBp4-(qBp5^(1/2)),-qBp4+(qBp5^(1/2))]",
+        "decimalPlaces": "3"
+    },
+    "Ex_4": {
+        "tag": 4,
+        "source": "demo/raw_latex_exercises/algebra/system_of_equations.tex",
+        "category": "Mathematics",
+        "subCategory": "Algebra",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "Solve the following pair of equations. Make sure to enter your answers in square brackets, e.g. $[5,-3]$.",
+            "types": [
+                "Algebraic"
+            ],
+            "items": [
+                "$\\left\\{\\begin{aligned}\n{qAp1}x - {qAr2}y & = {qAp2}\\\\\n{qAr1}x + {qAr3}y & = {qAp3}\\\\\n\\end{aligned}\\right.$"
+            ],
+            "prompts": [
+                "$(x,y)$"
+            ],
+            "marks": [
+                "2"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "The approach used here is to solve by adding/subtracting one equation from the other. Note that it can help to plot the two linear equations, the coordinates of the intersection point gives the solution to the system of equations.",
+            "items": [
+                "solA"
+            ],
+            "tolerance": [
+                ""
+            ],
+            "feedback": [
+                "Multiplying the second equation by ${qAr4}$ and subtracting each side to the first equation:\n\\[\n\\begin{aligned}\n{qAp1}x - {qAr2}y - {qAr4}({qAr1}x + {qAr3}y) & = {qAp2} - {qAr4}\\cdot{qAp3}\\\\\n{qAp4}y & = {qAp5}\\\\\ny & = {qAy}\\\\\n\\end{aligned}\n\\]\nReplace in equation 1 to solve for $x$\n\\[\n\\begin{aligned}\n{qAp1}x-{qAr2}\\cdot{qAy} & = {qAp2}\\\\\n{qAp1}x & = {qAp6}\\\\\nx & = {qAx}\\\\\n\\end{aligned}\n\\]\n\n\\begin{tikzpicture}\n\\begin{axis}[\nxlabel=$x$,\nylabel=$y$,\naxis lines = center,\nlegend style={at={(0.5,-0.1)},anchor=north,draw=none,legend columns=-1}]\n\\addplot[domain=-10:10,color=blue]{({qAp1}/{qAr2})*x-({qAp2}/{qAr2})};\n\\addlegendentry{Equation 1}\n\\addplot[domain=-10:10,color=red]{-({qAr1}/{qAr3})*x+({qAp3}/{qAr3})};\n\\addlegendentry{Equation 2}\n\\addplot[mark=*]coordinates {({qAx},{qAy})};\n\\addlegendentry{Solution point}\n\\end{axis}\n\\end{tikzpicture}"
+            ]
+        },
+        "params": "[qAx,qAy]:[(1+rand(10))*rand([-1,1]),(1+rand(10))*rand([-1,1])]\n[qAr1,qAr2,qAr3,qAr4]:[2+rand(7),2+rand(7),2+rand(12),2+rand(3)]\nqAp1:qAr4*qAr1\n[qAp2,qAp3]:[qAp1*qAx-qAr2*qAy,qAr1*qAx+qAr3*qAy]\n[qAp4,qAp5,qAp6]:[-qAr2-qAr4*qAr3, qAp2 - qAr4*qAp3, qAp2 + qAr2*qAy]\nsolA:[qAx,qAy]"
+    },
+    "Ex_5": {
+        "tag": 5,
+        "source": "demo/raw_latex_exercises/calculus/multivariate_derivatives.tex",
+        "category": "Mathematics",
+        "subCategory": "Calculus",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "A multivariate function is given by:\n\\[\nz = {r1}x^{r2} + {r3}xy + {r4}xy^2 - \\frac{x}{y^{r5}}\n\\]",
+            "types": [
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic"
+            ],
+            "items": [
+                "Find the first-order partial derivative with respect to $x$.",
+                "Find the first-order partial derivative with respect to $y$.",
+                "Find the second-order partial derivative with respect to $x$.",
+                "Find the second-order partial derivative with respect to $y$.",
+                "Find the second-order partial derivative with respect to $x$ and $y$."
+            ],
+            "prompts": [
+                "$\\frac{\\partial z}{\\partial x}$",
+                "$\\frac{\\partial z}{\\partial y}$",
+                "$\\frac{\\partial^2 z}{\\partial x^2}$",
+                "$\\frac{\\partial^2 z}{\\partial y^2}$",
+                "$\\frac{\\partial^2 z}{\\partial x \\partial y}$"
+            ],
+            "marks": [
+                "2",
+                "2",
+                "3",
+                "3",
+                "4"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:",
+            "items": [
+                "${qAp1}x^{qAp2} + {r3}y + {r4}y^2 - \\frac{1}{y^{r5}}$",
+                "${r3}x + {qBp1}xy + \\frac{{r5}x}{y^{qBp2}}$",
+                "${qCp1}x^{qCp2}$",
+                "${qBp1}x - \\frac{{qDp1}x}{y^{qDp2}}$",
+                "${r3} + {qBp1}y + \\frac{{r5}}{y^{qBp2}}$"
+            ],
+            "tolerance": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        "params": "[r1,r2,r3,r4,r5]:[2+rand(9),3+rand(5),2+rand(9),2+rand(9),2+rand(4)]\n\n[qAp1,qAp2]:[r1*r2,r2-1]\n\n[qBp1,qBp2]:[2*r4,r5+1]\n\n[qCp1,qCp2]:[qAp1*qAp2,qAp2-1]\n\n[qDp1,qDp2]:[r5*qBp2,qBp2+1]"
+    },
+    "Ex_6": {
+        "tag": 6,
+        "source": "demo/raw_latex_exercises/calculus/total_derivatives.tex",
+        "category": "Mathematics",
+        "subCategory": "Calculus",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "Find the total differentials of the following functions:\n\n(Tip: use 'd' as the total differential operator, so type 'dx' for $\\textrm{d}x$)",
+            "types": [
+                "Algebraic",
+                "Algebraic"
+            ],
+            "items": [
+                "$f(x,y) = x^{qAr1} + {qAr2}x^{qAr3}y^{qAr4} + y^{qAr5}$",
+                "$f(x,y) = {qBr1}x^{\\frac{{qBp1}}{{qBr2}}}y^{\\frac{1}{{qBr2}}}$"
+            ],
+            "prompts": [
+                "$\\textrm{d}f(x,y)$",
+                "$\\textrm{d}f(x,y)$"
+            ],
+            "marks": [
+                "3",
+                "3"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "The total differential of a function $f(x,y)$ is given by:\n\\[\n\\textrm{d}f(x,y) = \\frac{\\partial f(x,y)}{\\partial x}\\textrm{d}x + \\frac{\\partial f(x,y)}{\\partial y}\\textrm{d}y\n\\]",
+            "items": [
+                "$({qAr1}x^{qAp1} + {qAp2}x^{qAp4}y^{qAr4})dx + ({qAp3}x^{qAr3}y^{qAp5} + {qAr5}y^{qAp6})dy$",
+                "$(\\frac{{qBp2}}{{qBr2}}x^{-\\frac{1}{{qBr2}}}y^{\\frac{1}{{qBr2}}})dx + (\\frac{{qBr1}}{{qBr2}}x^{\\frac{{qBp1}}{{qBr2}}}y^{-\\frac{{qBp1}}{{qBr2}}})dy$"
+            ],
+            "tolerance": [
+                "",
+                ""
+            ],
+            "feedback": [
+                "The partial derivatives of the function with respect to $x$ and $y$ are:\n\\[\n\\left\\{\\begin{aligned}\n\\frac{\\partial f(x,y)}{\\partial x} & = {qAr1}x^{qAp1} + {qAp2}x^{qAp4}y^{qAr4}\\\\\n\\frac{\\partial f(x,y)}{\\partial y} & = {qAp3}x^{qAr3}y^{qAp5} + {qAr5}y^{qAp6}\\\\\n\\end{aligned}\\right.\n\\]\nReplacing in the expression for the total differential gives:\n\\[\n\\textrm{d}f(x,y) = \\left({qAr1}x^{qAp1} + {qAp2}x^{qAp4}y^{qAr4}\\right)\\textrm{d}x + \\left({qAp3}x^{qAr3}y^{qAp5} + {qAr5}y^{qAp6}\\right)\\textrm{d}y\n\\]",
+                "The partial derivatives of the function with respect to $x$ and $y$ are:\n\\[\n\\left\\{\\begin{aligned}\n\\frac{\\partial f(x,y)}{\\partial x} & = \\frac{{qBp2}}{{qBr2}}x^{-\\frac{1}{{qBr2}}}y^{\\frac{1}{{qBr2}}}\\\\\n\\frac{\\partial f(x,y)}{\\partial y} & = \\frac{{qBr1}}{{qBr2}}x^{\\frac{{qBp1}}{{qBr2}}}y^{-\\frac{{qBp1}}{{qBr2}}}\\\\\n\\end{aligned}\\right.\n\\]\nReplacing in the expression for the total differential gives:\n\\[\n\\textrm{d}f(x,y) = \\left(\\frac{{qBp2}}{{qBr2}}x^{-\\frac{1}{{qBr2}}}y^{\\frac{1}{{qBr2}}}\\right)\\textrm{d}x + \\left(\\frac{{qBr1}}{{qBr2}}x^{\\frac{{qBp1}}{{qBr2}}}y^{-\\frac{{qBp1}}{{qBr2}}}\\right)\\textrm{d}y\n\\]"
+            ]
+        },
+        "params": "[qAr1,qAr2,qAr3,qAr4,qAr5]:[2+rand(5),2+rand(9),2+rand(5),2+rand(5),2+rand(5)]\n[qAp1,qAp2,qAp3,qAp4,qAp5,qAp6]:[qAr1-1,qAr2*qAr3,qAr2*qAr4,qAr3-1,qAr4-1,qAr5-1]\n\n[qBr1,qBr2]:[2+rand(9),2+rand(9)]\nqBp1:qBr2-1\nqBp2:qBp1*qBr1"
+    },
+    "Ex_7": {
+        "tag": 7,
+        "source": "demo/raw_latex_exercises/calculus/univariate_derivatives.tex",
+        "category": "Mathematics",
+        "subCategory": "Calculus",
+        "questions": {
+            "format": "ColList",
+            "blurb": "Differentiate each of the following functions with respect to $x$. Use an appropriate notation in each case.",
+            "types": [
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic",
+                "Algebraic"
+            ],
+            "items": [
+                "$y = {qAr1}$",
+                "$y = {qBr1}$",
+                "$y = {qCr1}x+{qCr2}$",
+                "$f(x) = {qDr1}x-{qDr2}$",
+                "$y = {qEr1}x^2$",
+                "$f(x)={qFr1}x^{qFr2}$",
+                "$y = {qGr1}x^3 - {qGr2}x^2 + {qGr3}x + {qGr4}$",
+                "$y = {qHr1}x^{qHr2} + {qHr3}x^{qHr4} - {qHr5}x^{qHr6} - {qHr7}$"
+            ],
+            "prompts": [
+                "$\\frac{\\textrm{d}y}{\\textrm{d}x}$",
+                "$\\frac{\\textrm{d}}{\\textrm{d}x}y$",
+                "$y'$",
+                "$f'(x)$",
+                "$\\frac{\\textrm{d}}{\\textrm{d}x}({qEr1}x^2)$",
+                "$f_x$",
+                "$\\frac{\\textrm{d}y}{\\textrm{d}x}$",
+                "$\\frac{\\textrm{d}y}{\\textrm{d}x}$"
+            ],
+            "marks": [
+                "1",
+                "1",
+                "1",
+                "1",
+                "2",
+                "2",
+                "2",
+                "2"
+            ]
+        },
+        "solutions": {
+            "format": "ColList",
+            "blurb": "Solutions:",
+            "items": [
+                "${solA}$",
+                "${solB}$",
+                "${solC}$",
+                "${solD}$",
+                "${qEp1}x$",
+                "${qFp1}x^{qFp2}$",
+                "${qGp1}x^2 - {qGp2}x + {qGr3}$",
+                "${qHp1}x^{qHp2} + {qHp3}x^{qHp4} - {qHp5}x^{qHp6}$"
+            ],
+            "tolerance": [
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        "params": "[qAr1,solA]:[(2+rand(25))*rand([-1,1]),0]\n\n[qBr1,solB]:[(2+rand(25))*rand([-1,1]),0]\n\n[qCr1,qCr2]:[(2+rand(13))*rand([-1,1]),5+rand(15)]\nsolC:qCr1\n\n[qDr1,qDr2]:[(2+rand(13))*rand([-1,1]),5+rand(15)]\nsolD:qDr1\n\nqEr1:(2+rand(9))*rand([-1,1])\nqEp1:2*qEr1\n\n[qFr1,qFr2]:[(2+rand(9))*rand([-1,1]),2+rand(4)]\n[qFp1,qFp2]:[qFr1*qFr2,qFr2-1]\n\n[qGr1,qGr2,qGr3,qGr4]:[(2+rand(9))*rand([-1,1]),2+rand(9),2+rand(9),2+rand(9)]\n[qGp1,qGp2]:[3*qGr1,2*qGr2]\n\n[qHr1,qHr2,qHr3,qHr4,qHr5,qHr6,qHr7]:[2+rand(9),6+rand(3),2+rand(9),4+rand(2),2+rand(9),2+rand(2),2+rand(9)]\n[qHp1,qHp2,qHp3,qHp4,qHp5,qHp6]:[qHr1*qHr2,qHr2-1,qHr3*qHr4,qHr4-1,qHr5*qHr6,qHr6-1]"
+    },
+    "Ex_8": {
+        "tag": 8,
+        "source": "demo/raw_latex_exercises/statistics/binomial_1.tex",
+        "category": "Statistics",
+        "subCategory": "Probability distributions",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "Suppose {n0}\\% of customers at Aldi pay by cash. In a random sample of {n1} customers, what is the probability (rounded to 4 decimal places) that:",
+            "types": [
+                "Numerical",
+                "Numerical"
+            ],
+            "items": [
+                "Two of the customers pay by cash?",
+                "At least two of the customers pay by cash?"
+            ],
+            "prompts": [
+                "$P(X = 2)$",
+                "$P(X \\ge 2)$"
+            ],
+            "marks": [
+                "2",
+                "2"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:\n\nThe probability of a given number of customers $X$ paying in cash can be modelled using a Binomial distribution, with $N={n1}$ being the number of trials and $p={pS}$ the probability of a success (paying in cash):\n\\[\nP(X=k \\, | \\, n={n1},p={pS}) \\quad = \\quad C^{{n1}}_k {pS}^k {pF}^{{n1}-k}\n\\]",
+            "items": [
+                "solA",
+                "solB"
+            ],
+            "tolerance": [
+                "0.001",
+                "0.001"
+            ],
+            "feedback": [
+                "\\[\nP(X = 2)  = C^{{n1}}_2 {pS}^2 {pF}^{{n1}-2} \\approx {p2}\n\\]",
+                "To calculated $P(X \\ge 2)$, one first decomposes the probability as:\n\\[\nP(X \\ge 2) = 1 - P(X<2) = 1 - P(X=0) - P(X=1)\n\\]\nEach individual probability can be calculated using the binomial formula:\n\\[\n\\begin{aligned}\nP(X \\ge 2) &= 1 - C^{{n1}}_0 {pS}^0 {pF}^{{n1}} - C^{{n1}}_1 {pS}^1 {pF}^{{n1}-1}\\\\\nP(X \\ge 2) &\\approx 1 - {p0} - {p1} \\\\\nP(X \\ge 2) &\\approx {solB} \\\\\n\\end{aligned}\n\\]"
+            ]
+        },
+        "params": "n0: 18 + rand(5)\nn1: 8 + rand(7)\n\npS: n0/100\npF: 1-pS\n\np0: binom_pdf(0,n1,pS)\np1: binom_pdf(1,n1,pS)\np2: binom_pdf(2,n1,pS)\np3: 1-p0-p1\n\nsolA:round(10000*p2)/10000\nsolB:round(10000*p3)/10000",
+        "decimalPlaces": "4"
+    },
+    "Ex_9": {
+        "tag": 9,
+        "source": "demo/raw_latex_exercises/statistics/binomial_2.tex",
+        "category": "Statistics",
+        "subCategory": "Probability distributions",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "What is the probability, rounded to 4 decimal places:",
+            "types": [
+                "Numerical",
+                "Numerical"
+            ],
+            "items": [
+                "Of getting exactly {n1} heads and {n2} tails in {n0} tosses of a fair coin?",
+                "Of getting {n4} sixes in {n3} rolls of a fair dice?"
+            ],
+            "prompts": [
+                "$P(H = {n1})$",
+                "$P(X = {n4})$"
+            ],
+            "marks": [
+                "3",
+                "3"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:",
+            "items": [
+                "solA",
+                "solB"
+            ],
+            "tolerance": [
+                "0.001",
+                "0.001"
+            ],
+            "feedback": [
+                "The probability of getting $H$ heads can be calculated using a Binomial distribution, with $N={n0}$ being the number of trials and $p=1/2$ being the probability of a success (getting a heads):\n\\[\nP(H = {n1})  = C^{{n0}}_{{n1}}  \\left(\\frac{1}{2}\\right)^{{n0}} \\approx {solA}\n\\]\nNote that we define $H$ as the number of heads, however one could chose instead to count the number of tails. The binomial formula should provide the same answers in both cases, as $C^{{n0}}_{{n1}} = C^{{n0}}_{{n2}}$ and $p=1-p=1/2$. Hopefully this is intuitive, the probability of the event should be the same whether you count heads or tails.",
+                "The probability of getting $X$ sixes can be calculated using a Binomial distribution, with $N={n0}$ being the number of trials and $p=1/6$ being the probability of a success (getting a six):\n\\[\nP(X = {n4})  = C^{{n3}}_{{n4}}  \\left(\\frac{1}{6}\\right)^{{n4}} \\left(\\frac{5}{6}\\right)^{{n5}} \\approx {solB}\n\\]"
+            ]
+        },
+        "params": "n0: 6 + rand(5)\nn2: 1 + rand(3)\nn1: n0 - n2\n\nn3: 5 + rand(5)\nn4: 1 + rand(3)\nn5: n3 - n4\n\npSa: 1/2\npSb: 1/6\n\np0: binom_pdf(n1,n0,pSa)\np1: binom_pdf(n4,n3,pSb)\n\nsolA:round(10000*p0)/10000\nsolB:round(10000*p1)/10000",
+        "decimalPlaces": "4"
+    },
+    "Ex_10": {
+        "tag": 10,
+        "source": "demo/raw_latex_exercises/statistics/confidence_large.tex",
+        "category": "Statistics",
+        "subCategory": "Inference",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "A random sample of size $n={r1}$ is taken from a large population with known standard deviation $\\sigma = {r3}$. If the sample mean is {r2}, calculate to 2 decimal places the following confidence intervals for the population mean $\\mu$:",
+            "types": [
+                "Numerical",
+                "Numerical",
+                "Numerical"
+            ],
+            "items": [
+                "The 90\\% confidence interval.",
+                "The 95\\% confidence interval.",
+                "The 99\\% confidence interval."
+            ],
+            "prompts": [
+                "$C.I._{90}$",
+                "$C.I._{95}$",
+                "$C.I._{99}$"
+            ],
+            "marks": [
+                "3",
+                "3",
+                "3"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solution:",
+            "items": [
+                "solA",
+                "solB",
+                "solC"
+            ],
+            "tolerance": [
+                "0.1",
+                "0.1",
+                "0.1"
+            ],
+            "feedback": [
+                "If the sample of size $n={r1}$ has a mean $\\bar x = {r2}$ and the population has a standard deviation $\\sigma={r3}$, then the sampling distribution of the mean follows a normal distribution:\n\\[\n\\bar X \\sim N \\left(\\bar x,\\frac{\\sigma^2}{n}\\right) = N \\left({r2},\\frac{{r3}^2}{{r1}}\\right) = N \\left({r2},{p1}\\right)\n\\]\nNote, we are given the population standard deviation $\\sigma$, which means that we can use the Normal distribution to calculate the confidence interval regardless of sample size (i.e. we do not need the Central Limit Theorem).\n\nThe 90\\% confidence interval can be constructed using the standard normal distribution, but looking for the value of $z$ such that:\n\\[\nP(-z < Z < z) = 0.9 \\quad \\iff \\quad P(0 \\le Z \\le z) = 0.45\n\\]\nUsing the table of values, we find $z = \\pm 1.645$. Using the mean and standard deviation of the distribution of $\\bar X$, we can then recover 90\\% confidence interval.\n\\[\nC.I._{90} = \\bar x \\pm 1.645 \\frac{\\sigma}{\\sqrt{n}} = {r2} \\pm 1.645 \\cdot {p2} = ({cl_1}, {cr_1})\n\\]\nWith 90\\% confidence, the population mean $\\mu$ is between {cl_1} and {cr_1}.",
+                "The 95\\% confidence interval can be constructed by looking for the value of $z$ such that:\n\\[\nP(-z < Z < z) = 0.95 \\quad \\iff \\quad P(0 \\le Z \\le z) = 0.475\n\\]\nUsing the table of values, we find $z = \\pm 1.96$. Using the mean and standard deviation of the distribution of $\\bar X$, we can then recover 95\\% confidence interval.\n\\[\nC.I._{95} = \\bar x \\pm 1.96 \\frac{\\sigma}{\\sqrt{n}} = {r2} \\pm 1.96 \\cdot {p2} = ({cl_2}, {cr_2})\n\\]\nWith 95\\% confidence, the population mean $\\mu$ is between {cl_2} and {cr_2}.",
+                "The 99\\% confidence interval can be constructed by looking for the value of $z$ such that:\n\\[\nP(-z < Z < z) = 0.99 \\quad \\iff \\quad P(0 \\le Z \\le z) = 0.495\n\\]\nUsing the table of values, we find $z = \\pm 2.575$. Using the mean and standard deviation of the distribution of $\\bar X$, we can then recover 99\\% confidence interval.\n\\[\nC.I._{99} = \\bar x \\pm 2.575 \\frac{\\sigma}{\\sqrt{n}} = {r2} \\pm 2.575 \\cdot {p2} = ({cl_3}, {cr_3})\n\\]\nWith 99\\% confidence, the population mean $\\mu$ is between {cl_3} and {cr_3}."
+            ]
+        },
+        "params": "r1:40+rand(21)\nr2:70+rand(21)\nr3:25 + rand(10)\n\np1:(r3^2)/r1\np2:sqrt(p1)\n\ncl_1:r2 - 1.645*round(p2*100)/100\ncr_1:r2 + 1.645*round(p2*100)/100\n\ncl_2:r2 - 1.96*round(p2*100)/100\ncr_2:r2 + 1.96*round(p2*100)/100\n\ncl_3:r2 - 2.575*round(p2*100)/100\ncr_3:r2 + 2.575*round(p2*100)/100\n\nsolA: [cl_1, cr_1]\nsolB: [cl_2, cr_2]\nsolC: [cl_3, cr_3]",
+        "decimalPlaces": "2"
+    },
+    "Ex_11": {
+        "tag": 11,
+        "source": "demo/raw_latex_exercises/statistics/confidence_small.tex",
+        "category": "Statistics",
+        "subCategory": "Inference",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "A random sample of size $n={p1}$ is taken from a large population. The sample mean is $\\bar x = {p2}$, and the sample standard deviation is $s = {p3}$.",
+            "types": [
+                "Numerical",
+                "Numerical"
+            ],
+            "items": [
+                "Using this information, construct a 95\\% confidence interval for the population mean $\\mu$. Enter the interval using square brackets, separating the two values with commas $\\left[\\dots ,\\dots \\right]$:",
+                "Suppose you are told that {p3} is also the value of the population standard deviation $\\sigma$. Construct a new 95\\% confidence interval and compare this with your previous calculation."
+            ],
+            "prompts": [
+                "$C.I._{95}$",
+                "$C.I._{95}$"
+            ],
+            "marks": [
+                "2",
+                "3"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solution:",
+            "items": [
+                "solA",
+                "solB"
+            ],
+            "tolerance": [
+                "0.1",
+                "0.1"
+            ],
+            "feedback": [
+                "Given that the sample has a size $n={p1}$, if we do not know the population standard deviation $\\sigma$, then we need to (a) replace $\\sigma$ by the sample standard deviation $s$ and (b) rely on the $t$-distribution instead of the standard normal distribution, to allow for additional uncertainty generated by using $s$, which is an estimate of $\\sigma$:\n\\[\nC.I._{95} = \\bar x \\pm t_{0.05}^{n-1} \\frac{s}{\\sqrt{n}}\n\\]\n\nThe critical value $t_{0.05}^{n-1}$ can be found in the table of values for Student's t-distribution, for a two-tailed probability of 0.05 (corresponding to 95\\% confidence) and $n-1 = {{p1}-1}$ degrees of freedom. In this case, $t_{0.05}^{{p1}-1} = {p5}$. This gives us the following confidence interval:\n\\[\nC.I._{95} =  {p2} \\pm {p5}\\frac{{p3}}{\\sqrt{{p1}}}  =  \\left[{cl2} \\, , \\, {cr2}\\right]\n\\]",
+                "If the sample of size $n={p1}$ has a mean $\\bar x = {p2}$ and the population has standard deviation $\\sigma={p3}$, then the sampling distribution of the mean follows a normal distribution:\n\\[\n\\bar X \\sim N \\left(\\bar x,\\frac{\\sigma^2}{n}\\right) = N \\left({p2},\\frac{{p3}^2}{{p1}}\\right) \\approx N \\left({p2},{p4}^2\\right)\n\\]\nNote, because we now know the value of the population standard deviation $\\sigma$, we are able to calculate confidence intervals using the normal distribution, and we do not need to use Student's t-distribution. This is only required when (a) we use the sample standard deviation $s$ as an estimate of $\\sigma$ and (b) the sample size $n<30$, so that there is a lot of uncertainty in the accuracy of $s$.\n\nThe 95\\% confidence interval can be constructed using the standard normal distribution, but looking for the value of $z$ such that:\n\\[\nP(-z < Z < z) = 0.95 \\quad \\iff \\quad P(0 \\le Z \\le z) = 0.475\n\\]\nUsing the table of values, we find $z = \\pm 1.96$. Using the mean and standard deviation of the distribution of $\\bar X$, we can then calculate 95\\% confidence interval.\n\\[\nC.I._{95} = \\bar x \\pm 1.96 \\frac{\\sigma}{\\sqrt{n}} = {p2} \\pm 1.96 \\frac{{p3}}{\\sqrt{{p1}}} = \\left[{cl1} \\, , \\, {cr1}\\right]\n\\]\nThis is much tighter confidence interval than the previous answer. Even if the actual value of the standard deviation has not changed (still $p3$), the fact that we know for certain the value of the population standard deviation $\\sigma$ rather than have to rely on an estimate $s$ means we can be much more precise for a given confidence level."
+            ]
+        },
+        "params": "idx:1+rand(3)\nL1: [9, 16, 25]\nL2: [2.306, 2.131, 2.064]\n\np1: L1[idx]\np2: 70+rand(21)\np3: 25 + rand(10)\np4: p3/sqrt(p1)\np5: L2[idx]\n\n[cl1,cr1]: [p2 - round(1.96*p4*100)/100, p2 + round(1.96*p4*100)/100]\n[cl2,cr2]: [p2 - round(p5*p4*100)/100, p2 + round(p5*p4*100)/100]\nsolA: [cl2,cr2]\nsolB: [cl1,cr1]",
+        "decimalPlaces": "3"
+    },
+    "Ex_12": {
+        "tag": 12,
+        "source": "demo/raw_latex_exercises/statistics/descriptive.tex",
+        "category": "Statistics",
+        "subCategory": "Probability and descriptive stats",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "A sample of 100 UK households have the following distribution:\n\n\\begin{tabular}{cc}\nHousehold size & Frequency $f_i$ \\\\\n\\hline\n1 & {f1} \\\\\n2 & {f2} \\\\\n3 & {f3} \\\\\n4 & {f4} \\\\\n5 & {f5} \\\\\n6 & {f6} \\\\\n\\hline\n\\end{tabular}",
+            "types": [
+                "Numerical",
+                "Numerical",
+                "Numerical",
+                "Numerical"
+            ],
+            "items": [
+                "Calculate the mean household size $\\bar x$. Round your answer to two decimal places if needed.",
+                "Calculate the median household size $\\tilde x$.",
+                "Calculate the mode.",
+                "Calculate the sample standard deviation $s$, rounded to 2 decimal places."
+            ],
+            "prompts": [
+                "$\\bar x$",
+                "$\\tilde x$",
+                "Mode",
+                "$s$"
+            ],
+            "marks": [
+                "3",
+                "2",
+                "2",
+                "3"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:",
+            "items": [
+                "solA",
+                "solBC",
+                "solBC",
+                "solD"
+            ],
+            "tolerance": [
+                "0.01",
+                "",
+                "",
+                "0.01"
+            ],
+            "feedback": [
+                "The frequency table is given by:\n\n\\begin{tabular}{cccc}\nHousehold size & Frequency $f_i$ & $f_i x_i$ & $f_i (x_i-\\bar x)^2$\\\\\n\\hline\n1 & {f1} & {d1} & {fmsq1}\\\\\n2 & {f2} & {d2} & {fmsq2}\\\\\n3 & {f3} & {d3} & {fmsq3}\\\\\n4 & {f4} & {d4} & {fmsq4}\\\\\n5 & {f5} & {d5} & {fmsq5}\\\\\n6 & {f6} & {d6} & {fmsq6}\\\\\n\\hline\nTotal & 100 & {fmt} & {fmsqt} \\\\\n\\hline\n\\end{tabular}\n\n\\[\n\\bar x = \\frac{\\sum_i f_i x_i}{N} =\\frac{fmt}{100} = {mu}\n\\]",
+                "\\[\n\\tilde x = {solBC}\n\\]",
+                "\\[\n\\textrm{Mode} = {solBC}\n\\]",
+                "\\[\ns^2 = \\frac{\\sum_i f_i (x_i-\\bar x)^2}{N-1} =\\frac{{fmsqt}}{99} \\approx {var}\n\\]\nIf the sample variance is $s^2 \\approx {var}$ then the sample standard deviation is $s \\approx \\sqrt{{var}} \\approx {solD}$"
+            ]
+        },
+        "params": "f1:23+rand(5)\nf2:30+rand(6)\nf3:15+rand(4)\nf5:5+rand(4)\nf6:1+rand(5)\nf4:100-f1-f2-f3-f5-f6\n\nm1:1\nm2:2\nm3:3\nm4:4\nm5:5\nm6:6\n\nc1:f1\nc2:c1+f2\nc3:c2+f3\nc4:c3+f4\nc5:c4+f5\nc6:c5+f6\n\nd1:f1*m1\nd2:f2*m2\nd3:f3*m3\nd4:f4*m4\nd5:f5*m5\nd6:f6*m6\nfmt:d1+d2+d3+d4+d5+d6\nmu:fmt/100\n\nfmsq1:f1*(m1-mu)^2\nfmsq2:f2*(m2-mu)^2\nfmsq3:f3*(m3-mu)^2\nfmsq4:f4*(m4-mu)^2\nfmsq5:f5*(m5-mu)^2\nfmsq6:f6*(m6-mu)^2\nfmsqt:fmsq1+fmsq2+fmsq3+fmsq4+fmsq5+fmsq6\nvar:fmsqt/99\nstd:var^0.5\n\nsolA:round(mu*100)/100\nsolBC:m2\nsolD:round(std*100)/100",
+        "decimalPlaces": "2"
+    },
+    "Ex_13": {
+        "tag": 13,
+        "source": "demo/raw_latex_exercises/statistics/hypothesis.tex",
+        "category": "Statistics",
+        "subCategory": "Inference",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "A pair of dice is tossed {r1} times and the sum is seven {r2} times.",
+            "types": [
+                "Numerical",
+                "Algebraic",
+                "Algebraic"
+            ],
+            "items": [
+                "If the dice were fair, what would be the probability of the sum being seven? Round to 3 decimal places if required.",
+                "We can reject the hypothesis that the dice are fair using a two tailed test at 5\\% significance. True or False?",
+                "We can reject the hypothesis that the dice are fair using a one tailed test at 5\\% significance. True or False? Explain which type of test you think is more appropriate in this case."
+            ],
+            "prompts": [
+                "$P\\left(X = 7\\right)$",
+                "",
+                ""
+            ],
+            "marks": [
+                "3",
+                "3",
+                "3"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solution:",
+            "items": [
+                "solA",
+                "solB",
+                "solC"
+            ],
+            "tolerance": [
+                "0.001",
+                "",
+                ""
+            ],
+            "feedback": [
+                "With two dice, a throw will result in $6^2=36$ possible pairs of faces. There are $6$ possible ways that the sum of the two faces $X$ can be $7$:\n\\[\n\\begin{aligned}\n1 + 6 \\quad & \\quad 2 + 5 \\quad & \\quad 3 + 4\\\\\n4 + 3 \\quad & \\quad 5 + 2 \\quad & \\quad 6 + 1\\\\\n\\end{aligned}\n\\]\nIf the dice are fair, all 36 outcomes are equally probable and the probability is therefore:\n$P\\left(X = 7 \\right) = \\frac{6}{36} = \\frac{1}{6}$",
+                "The information required to set up the hypothesis test is that the true proportion is $p = \\frac{1}{6}$, while the sample proportion is $\\hat p = {p1}$ with a population standard deviation component $\\sigma = \\sqrt{\\frac{6}{36} \\times \\frac{30}{36}} = \\sqrt{\\frac{5}{36}}$ (remember, we assume that the null is true!). The sample size is $n={r1}$, therefore we can draw the critical values from the normal distribution.\n\nThe hypotheses we want to test are:\n\\[\n\\left\\{\\begin{aligned}\nH_0: \\, & p = \\frac{1}{6} \\\\\nH_1: \\, & p \\ne \\frac{1}{6} \\\\\n\\end{aligned}\\right.\n\\]\n\nThe test statistic is:\n\\[\nt = \\frac{\\hat p - p}{\\frac{\\sigma}{\\sqrt{n}}} = \\frac{{p1}-\\frac{1}{6}}{\\sqrt{\\frac{5}{36\\times{r1}}}} = \\frac{{p2}}{{p4}} = {p5}\n\\]\n\nGiven that we want 95\\% confidence on a two-tailed test with a sample size of $n={r1}$, the critical value of the t-statistic is $z_{0.05} = 1.96$. This tells us that $t < z_{0.02}$, therefore there is {txtB}enough evidence to reject the null hypothesis that the dice are fair. The statement is \\emph{{solB}}.",
+                "For the one-tailed test, given that $\\hat p > p$, we can set up the following hypotheses:\n\\[\n\\left\\{\\begin{aligned}\nH_0: \\, & p \\le \\frac{1}{6} \\\\\nH_1: \\, & p > \\frac{1}{6} \\\\\n\\end{aligned}\\right.\n\\]\n\nThe  test statistic is the same as before, $t = {p5}$ If we want 95\\% confidence, on a one-tailed test the critical value of the t-statistic becomes $z_{0.1} = 1.645$. This tells us that $t > z_{0.1}$, therefore we {txtC}reject the null hypothesis that the dice are fair. The statement is \\emph{{solC}}.\n\nThe difference here rests in the choice of alternate hypothesis. In a two-tailed test, the alternate hypothesis is $H_1: \\, p \\ne \\frac{1}{6}$. We are simply stating the sample proportion is not equal to the stated proportion: it could be higher, or it could be lower. In the absence of information about how the dice might be unfair, this is the most conservative approach as it allows for either possibility. In contrast, with the one-tailed test, we have $H_1: \\, p > \\frac{1}{6}$: we are explicitly ruling out the possibility that the true proportion is lower than {p6} out of {r1}. This assumption allows us to reject the null more easily (i.e. with a smaller deviation from the stated proportion), at the risk of being very wrong if our assumption was incorrect.\n\n\\begin{tikzpicture}\n\\begin{axis}[\n    samples = 50,\n    axis lines = center,\n    legend style={at={(0.5,-0.1)},anchor=north, draw=none},\n    ymin=0,\n    ymax=0.75,\n    xmin=-4,\n    xmax=4,\n    xlabel = $x$,\n    ylabel = $f(x)$\n]\n\\addplot[domain=-4:4,color=blue,]{0.39894228*exp(-0.5*x^2)};\n\\addlegendentry{$N(0,1)$}\n\\addplot[mark=no,color=black] coordinates { ({p5}, 0) ({p5}, 0.5)};\n\\addlegendentry{$t$}\n\\addplot[mark=no,color=red] coordinates { (1.96, 0) (1.96, 0.5)};\n\\addlegendentry{$z_{0.05} = 1.96$}\n\\addplot[mark=no,dashed,color=green] coordinates { (1.645, 0) (1.645, 0.5)};\n\\addlegendentry{$z_{0.1} = 1.645$}\n\\end{axis}\n\\end{tikzpicture}"
+            ]
+        },
+        "params": "r1: 90+rand(21)\nr2: ceiling(r1/6) + 2 + rand(10)\n\np1: r2/r1\np2: p1 - 1/6\np3: 5/36\np4: sqrt(p3/r1)\np5: p2/p4\np6: r1/6\n\nsolA:1/6\n\nsolB:if abs(p5) > 1.96 then true else false\ntxtB:if abs(p5) > 1.96 then \"\" else \"not \"\n\nsolC:if abs(p5) > 1.645 then true else false\ntxtC:if abs(p5) > 1.645 then \"can \" else \"cannot \"",
+        "decimalPlaces": "3"
+    },
+    "Ex_14": {
+        "tag": 14,
+        "source": "demo/raw_latex_exercises/statistics/normal_crit.tex",
+        "category": "Statistics",
+        "subCategory": "Probability distributions",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "If $Z \\sim N(0,1)$, find the critical value $z_0$, rounded to 2 decimal places, such that:",
+            "types": [
+                "Numerical",
+                "Numerical",
+                "Numerical"
+            ],
+            "items": [
+                "$P(Z \\ge z_0) = {r1}$",
+                "$P(Z \\le z_0) = {r2}$",
+                "$P(-z_0 \\le Z \\le z_0) = {r3}$"
+            ],
+            "prompts": [
+                "$z_0$",
+                "$z_0$",
+                "$z_0$"
+            ],
+            "marks": [
+                "2",
+                "2",
+                "2"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:\n\nNote: It may help you to draw pictures to visualise the area you are being asked to calculate.",
+            "items": [
+                "solA",
+                "solB",
+                "solC"
+            ],
+            "tolerance": [
+                "0.01",
+                "0.01",
+                "0.01"
+            ],
+            "feedback": [
+                "If $P(Z \\ge z_0) = {r1}$, then $P(0 \\le Z \\le z_0)  = 0.5 - P(z \\ge z_0) = {p1}$. Looking this value up in the table for the standard normal tells us that $z_0 = {c1}$.",
+                "If $P(Z \\le z_0) = {r2}$, then $P(z_0 \\le z \\le 0) = 0.5 - P(Z \\le z_0) = {p2}$. In the tables of the standard distribution, this corresponds to a value of ${c2}$. However, we are looking for a value of $z$ that is smaller than $z_0$, therefore to the left of it. Given that the probability is less than 0.5, the critical value $z_0$ must be negative. We therefore have $z_0 = -{c2}$. A diagram can be particularly useful for cases like this.",
+                "If $P(-z_0 \\le Z \\le z_0) = {r3}$ then $P(0 \\le Z \\le z_0) = \\frac{{r3}}{2} = {p3}$. Looking up this value in the table tells us that $z_0 = {c3}$."
+            ]
+        },
+        "params": "r1:0.01+rand(9)/100\nr2:0.2+rand(21)/100\nr3:0.4+rand(21)/100\n\np1:0.5-r1\np2:0.5-r2\np3:r3/2\n\nc1:norm_qnt(p1+0.5,0,1)\nc2:norm_qnt(p2+0.5,0,1)\nc3:norm_qnt(p3+0.5,0,1)\n\nsolA:round(c1*100)/100\nsolB:-round(c2*100)/100\nsolC:round(c3*100)/100",
+        "decimalPlaces": "3"
+    },
+    "Ex_15": {
+        "tag": 15,
+        "source": "demo/raw_latex_exercises/statistics/normal_prob.tex",
+        "category": "Statistics",
+        "subCategory": "Probability distributions",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "Using the table of areas for the standard Normal distribution, calculate the areas under $N(0,1)$, rounded to 3 decimal places:",
+            "types": [
+                "Numerical",
+                "Numerical",
+                "Numerical",
+                "Numerical"
+            ],
+            "items": [
+                "Between {r1} and {r2}",
+                "For values greater than {r7}",
+                "Between {r3} and {r4}",
+                "Between {r5} and {r6}."
+            ],
+            "prompts": [
+                "$P({r1} \\le Z \\le {r2})$",
+                "$P(Z \\ge {r7} )$",
+                "$P({r3} \\le Z \\le {r4} )$",
+                "$P({r5} \\le Z \\le {r6})$"
+            ],
+            "marks": [
+                "2",
+                "2",
+                "2",
+                "2"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:",
+            "items": [
+                "solA",
+                "solB",
+                "solC",
+                "solD"
+            ],
+            "tolerance": [
+                "0.001",
+                "0.001",
+                "0.001",
+                "0.001"
+            ],
+            "feedback": [
+                "\\[\n\\begin{aligned}\nP({r1} \\le Z \\le {r2}) & = P({r1} \\le Z \\le 0 ) + P( 0 \\le Z \\le {r2})\\\\\nP({r1} \\le Z \\le {r2}) & = 2 \\times P( 0 \\le Z \\le {r2})\\\\\nP({r1} \\le Z \\le {r2}) & = 2 \\times {p1} = {solA}\\\\\n\\end{aligned}\n\\]",
+                "\\[\n\\begin{aligned}\nP(Z \\ge {r7}) = 0.5 - P( 0 \\le Z \\le {r5})\\\\\nP(Z \\ge {r7}) = 0.5 - {p2} = {solB} \\\\\n\\end{aligned}\n\\]",
+                "\\[\n\\begin{aligned}\nP({r3} \\le Z \\le {r4}) & = P({r3} \\le Z \\le 0 ) + P( 0 \\le Z \\le {r4})\\\\\nP({r3} \\le Z \\le {r4}) & = 2 \\times P( 0 \\le Z \\le {r4})\\\\\nP({r3} \\le Z \\le {r4}) & = 2 \\times {p3} = {solC}\\\\\n\\end{aligned}\n\\]",
+                "\\[\n\\begin{aligned}\nP({r5} \\le Z \\le {r6}) & = P( 0 \\le Z \\le {r6}) - P( 0 \\le Z \\le {r5})\\\\\nP({r5} \\le Z \\le {r6}) & = {p6} - {p5} = {solD}\\\\\n\\end{aligned}\n\\]"
+            ]
+        },
+        "params": "L1:[0.5, 1, 1.25]\nL2:[1.645, 1.96, 2.575]\nidx1:1+rand(3)\nidx2:1+rand(3)\nidx3:1+rand(3)\nidx4:1+rand(3)\nidx5:1+rand(3)\n\nr2:L2[idx1]\nr1:-r2\n\nr7:L2[idx2]\n\nr4:L1[idx3]\nr3:-r4\n\nr5:L1[idx4]\nr6:L2[idx5]\n\np1:norm_cdf(r2,0,1)-0.5\np2:norm_cdf(r7,0,1)-0.5\np3:norm_cdf(r4,0,1)-0.5\np5:norm_cdf(r5,0,1)-0.5\np6:norm_cdf(r6,0,1)-0.5\n\nsolA:round(2*p1*1000)/1000\nsolB:round(500-p2*1000)/1000\nsolC:round(2*p3*1000)/1000\nsolD:round(p6*1000-p5*1000)/1000",
+        "decimalPlaces": "3"
+    },
+    "Ex_16": {
+        "tag": 16,
+        "source": "demo/raw_latex_exercises/statistics/probabilities.tex",
+        "category": "Statistics",
+        "subCategory": "Probability and descriptive stats",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "You are told $P(A) = {pa}$, $P(B) = {pb}$ and $P(A \\textrm{ or } B) = {pAB}$. Are the following statements true or false? Provide an explanation in each case.",
+            "types": [
+                "Algebraic",
+                "Algebraic",
+                "Algebraic"
+            ],
+            "items": [
+                "$A$ and $B$ are independent.",
+                "$A$ and $B$ are mutually exclusive.",
+                "If two events that occur with non-zero probabilities are mutually exclusive, then they cannot be independent."
+            ],
+            "prompts": [
+                "$A$ and $B$ independent?",
+                "$A$ and $B$ mutually exclusive?",
+                "Mutually exclusive $\\implies$ not independent?"
+            ],
+            "marks": [
+                "3",
+                "3",
+                "4"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:",
+            "items": [
+                "solA",
+                "false",
+                "true"
+            ],
+            "tolerance": [
+                "",
+                "",
+                ""
+            ],
+            "feedback": [
+                "By the addition rule we know that $P(A \\textrm{ and } B) = P(A) + P(B) - P(A \\textrm{ or } B)$. Using the values above, this give us:\n\\[\nP(A \\textrm{ and } B) = {pa} + {pb} - {pAB} = {p1}\n\\]\nFurthermore, we can calculate:\n\\[\nP(A)\\times P(B) = {pa} \\times {pb} = {p2}\n\\]\nBecause $P(A \\textrm{ and } B) \\, {txt1} \\, P(A)\\times P(B)$, one can conclude that $A$ and $B$ are {txt2}independent. \\emph{{solA}}",
+                "$A$ and $B$ cannot be mutually exclusive, as $P(A \\textrm{ and } B) = {p1} \\ne 0$. There is a probability that both events will happen together. \\emph{False}",
+                "If two events $A$ and $B$ are mutually exclusive, then $P(A \\textrm{ and } B) = 0$. If these two events are also independent, then  we also have $P(A \\textrm{ and } B) = P(A)\\times P(B)$. The combination of the two implies:\n\\[\nP(A \\textrm{ and } B) = P(A)\\times P(B) = 0\n\\]\nThis can only be the case if at least one of the events has a zero probability. As we are told that both events have non-zero probability, they cannot be mutually exclusive and independent. \\emph{True}."
+            ]
+        },
+        "params": "pa:(25+rand(11))/100\npb:(65+rand(11))/100\npAB:(75+rand(11))/100\n\np1: pa + pb - pAB\np2: pa*pb\np3: pa + pb - pAB - pa*pb\n\n\nsolA: if round(p3*100) == 0 then true else false\ntxt1: if round(p3*100) == 0 then \"=\" else \"\\\\ne\"\ntxt2: if round(p3*100) == 0 then \"\" else \"not \"",
+        "decimalPlaces": "2"
+    },
+    "Ex_17": {
+        "tag": 17,
+        "source": "demo/raw_latex_exercises/statistics/sample_size.tex",
+        "category": "Statistics",
+        "subCategory": "Inference",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "You are told that a random variable $X$ has a population standard deviation of {r3}.",
+            "types": [
+                "Numerical"
+            ],
+            "items": [
+                "How large a sample $n$ would you need in order to be able to estimate the population mean to within $\\pm${r4} at the {c3}\\% confidence level? Round your answer up to an integer."
+            ],
+            "prompts": [
+                "$n$"
+            ],
+            "marks": [
+                "2"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solution:",
+            "items": [
+                "solA"
+            ],
+            "tolerance": [
+                "2"
+            ],
+            "feedback": [
+                "In order to determine how large a sample we need to achieve an error of $\\pm${r4} at {c3}\\% confidence, we can invert the formula for the confidence interval, where $z_{{c3}}$ is the critical value of the standard normal distribution. Suppose we pick the upper $U_{{c3}}$ bound of the confidence interval:\n\n\\[\n\\begin{aligned}\nU_{{c3}} & = \\bar x + z_{{c3}} \\frac{\\sigma}{\\sqrt{n}}\\\\\nU_{{c3}} - \\bar x  & = z_{{c3}} \\frac{\\sigma}{\\sqrt{n}}\\\\\n\\sqrt{n} & =z_{{c3}} \\frac{\\sigma}{U_{{c3}} - \\bar x} \\\\\nn & = \\left(z_{{c3}} \\frac{\\sigma}{U_{{c3}} - \\bar x}\\right)^2 \\\\\n\\end{aligned}\n\\]\n\nThe {c3}\\% critical value interval can be constructed using the standard normal distribution, but looking for the value of $z_{{c3}}$ such that:\n\\[\nP(-z_{{c3}} < Z < z_{{c3}}) = {p1_a} \\quad \\iff \\quad P(0 \\le Z \\le z_{{c3}}) = {p1_b}\n\\]\nUsing the table of values, we find $z_{{c3}} = {c4}$. Replacing this in the equation above, and including the information that the upper bound of the confidence interval should be {r4} above the mean, we can find the required sample size.\n\n\\[\nn = \\left({c4} \\frac{{r3}}{{r4}}\\right)^2 \\approx \\left({p3}\\right)^2 \\approx {p4}\n\\]\nWe need a sample of at least {solA} observations in order to generate a confidence interval of $\\pm${r4} around the sample mean."
+            ]
+        },
+        "params": "idx:1+rand(3)\nL1:[90, 95, 99]\nL2:[1.645, 1.96, 2.575]\n\nc3:L1[idx]\nc4:L2[idx]\n\nr3:5 + rand(11)\nr4:1 + rand(30)/10\n\np1_a:c3/100\np1_b:p1_a/2\n\np3:c4*(r3/r4)\np4:p3^2\n\nsolA: ceiling(p4)",
+        "decimalPlaces": "3"
+    },
+    "Ex_18": {
+        "tag": 18,
+        "source": "demo/raw_latex_exercises/statistics/urns_balls.tex",
+        "category": "Statistics",
+        "subCategory": "Probability and descriptive stats",
+        "questions": {
+            "format": "Vlist",
+            "blurb": "A ball is drawn from a box containing {nR} red, {nW} white, {nB} blue and {nO} orange balls. Find the probability (rounded to 2 decimal places if required) that it is:",
+            "types": [
+                "Numerical",
+                "Numerical",
+                "Numerical",
+                "Numerical"
+            ],
+            "items": [
+                "Orange or red.",
+                "Not red and not blue.",
+                "Not blue.",
+                "White."
+            ],
+            "prompts": [
+                "$P(O \\textrm{ or } R)$",
+                "$P(\\textrm{not } R \\textrm{ and not } B)$",
+                "$P(\\textrm{not } B)$",
+                "$P(W)$"
+            ],
+            "marks": [
+                "1",
+                "1",
+                "1",
+                "1"
+            ]
+        },
+        "solutions": {
+            "format": "Vlist",
+            "blurb": "Solutions:",
+            "items": [
+                "solA",
+                "solB",
+                "solC",
+                "solD"
+            ],
+            "tolerance": [
+                "0.01",
+                "0.01",
+                "0.01",
+                "0.01"
+            ],
+            "feedback": [
+                "There are ${nR} + {nW} + {nB} + {nO} = {n_0}$ balls in total in the box. The probabilities can be calculated by counting the number of balls that meet the condition described in the event and dividing by the total number of balls (${n_0}$). In this case we are using $P(O \\textrm{ or } R) = P(O) + P(R)$, as the draw is mutually exclusive: we cannot draw both an orange and a red, so $P(O \\textrm{ and } R) = 0$.\n\\[\nP(O \\textrm{ or } R) = \\frac{{nO} + {nR}}{n_0} \\approx {solA}\n\\]",
+                "The most direct route is to realise that the only types of balls that are simultaneously `not red' and `not blue' are the orange and white ones, which directly gives:\n\n\\[\nP(\\textrm{not } R \\textrm{ and not } B) =  P( O \\textrm{and } W) = \\frac{{nO}+{nW}}{{n_0}} = \\frac{{p1}}{{n_0}} \\approx {solB}\n\\]\n\nAlternatively, you can also work out the solution using the addition rule. This takes a bit longer and the use of `not' can complicate thinking about this, but the formula still works:\n\n\\[\nP(\\textrm{not } R \\textrm{ or not } B) = P(\\textrm{not } R) + P(\\textrm{not } B) - P(\\textrm{not } R \\textrm{ and not } B)\n\\]\n\nRearranging:\n\n\\[\nP(\\textrm{not } R \\textrm{ and not } B) = P(\\textrm{not } R) + P(\\textrm{not } B) - P(\\textrm{not } R \\textrm{ or not } B)\n\\]\n\nA key aspect is to realise that $P(\\textrm{not } R \\textrm{ or not } B) = 1$. Any ball you pick is guaranteed to be either `not red' or `not blue'. This is obviously true for the orange and white balls, but also the red and blue ones: a red ball is `not blue' and a blue ball is `not red'! Using this, and replacing $P(\\textrm{not } R) = 1 - P(R)$ and $P(\\textrm{not } B) = 1 - P(B)$ we get:\n\n\\[\nP(\\textrm{not } R \\textrm{ and not } B) = 1 - P(R) + 1 - P(B) - 1 \\; = \\; 1 - P(R) - P(B)\n\\]\n\n\\[\nP(\\textrm{not } R \\textrm{ and not } B) = \\frac{{n_0} - {nR} - {nB}}{{n_0}} = \\frac{{p1}}{{n_0}}\n\\]",
+                "\\[\nP(\\textrm{not } B) = 1 - P(B) = \\frac{{n_0} - {nB}}{{n_0}} = \\frac{{p2}}{{n_0}} \\approx {solC}\n\\]",
+                "\\[\nP(W) = \\frac{nW}{n_0} \\approx {solD}\n\\]"
+            ]
+        },
+        "params": "nR:7+rand(5)\nnW:27+rand(6)\nnB:18+rand(7)\nnO:14+rand(4)\n\nn_0:nR+nW+nB+nO\np1:n_0 - nR-nB\np2:n_0 - nB\n\n[p3,p4,p5,p6]:[(nO+nR)/n_0,p1/n_0,p2/n_0,nW/n_0]\n\nsolA:round(p3*100)/100\nsolB:round(p4*100)/100\nsolC:round(p5*100)/100\nsolD:round(p6*100)/100",
+        "decimalPlaces": "2"
+    }
+}

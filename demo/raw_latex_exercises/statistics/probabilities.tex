@@ -1,0 +1,131 @@
+%-------------------------------------------------------------------------------
+% Template setup -- DO NOT MODIFY
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\newcommand \fieldname[1]{\underline{\texttt{#1}:}}
+\begin{document}
+%-------------------------------------------------------------------------------
+% Overall exercise setup - main options and header
+\fieldname{category}  % Classification information
+Statistics
+
+\fieldname{subCategory} % Classification information
+Probability and descriptive stats
+
+\fieldname{questionFormat}
+Vlist
+
+\fieldname{feedbackFormat}
+Vlist
+
+\fieldname{exerciseParameters}
+pa:(25+rand(11))/100
+pb:(65+rand(11))/100
+pAB:(75+rand(11))/100
+
+p1: pa + pb - pAB
+p2: pa*pb
+p3: pa + pb - pAB - pa*pb
+
+% solA: if p1 == p2 then true else false
+% txt1: if p1 == p2 then "=" else "\\ne"
+% txt2: if p1 == p2 then "" else "not "
+
+solA: if round(p3*100) == 0 then true else false
+txt1: if round(p3*100) == 0 then "=" else "\\ne"
+txt2: if round(p3*100) == 0 then "" else "not "
+
+\fieldname{decimalPlaces}
+2
+
+\fieldname{questionBlurb}
+You are told $P(A) = {pa}$, $P(B) = {pb}$ and $P(A \textrm{ or } B) = {pAB}$. Are the following statements true or false? Provide an explanation in each case.
+
+\fieldname{feedbackBlurb}
+Solutions:
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$A$ and $B$ are independent.
+
+\fieldname{prompt}
+$A$ and $B$ independent?
+
+\fieldname{solution}
+solA
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+By the addition rule we know that $P(A \textrm{ and } B) = P(A) + P(B) - P(A \textrm{ or } B)$. Using the values above, this give us:
+\[
+P(A \textrm{ and } B) = {pa} + {pb} - {pAB} = {p1}
+\]
+Furthermore, we can calculate:
+\[
+P(A)\times P(B) = {pa} \times {pb} = {p2}
+\]
+Because $P(A \textrm{ and } B) \, {txt1} \, P(A)\times P(B)$, one can conclude that $A$ and $B$ are {txt2}independent. \emph{{solA}}
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+$A$ and $B$ are mutually exclusive.
+
+\fieldname{prompt}
+$A$ and $B$ mutually exclusive?
+
+\fieldname{solution}
+false
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+3
+
+\fieldname{feedbackText}
+$A$ and $B$ cannot be mutually exclusive, as $P(A \textrm{ and } B) = {p1} \ne 0$. There is a probability that both events will happen together. \emph{False}
+
+%-------------------------------------------------------------------------------
+% This section contains the individual question information
+\fieldname{questionType}
+Algebraic
+
+\fieldname{questionText}
+If two events that occur with non-zero probabilities are mutually exclusive, then they cannot be independent.
+
+\fieldname{prompt}
+Mutually exclusive $\implies$ not independent?
+
+\fieldname{solution}
+true
+
+\fieldname{tolerance}
+
+
+\fieldname{mark}
+4
+
+\fieldname{feedbackText}
+If two events $A$ and $B$ are mutually exclusive, then $P(A \textrm{ and } B) = 0$. If these two events are also independent, then  we also have $P(A \textrm{ and } B) = P(A)\times P(B)$. The combination of the two implies:
+\[
+P(A \textrm{ and } B) = P(A)\times P(B) = 0
+\]
+This can only be the case if at least one of the events has a zero probability. As we are told that both events have non-zero probability, they cannot be mutually exclusive and independent. \emph{True}.
+
+%-------------------------------------------------------------------------------
+\end{document}
