@@ -763,12 +763,12 @@ def build_xml(BankJSON,build_file):
     if 'template' in setup:
         setup.pop('template')            # Choice of template irrelevant for XML
     template = 'stack.xml'               # Choice of template - FIXED
-    
+
     if 'exList' in setup:
-        exListBase = setup.pop('exList')        # Get list of exercises 
+        exListBase = setup.pop('exList')        # Get list of exercises
     else:
         exListBase = [exBank.keys()]            # Use all exercises
-                
+
     if 'verbose' in setup:                      # Verbose feedback flag
         verbose = setup.pop('verbose')
         if not isinstance(verbose,bool):        # Must be boolean

@@ -3,6 +3,31 @@
 Created on Thu Jun 25 17:22:41 2020
 
 @author: Sylvain
+
+Contests of the ./demo/ folder:
+
+demo/
+├── __init__.py
+├── LICENSE
+├── requirements.txt
+├── demo_workflow.py
+├── toolkit.py
+├── dependencies.py
+├── snippets.json
+├── README.md
+├── demo/
+│   └── buildFiles/
+│       ├── compendium.json
+│       └── maths_seminar.json
+├── latex_exercise_template/
+│   ├── tex_template.pdf
+│   └── tex_template.pdf
+└── templates/
+    ├── compendium.tex
+    ├── seminar.tex
+    ├── stack.xml
+    └── test.tex
+
 """
 
 import stacktex.toolkit as st
