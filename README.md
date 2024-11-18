@@ -18,6 +18,8 @@ Build and manage STACK Moodle question banks from Latex templates
   - [Fields specific to the seminar output template](#fields-specific-to-the-seminar-output-template)
   - [Fields specific to the test output template](#fields-specific-to-the-test-output-template)
 - [Adding and editing output templates](#adding-and-editing-output-templates)
+  - [Location of exercises](#location-of-exercises)
+  - [Adding new fields](#adding-new-fields)
 
 ## Contents and requirements
 
@@ -94,7 +96,7 @@ Tables can be included in an exercise using the standard `tabular` environment. 
 
 Figures can be included in an exercise using the `pgfplot` package combined with a `\begin{tikzpicture} ... \end{tikzpicture}` environment. As for the maths and table environments, the toolkit does not support the high-level `\begin{figure} ... \end{figure}` environment. Note, it is advisable to only include one plot/figure by exercise, as some MAXIMA installations will experience race conditions when generating multiple plots in a Moodle STACK quiz, resulting in the plots being duplicated or displayed in the wrong order.
 
-The following exercises provide examples of how to include a figure in either the question text or as part of the exercise feedback:
+The following `demo` exercises provide examples of how to include a figure in either the question text or as part of the exercise feedback:
 - `demo/raw_latex_exercises/algebra/linear_slope.tex`
 - `demo/raw_latex_exercises/algebra/system_of equations.tex`
 - `demo/raw latex exercises/statistics/hypothesis.tex`
@@ -150,13 +152,34 @@ sol:if abs(s) > c then true else false
 txt:if abs(p5) > c then "Reject $H_0$" else "Accept $H_0$"
 ```
 
+The following `demo` exercises provide examples of how to randomly draw from a fixed list of given values:
+- `demo/raw_latex_exercises/algebra/system_of equations.tex`
+- `demo/raw latex exercises/statistics/hypothesis.tex`
+
+The following `demo` exercises provide examples of how to implement conditional parametrisations:
+- `demo/raw_latex_exercises/algebra/linear_slope.tex`, which checks for random draws that generate vertical lines and modifies the draw in that case.
+- `demo/raw latex exercises/statistics/hypothesis.tex`
+- `demo/raw latex exercises/statistics/normal_prob.tex`
+- `demo/raw latex exercises/statistics/sample_size.tex`
+
 #### Displaying variables in Latex text
 
-Display
+In order to display the value of an exercise parameter or variable in the body of the text, simply wrap the parameter name in curly braces `{...}` in the text itself. As an example, suppose you declare two random parameters for the slope and intercept of a linear function as follows:
+
+```
+[a, b]:[rand(3), rand(10)]
+```
+
+The LaTeX equation with the realised draws for `a` and `b` can be written as:
+```
+$y = {a}x+{b}$
+```
+
+Note that when PDF exercises are complied in the `compendium.tex` template, the realised values of randomised parameters is emphasised in **bold**, in order highlight then relative to exercise parameters that are fixed.
 
 ### Exercise template fields and options
 
-The various possible settings for a given LaTex exercises are controlled by a  series of options, each flagged by a `\fieldName{option}` decorator.
+The various possible settings for a given LaTex exercises are controlled by a series of options, each flagged by a `\fieldName{option}` decorator.
 
 #### Exercise-level options
 
@@ -250,6 +273,10 @@ The fields below are also required for stackTex functionality, but default behav
 ### Adding and editing output templates
 
 The `.tex` templates are written in standard Latex and can therefore easily be modified to suit the user's specific needs. This would be the case, for example, if the user requires their test or exam document to comply with any requirements set by their institution. Similarly, additional templates can also be added to the toolkit if needed.
+
+#### Location of exercises
+
+#### Adding new fields
 
 Include tokens for location of exercises in document.
 
