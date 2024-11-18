@@ -11,13 +11,13 @@ Build and manage STACK Moodle question banks from Latex templates
   - [Exercise template fields and options](#exercise-template-fields-and-options)
   - [Exercise-level options](#exercise-level-options)
   - [Question-level options](#question-level-options)
-- [Setting up a build file](#setting-up-a-build-file)
+- [ Setting up a build file for output generation](#setting-up-a-build-file-for-output-generation)
   - [Available output templates](#available-output-templates)
   - [Build file fields and options](#build-file-fields-and-options)
-  - [Common fields, required for all output templates](#common-fields,-required-for-all-output-templates)
-  - [Fields specific to the seminar.tex output template](#fields-specific-to-the-seminar.tex-output-template)
-  - [Fields specific to the test.tex output template](#fields-specific-to-the-test.tex-output-template)
-- [Adding and editing templates](#adding-and-editing-templates)
+  - [Common fields required for all output templates](#common-fields-required-for-all-output-templates)
+  - [Fields specific to the seminar output template](#fields-specific-to-the-seminar-output-template)
+  - [Fields specific to the test output template](#fields-specific-to-the-test-output-template)
+- [Adding and editing output templates](#adding-and-editing-output-templates)
 
 ## Contents and requirements
 
@@ -143,7 +143,7 @@ sol:binom_pdf(N,k,p0)
 More advanced behaviour is possible:
 - Parameters can be booleans (`true` or `false`) or strings (enclosed in `"..."`)
 - Parameters can be lists of values, which is useful when one wishes to randomise between a fixed set of alternatives. For example `L:[1.645, 1.96, 2.576]` will declare a list, in this case the 90%, 95% ad 99% two-tailed critical values of the standard normal. Declaring `index:1+rand(3)` will generate a random integer index in the [1,3] inclusive range, and `c:L[index]` will randomly draw one of the three critical values.
-- Finally, stackTex allows for conditional parametrisation using `if ... then ... else ...`. As an example, suppose that an exercise asks if one should reject the null hypothesis, where the test statistic `s` is randomly generated and the critical value `c` is obtained as above. The solution and feedback for this random outcome can be set as follows:
+- Finally, stackTex allows for conditional parametrisation using `if ... then ... else ...`. As an example, suppose that an exercise asks if one should reject the null hypothesis, where the test statistic `s` is randomly generated and the critical value `c` is obtained as above. The solution and feedback for this random outcome can be set as:
 
 ```
 sol:if abs(s) > c then true else false
@@ -209,7 +209,7 @@ More user-defined `.tex` templates can be added, see the [section below](#adding
 
 A build file is a JSON document containing all the instructions required for stackTex to build either a `.tex + .pdf` document or an `.xml` file. There is a minimum requirement for any stackTex build file, detailed below, however each template (including any additional user-added templates) can have their own customisations.
 
-#### Common fields, required for all output templates
+#### Common fields required for all output templates
 
 The fields below are required for stackTex functionality and should be included in all build files.
 
@@ -226,7 +226,7 @@ The fields below are also required for stackTex functionality, but default behav
 - **seed**: *int*, seed for the random number generator. Set to 0 by default.
 - **exList**: *list*, list of exercises to include in the output file. If exList is not included in the buildFile, `build_tex` and `build_xml` will include all exercises the build.
 
-#### Fields specific to the seminar.tex output template
+#### Fields specific to the seminar output template
 
 - **modCode**: *string*, Module code
 - **modName**: *string*, Module name.
@@ -234,7 +234,7 @@ The fields below are also required for stackTex functionality, but default behav
 - **blurbStr**: *string*, Short description string for event
 - **titleStr**: *string*, Title of seminar              
 
-#### Fields specific to the test.tex output template
+#### Fields specific to the test output template
 
 - **modCode**: *string*, Module code
 - **modName**: *string*, Module name
