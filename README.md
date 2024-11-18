@@ -281,11 +281,11 @@ The `.tex` templates are written in standard Latex and can therefore easily be m
 ### Adding new fields
 
 When processing a build file the toolkit will extract the [mimimal required fields](#common-fields-required-for-all-output-templates) to generate the output file name, select the correct template, set the visibility of marks and feedback, set the RNG seed, and extract the required exercises. If any *additional* fields are provided in the JSON object, stackTex will simply search the template for the string corresponding to each additional fieldname, and replace it with the value provided. This means that including some user-configuraable text in a template simply requires:
-- Placing a token in the LaTeX template in the location where that text needs to be included (e.g the **modCode** and **modeName** tokens in the `maths_seminar.json` and `stats_test.json` templates).
+- Placing a token in the LaTeX template in the location where that text needs to be included (e.g the **modCode** and **modName** tokens in the `maths_seminar.json` and `stats_test.json` templates).
 - Providing the required text (e.g. the module code and the module name) in the build file, using the chosen token as the field name
 
 **Note:**
-- When adding a new template, the header should match that of the existing templates, as this controls some of the formatting options used by the stacktex toolkit.
+- When adding a new template, the header should match that of the existing templates, as this controls some of the formatting options used by the stacktex toolkit, for example the `top_enumerate` environment used to enumerate exercises.
 - Because stackTex will find/replace the tokens with the provided values, the fieldnames chosen as tokens need to be distinct strings.
 - Similarly, any field included in the buildfile but not in the template, and any field not included in the build file but present in the template will simply not be replaced when the document is built. 
 
@@ -295,8 +295,16 @@ In order for an additional LaTeX template to function correctly, there needs to 
 - A token, or set of tokens identiying where the exercises needs to be included in the document
 - An **exList** field in the build file containing as many lists of exercises as there are tokens in the template.
 
-The tokens used to marking the location of exercises in the template document are of the form `ExStr_n`, where `n` is the nth list of exercises to ilcude. As an example:
+The tokens used to marking the location of exercises in the template document are of the form 
+```latex
+\begin{top_enumerate}
+
+ExStr_n
+
+\end{top_enumerate}
+```
+where `n` is the nth list of exercises to include. The `top_enumerate` ewnvironment is used by stackTex to enumerate the various exercises used in the list. As an example:
 - The `maths_seminar.json` template only allows for a single list of exercises, therefore only has a single token `ExStr_1`.
 - The `stats_test.json` template uses three lists of exercises, correspondioing to 3 parts of the test, and therefore uses `ExStr_1`, `ExStr_2` and `ExStr_3`, separated by LaTeX seaction headers and page breaks.
 
-
+Finally, each
