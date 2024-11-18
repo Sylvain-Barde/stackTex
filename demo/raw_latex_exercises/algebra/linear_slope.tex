@@ -25,10 +25,12 @@ Vlist
 [qAr1,qAr2,qAt3,qAr4]:[-rand(10),rand(10)*rand([-1,1]),rand(10),rand(10)*rand([-1,1])]
 % Check if 'X' draws are the same, if so modify one of them
 qAr3:if qAt3 == qAr1 then qAt3+rand([-2,-1,1,2]) else qAt3
+% Calculate derived slope/interecpt parameters
 [qAp1,qAp2]:[qAr4-qAr2,qAr3-qAr1]
 qAp3:qAp2*qAr2-qAp1*qAr1
+% Rounded slope parameters, with conditional text for sign of slope
 [qAp5,qAp6]:[qAp3/qAp2,qAp1/qAp2]
-qAsig:if qAp6 > 0 then "+" else ""
+qAsig:if qAp6 > 0 then "+" else "-"
 
 \fieldname{questionBlurb}
 Given the following pair of coordinate points $(x,y)$, find and sketch the linear equation $y = ax + b$. Where necessary, make sure you enter any rational number as a fraction, and not as a decimal number.

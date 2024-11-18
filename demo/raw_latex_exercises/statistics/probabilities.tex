@@ -21,18 +21,18 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
+
+% Random draws for underlying probabilities
 pa:(25+rand(11))/100
 pb:(65+rand(11))/100
 pAB:(75+rand(11))/100
 
+% Derived probabilities for solution/display
 p1: pa + pb - pAB
 p2: pa*pb
 p3: pa + pb - pAB - pa*pb
 
-% solA: if p1 == p2 then true else false
-% txt1: if p1 == p2 then "=" else "\\ne"
-% txt2: if p1 == p2 then "" else "not "
-
+% Conditional solution for Q(a)
 solA: if round(p3*100) == 0 then true else false
 txt1: if round(p3*100) == 0 then "=" else "\\ne"
 txt2: if round(p3*100) == 0 then "" else "not "

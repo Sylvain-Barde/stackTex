@@ -21,13 +21,16 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
+% Random sample size, mean and standard deviation
 r1:40+rand(21)
 r2:70+rand(21)
 r3:25 + rand(10)
 
+% Standard error calculation
 p1:(r3^2)/r1
 p2:sqrt(p1)
 
+% Confidence interval calculations
 cl_1:r2 - 1.645*round(p2*100)/100
 cr_1:r2 + 1.645*round(p2*100)/100
 
@@ -37,6 +40,7 @@ cr_2:r2 + 1.96*round(p2*100)/100
 cl_3:r2 - 2.575*round(p2*100)/100
 cr_3:r2 + 2.575*round(p2*100)/100
 
+% Solutions
 solA: [cl_1, cr_1]
 solB: [cl_2, cr_2]
 solC: [cl_3, cr_3]

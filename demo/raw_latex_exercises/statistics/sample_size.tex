@@ -21,6 +21,7 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
+% Random index draw for fixed list of significance critical values
 idx:1+rand(3)
 L1:[90, 95, 99]
 L2:[1.645, 1.96, 2.575]
@@ -28,6 +29,7 @@ L2:[1.645, 1.96, 2.575]
 c3:L1[idx]
 c4:L2[idx]
 
+% Random draws for standard deviation and required error
 r3:5 + rand(11)
 r4:1 + rand(30)/10
 
@@ -37,6 +39,7 @@ p1_b:p1_a/2
 p3:c4*(r3/r4)
 p4:p3^2
 
+% Solution
 solA: ceiling(p4)
 
 \fieldname{decimalPlaces}

@@ -21,17 +21,19 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
-% Draw 3 random sample sizes and corresponding (n-1) t-stats at 95%
+% Draw 3 random sample sizes (natural squares) and matched 95% (n-1) t-stats
 idx:1+rand(3)
 L1: [9, 16, 25]
 L2: [2.306, 2.131, 2.064]
 
+% Random mean and standard deviation
 p1: L1[idx]
 p2: 70+rand(21)
 p3: 25 + rand(10)
 p4: p3/sqrt(p1)
 p5: L2[idx]
 
+% Calculate 95% standard normal and student T confidence intervals
 [cl1,cr1]: [p2 - round(1.96*p4*100)/100, p2 + round(1.96*p4*100)/100]
 [cl2,cr2]: [p2 - round(p5*p4*100)/100, p2 + round(p5*p4*100)/100]
 solA: [cl2,cr2]

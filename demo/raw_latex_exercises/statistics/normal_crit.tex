@@ -21,18 +21,22 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
+% Random draw for 3 probabilities
 r1:0.01+rand(9)/100
 r2:0.2+rand(21)/100
 r3:0.4+rand(21)/100
 
+% Transforms to fit the P(0 < Z < z_c) CDF table for the standard normal
 p1:0.5-r1
 p2:0.5-r2
 p3:r3/2
 
+% Quantiles for the normal CDF
 c1:norm_qnt(p1+0.5,0,1)
 c2:norm_qnt(p2+0.5,0,1)
 c3:norm_qnt(p3+0.5,0,1)
 
+% Rounded solutions
 solA:round(c1*100)/100
 solB:-round(c2*100)/100
 solC:round(c3*100)/100

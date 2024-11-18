@@ -21,6 +21,7 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
+% Draw random frequencies (base frequency value + noise)
 f1:23+rand(5)
 f2:30+rand(6)
 f3:15+rand(4)
@@ -28,6 +29,7 @@ f5:5+rand(4)
 f6:1+rand(5)
 f4:100-f1-f2-f3-f5-f6
 
+% Househld sizes
 m1:1
 m2:2
 m3:3
@@ -35,6 +37,7 @@ m4:4
 m5:5
 m6:6
 
+% Cumulative frequencies
 c1:f1
 c2:c1+f2
 c3:c2+f3
@@ -42,6 +45,7 @@ c4:c3+f4
 c5:c4+f5
 c6:c5+f6
 
+% Average calculation column
 d1:f1*m1
 d2:f2*m2
 d3:f3*m3
@@ -51,6 +55,7 @@ d6:f6*m6
 fmt:d1+d2+d3+d4+d5+d6
 mu:fmt/100
 
+% Squared deviation from average calculation column
 fmsq1:f1*(m1-mu)^2
 fmsq2:f2*(m2-mu)^2
 fmsq3:f3*(m3-mu)^2
@@ -61,6 +66,7 @@ fmsqt:fmsq1+fmsq2+fmsq3+fmsq4+fmsq5+fmsq6
 var:fmsqt/99
 std:var^0.5
 
+% Exercise solutions
 solA:round(mu*100)/100
 solBC:m2
 solD:round(std*100)/100

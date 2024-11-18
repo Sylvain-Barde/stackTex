@@ -21,10 +21,11 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
-% sample size, claim, std
+% Random sample size and observations
 r1: 90+rand(21)
 r2: ceiling(r1/6) + 2 + rand(10)
 
+% Derived quantities
 p1: r2/r1
 p2: p1 - 1/6
 p3: 5/36
@@ -34,6 +35,7 @@ p6: r1/6
 
 solA:1/6
 
+% Conditional answers for 95% and 90% significance based on random draws
 solB:if abs(p5) > 1.96 then true else false
 txtB:if abs(p5) > 1.96 then "" else "not "
 

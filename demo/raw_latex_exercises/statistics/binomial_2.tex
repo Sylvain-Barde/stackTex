@@ -21,22 +21,25 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
-% Part a
+% Part a, random sample size and observed successes
 n0: 6 + rand(5)
 n2: 1 + rand(3)
 n1: n0 - n2
 
-% Part b
+% Part b, random sample size and observed successes
 n3: 5 + rand(5)
 n4: 1 + rand(3)
 n5: n3 - n4
 
+% True probabilities of success
 pSa: 1/2
 pSb: 1/6
 
+% Binomial probabilities
 p0: binom_pdf(n1,n0,pSa)
 p1: binom_pdf(n4,n3,pSb)
 
+% Solutions, rounded to 4 decimal places
 solA:round(10000*p0)/10000
 solB:round(10000*p1)/10000
 

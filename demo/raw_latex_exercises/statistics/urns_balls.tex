@@ -20,18 +20,22 @@ Vlist
 \fieldname{feedbackFormat}
 Vlist
 
-\fieldname{exerciseParameters}
+\fieldname{exerciseParameters
+% Random draws for the number of red, white, blue and orange balls
 nR:7+rand(5)
 nW:27+rand(6)
 nB:18+rand(7)
 nO:14+rand(4)
 
+% Total number of balls
 n_0:nR+nW+nB+nO
 p1:n_0 - nR-nB
 p2:n_0 - nB
 
+% probabilities
 [p3,p4,p5,p6]:[(nO+nR)/n_0,p1/n_0,p2/n_0,nW/n_0]
 
+% Rounded probabilities as solutions
 solA:round(p3*100)/100
 solB:round(p4*100)/100
 solC:round(p5*100)/100
@@ -120,11 +124,6 @@ P(\textrm{not } R \textrm{ and not } B) = 1 - P(R) + 1 - P(B) - 1 \; = \; 1 - P(
 \[
 P(\textrm{not } R \textrm{ and not } B) = \frac{{n_0} - {nR} - {nB}}{{n_0}} = \frac{{p1}}{{n_0}}
 \]
-
-% Again we use $P(\textrm{not } R \textrm{ or not } B) = 1 - P(R) - P(B)$ because $P(R \textrm{ and } B) = 0$. We cannot draw a red and a blue simultaneously.
-% \[
-% P(\textrm{not } R \textrm{ or not } B) = 1 - P( R \textrm{ or } B) = \frac{{n_0} - ({nR}+{nB})}{{n_0}} = \frac{{p1}}{{n_0}} \approx {solB}
-% \]
 
 %-------------------------------------------------------------------------------
 % This section contains the individual question information

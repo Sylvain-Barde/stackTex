@@ -21,6 +21,7 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
+% Random draws from list of 'well-behaved' values of the standard normal
 L1:[0.5, 1, 1.25]
 L2:[1.645, 1.96, 2.575]
 idx1:1+rand(3)
@@ -31,21 +32,20 @@ idx5:1+rand(3)
 
 r2:L2[idx1]
 r1:-r2
-
 r7:L2[idx2]
-
 r4:L1[idx3]
 r3:-r4
-
 r5:L1[idx4]
 r6:L2[idx5]
 
+% Corresponding probabilities as drawn from the P(0 < Z < z_c) table
 p1:norm_cdf(r2,0,1)-0.5
 p2:norm_cdf(r7,0,1)-0.5
 p3:norm_cdf(r4,0,1)-0.5
 p5:norm_cdf(r5,0,1)-0.5
 p6:norm_cdf(r6,0,1)-0.5
 
+% Solutions to questions.
 solA:round(2*p1*1000)/1000
 solB:round(500-p2*1000)/1000
 solC:round(2*p3*1000)/1000

@@ -21,17 +21,21 @@ Vlist
 Vlist
 
 \fieldname{exerciseParameters}
+% Random draws for percent of sucesses and sample size
 n0: 18 + rand(5)
 n1: 8 + rand(7)
 
+% Probability of succes / failure
 pS: n0/100
 pF: 1-pS
 
+% Binomial probabilitiies
 p0: binom_pdf(0,n1,pS)
 p1: binom_pdf(1,n1,pS)
 p2: binom_pdf(2,n1,pS)
 p3: 1-p0-p1
 
+% Probabilities rounded to 4 decimal places
 solA:round(10000*p2)/10000
 solB:round(10000*p3)/10000
 
