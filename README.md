@@ -149,7 +149,7 @@ More advanced behaviour is possible:
 
 ```
 sol:if abs(s) > c then true else false
-txt:if abs(p5) > c then "Reject $H_0$" else "Accept $H_0$"
+txt:if abs(s) > c then "Reject $H_0$" else "Accept $H_0$"
 ```
 
 The following `demo` exercises provide examples of how to randomly draw from a fixed list of given values:
@@ -214,9 +214,7 @@ An exercise can contain multiple questions, each of which can be configured sepa
 
 ## Setting up a build file for output generation
 
-If no exercise list is provided in the `exList` field of the JSON file, the toolbox will default to the `compendium` template:
-- `build_tex` will build a `.pdf` reference document containing the entire question bank.
-- `build_xml` will build a `.xml` file that can be used to import the entire question bank into Moodle.
+A build file is a JSON document containing all the instructions required for stackTex to build either a `.tex + .pdf` document or an `.xml` file using on the range of output templates. This section details the types of output that can be generated and the various options available to configure the output.
 
 ### Available output templates
 
@@ -230,7 +228,7 @@ More user-defined `.tex` templates can be added, see the [section below](#adding
 
 ### Build file fields and options
 
-A build file is a JSON document containing all the instructions required for stackTex to build either a `.tex + .pdf` document or an `.xml` file. There is a minimum requirement for any stackTex build file, detailed below, however each template (including any additional user-added templates) can have their own customisations.
+There is a minimum requirement for any stackTex build file, detailed below, however each template (including any additional user-added templates) can have their own customisations.
 
 #### Common fields required for all output templates
 
@@ -245,19 +243,25 @@ The fields below are required for stackTex functionality and should be included 
 The fields below are also required for stackTex functionality, but default behaviours are provided in case the field is not included in the build file.
 
 - **marks"**: *boolean*, flag whether to display marks for the exercise. Set to `false` by default.
-- **verbose** *boolean*, flags whether to include verbose feedback. Set to `true` by default.
+- **verbose** *boolean*, flags whether to include verbose feedback. If `false`, the solution document will only provide the correct answer, not the full feedback. Set to `true` by default.
 - **seed**: *int*, seed for the random number generator. Set to 0 by default.
-- **exList**: *list*, list of exercises to include in the output file. If exList is not included in the buildFile, `build_tex` and `build_xml` will include all exercises the build.
+- **exList**: *list*, list of exercises to include in the output file. This has to be formatted as a list of lists, using the syntaxt `[ [...], [...], [...] ]`. This sequence of lists allows for several sets of exercises to be provided, for example in the `test.tex` [template](#fields-specific-to-the-test-output-template), where the test contains several parts each on a different topic. If `exList` is not included in the buildFile, the toolbox will default to the `compendium.tex` template:
+  - `build_tex` will build a `.pdf` reference document containing the entire question bank.
+  - `build_xml` will build a `.xml` file that can be used to import the entire question bank into Moodle.
 
 #### Fields specific to the seminar output template
+
+This output template requires an **exList** field containing a single list of exercises `[[...]]`. See `demo/buildFiles/maths_seminar.json` for an example.
 
 - **modCode**: *string*, Module code
 - **modName**: *string*, Module name.
 - **weekNo**: *string*, Week number
 - **blurbStr**: *string*, Short description string for event
-- **titleStr**: *string*, Title of seminar              
+- **titleStr**: *string*, Title of seminar 
 
 #### Fields specific to the test output template
+
+This output template requires an **exList** field containing 3 separate list of exercises `[ [...],  [...], [...]]`, one for each section of the test. See `demo/buildFiles/stats_test.json` for an example.
 
 - **modCode**: *string*, Module code
 - **modName**: *string*, Module name
@@ -272,12 +276,23 @@ The fields below are also required for stackTex functionality, but default behav
 
 ### Adding and editing output templates
 
-The `.tex` templates are written in standard Latex and can therefore easily be modified to suit the user's specific needs. This would be the case, for example, if the user requires their test or exam document to comply with any requirements set by their institution. Similarly, additional templates can also be added to the toolkit if needed.
+The `.tex` templates are written in standard Latex and can therefore easily be modified to suit the user's specific needs. This would be the case, for example, if the user requires a test or exam pdf document that comply some specific requirements set by their institution. Similarly, additional templates can also be added to the toolkit if needed by placing the corresponding `.tex` document in the `templates` folder.
+
+When processing a build file the toolkit will extract the [mimimal required fields](#common-fields-required-for-all-output-templates) to generate the output file name, select the correct template, set the visibility of marks and feedback, set the RNG seed, and extract the required exercises. If any *additional* fields are provided in the JSON object, stackTex will simply search the template for the string corresponding to each additional fieldname, and replace it with the value provided. This means that including some user-configuraable text in a template simply requires:
+- Placing a token in the LaTeX template in the location where that text needs to be included (e.g the **modCode** and **modeName** tokens in the `maths_seminar.json` and `stats_test.json` templates).
+- Providing the required text (e.g. the module code and the module name) in the build file, using the chosen token as the field name
+
+**Note:**
+- When adding a new template, the header should match that of the existing templates, as this controls some of the formatting options used by the stacktex toolkit.
+- Because stackTex will find/replace the tokens with the provided values, the fieldnames chosen as tokens need to be distinct strings.
+- Similarly, any field included in the buildfile but not in the template, and any field not included in the build file but present in the template will simply not be replaced when the document is built. 
 
 #### Location of exercises
 
-#### Adding new fields
+In order for an additional LaTeX template to function correctly, there needs to be:
+- A token, or set of tokens identiying where the exercises needs to be included in the document
+- An **exList** field in the build file containing as many lists of exercises as there are tokens in the template.
 
-Include tokens for location of exercises in document.
-
-`ExStr_1`
+The tokens used to marking the location of exercises in the template document are of the form `ExStr_n`, where `n` is the nth list of exercises to ilcude. As an example:
+- The `maths_seminar.json` template only allows for a single list of exercises, therefore only has a single token `ExStr_1`.
+- The `stats_test.json` template uses three lists of exercises, correspondioing to 3 parts of the test, and therefore uses `ExStr_1`, `ExStr_2` and `ExStr_3`, separated by LaTeX seaction headers and page breaks.
